@@ -1,6 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, Variants } from "framer-motion";
-import { GraduationCap, Target, Code, Zap, Brain, Rocket, Users } from "lucide-react";
+import {
+  GraduationCap,
+  Target,
+  Code,
+  Zap,
+  Brain,
+  Rocket,
+  Users,
+} from "lucide-react";
 import TechStackRadar from "../components/TechStackRadar";
 
 const AboutPage: React.FC = () => {
@@ -73,28 +81,28 @@ const AboutPage: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.05,
+        delayChildren: 0,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.3,
         ease: "easeOut",
       },
     },
   };
 
-
-
   useEffect(() => {
     let isMounted = true;
 
+    // Load SVG content
     fetch("/creator.svg")
       .then((response) => response.text())
       .then((svgText) => {
@@ -111,6 +119,7 @@ const AboutPage: React.FC = () => {
     };
   }, []);
 
+  // Apply sketch animation class after SVG loads
   useEffect(() => {
     if (!creatorSvg || !svgHeroRef.current) return;
 
@@ -120,32 +129,8 @@ const AboutPage: React.FC = () => {
     svgElement.setAttribute("width", "100%");
     svgElement.setAttribute("height", "100%");
 
-    // Apply sketch animation to all paths
-    const paths = svgElement.querySelectorAll("path");
-    paths.forEach((path, index) => {
-      if (!(path instanceof SVGPathElement)) return;
-
-      const length = path.getTotalLength();
-      const delay = index * 0.003; // Stagger animation for each path
-
-      path.style.strokeDasharray = `${length}`;
-      path.style.strokeDashoffset = `${length}`;
-      path.style.setProperty("--path-length", `${length}`);
-      path.style.animation = `svg-sketch-draw 0.3s ease-in-out ${delay}s forwards`;
-      path.style.strokeLinecap = "round";
-      path.style.strokeLinejoin = "round";
-    });
-
-    return () => {
-      paths.forEach((path) => {
-        if (path instanceof SVGPathElement) {
-          path.style.animation = "";
-          path.style.strokeDasharray = "";
-          path.style.strokeDashoffset = "";
-          path.style.removeProperty("--path-length");
-        }
-      });
-    };
+    // Add animation class to trigger CSS animation
+    svgHeroRef.current.classList.add("sketch-animate");
   }, [creatorSvg]);
 
   return (
@@ -174,8 +159,8 @@ const AboutPage: React.FC = () => {
                     dangerouslySetInnerHTML={{ __html: creatorSvg }}
                   />
                 ) : (
-                  <div className="flex w-full aspect-square items-center justify-center text-sm text-gray-400 animate-pulse">
-                    Loading illustration…
+                  <div className="flex w-full aspect-square items-center justify-center">
+                    <div className="w-12 h-12 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin" />
                   </div>
                 )}
               </div>
@@ -195,10 +180,7 @@ const AboutPage: React.FC = () => {
                 </span>
               </motion.h1>
 
-              <motion.div
-                variants={itemVariants}
-                className="space-y-4"
-              >
+              <motion.div variants={itemVariants} className="space-y-4">
                 <h2 className="text-2xl lg:text-3xl font-semibold text-white">
                   Dharun Kumar S H
                 </h2>
@@ -221,11 +203,31 @@ const AboutPage: React.FC = () => {
                 className="flex flex-wrap flex-row gap-4 justify-center lg:justify-start"
               >
                 {[
-                  { icon: GraduationCap, label: " Self Learner", color: "from-cyan-600 to-teal-700" },
-                  { icon: Rocket, label: "Creative Thinker", color: "from-pink-700 to-red-800" },
-                  { icon: Users, label: "Team Worker", color: "from-amber-700 to-lime-800" },
-                  { icon: Users, label: "Quick Learner", color: "from-rose-600 to-indigo-800" },
-                  { icon: Users, label: "Problem Solver", color: "from-sky-600 to-emerald-800" },
+                  {
+                    icon: GraduationCap,
+                    label: " Self Learner",
+                    color: "from-cyan-600 to-teal-700",
+                  },
+                  {
+                    icon: Rocket,
+                    label: "Creative Thinker",
+                    color: "from-pink-700 to-red-800",
+                  },
+                  {
+                    icon: Users,
+                    label: "Team Worker",
+                    color: "from-amber-700 to-lime-800",
+                  },
+                  {
+                    icon: Users,
+                    label: "Quick Learner",
+                    color: "from-rose-600 to-indigo-800",
+                  },
+                  {
+                    icon: Users,
+                    label: "Problem Solver",
+                    color: "from-sky-600 to-emerald-800",
+                  },
                 ].map((badge, index) => (
                   <motion.div
                     key={badge.label}
@@ -237,7 +239,9 @@ const AboutPage: React.FC = () => {
                     transition={{ delay: index * 0.1 + 1 }}
                   >
                     <badge.icon size={16} className="text-white" />
-                    <span className="text-sm font-medium text-white">{badge.label}</span>
+                    <span className="text-sm font-medium text-white">
+                      {badge.label}
+                    </span>
                   </motion.div>
                 ))}
               </motion.div>
@@ -318,7 +322,8 @@ const AboutPage: React.FC = () => {
                           loading="lazy"
                           className="w-12 h-12 object-contain"
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src = "/fallback.png";
+                            (e.target as HTMLImageElement).src =
+                              "/fallback.png";
                           }}
                         />
                       </div>
@@ -394,10 +399,10 @@ const AboutPage: React.FC = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4 }}
             className="text-center mb-12 lg:mb-16"
           >
             <h2 className="text-3xl lg:text-5xl font-bold mb-4 lg:mb-6">
@@ -411,10 +416,10 @@ const AboutPage: React.FC = () => {
             <TechStackRadar />
 
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.4 }}
               className="space-y-6"
             >
               <div className="space-y-4">
@@ -433,7 +438,8 @@ const AboutPage: React.FC = () => {
                   {
                     area: "Database Management",
                     percentage: 65,
-                    description: "PostgreSQL, Firebase, Supabase, Convex, Strapi CMS",
+                    description:
+                      "PostgreSQL, Firebase, Supabase, Convex, Strapi CMS",
                   },
                 ].map((item, index) => (
                   <motion.div
@@ -478,10 +484,10 @@ const AboutPage: React.FC = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4 }}
             className="text-center mb-12 lg:mb-16"
           >
             <h2 className="text-3xl lg:text-5xl font-bold mb-4 lg:mb-6">
@@ -500,10 +506,10 @@ const AboutPage: React.FC = () => {
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
+                transition={{ delay: index * 0.04, duration: 0.3 }}
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="text-center p-6 lg:p-8 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300"
               >
@@ -518,7 +524,6 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
       </section>
-
     </div>
   );
 };

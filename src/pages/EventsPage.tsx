@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { motion, Variants } from 'framer-motion';
-import { Calendar, MapPin, Trophy, Users } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, Variants } from "framer-motion";
+import { Calendar, MapPin, Trophy, Users } from "lucide-react";
 
 const EventsPage: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   const events = [
     {
@@ -224,7 +224,12 @@ const EventsPage: React.FC = () => {
         "Presented a paper as part of a team of three, proposing a machine learning–based approach for predicting customer personality traits. The work explored models such as Recurrent Neural Networks (RNN) and Random Forest to analyze customer data, aiming to improve personalization, targeted marketing, and decision-making in businesses.",
       achievement: "Participated",
       image: "./events/event12.png",
-      technologies: ["Machine Learning", "RNN", "Random Forest", "Data Analysis"],
+      technologies: [
+        "Machine Learning",
+        "RNN",
+        "Random Forest",
+        "Data Analysis",
+      ],
       participants: 30,
       duration: "2 hours",
     },
@@ -242,27 +247,32 @@ const EventsPage: React.FC = () => {
       technologies: ["UI/UX Design", "Figma", "Prototyping", "User Research"],
       participants: 70,
       duration: "1 hour 45 minutes",
-    }
+    },
   ];
 
   const categories = [
-    { id: 'all', label: 'All Events', icon: Calendar },
-    { id: 'hackathon', label: 'Hackathons', icon: Trophy },
-    { id: 'Club Event', label: 'Club Events', icon: Users },
-    { id: 'workshop', label: 'Workshops', icon: MapPin },
-    { id: 'competition', label: 'Competitions', icon: Trophy },
+    { id: "all", label: "All Events", icon: Calendar },
+    { id: "hackathon", label: "Hackathons", icon: Trophy },
+    { id: "Club Event", label: "Club Events", icon: Users },
+    { id: "workshop", label: "Workshops", icon: MapPin },
+    { id: "competition", label: "Competitions", icon: Trophy },
   ];
 
-  const filteredEvents = selectedCategory === 'all'
-    ? events
-    : events.filter(event => event.type === selectedCategory);
+  const filteredEvents =
+    selectedCategory === "all"
+      ? events
+      : events.filter((event) => event.type === selectedCategory);
 
   const getRoleColor = (role: string) => {
     switch (role) {
-      case 'Participant': return 'from-indigo-700 via-purple-600 to-pink-600';
-      case 'Co-Ordinator': return 'from-sky-500 via-cyan-500 to-blue-600';
-      case 'Winner': return 'from-lime-400 via-emerald-500 to-green-600';
-      default: return 'from-slate-500 via-gray-600 to-neutral-700';
+      case "Participant":
+        return "from-indigo-700 via-purple-600 to-pink-600";
+      case "Co-Ordinator":
+        return "from-sky-500 via-cyan-500 to-blue-600";
+      case "Winner":
+        return "from-lime-400 via-emerald-500 to-green-600";
+      default:
+        return "from-slate-500 via-gray-600 to-neutral-700";
     }
   };
 
@@ -271,18 +281,19 @@ const EventsPage: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.05,
+        delayChildren: 0,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.3,
         ease: "easeOut",
       },
     },
@@ -296,9 +307,9 @@ const EventsPage: React.FC = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4 }}
             className="text-center mb-16 lg:mb-24"
           >
             <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold mb-6 lg:mb-8">
@@ -307,28 +318,29 @@ const EventsPage: React.FC = () => {
               </span>
             </h1>
             <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto">
-              Participating in hackathons, conferences, and tech events to grow and learn
+              Participating in hackathons, conferences, and tech events to grow
+              and learn
             </p>
           </motion.div>
 
           {/* Stats */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.1, duration: 0.3 }}
             className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16 lg:mb-24"
           >
             {[
-              { label: 'Events Attended', value: '15+', icon: Calendar },
-              { label: 'Hackathons Won', value: '1', icon: Trophy },
-              { label: 'Total Participants Met', value: '1000+', icon: Users },
-              { label: 'Prize Money Won', value: '₹500', icon: Trophy },
+              { label: "Events Attended", value: "15+", icon: Calendar },
+              { label: "Hackathons Won", value: "1", icon: Trophy },
+              { label: "Total Participants Met", value: "1000+", icon: Users },
+              { label: "Prize Money Won", value: "₹500", icon: Trophy },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
+                transition={{ delay: 0.15 + index * 0.04, duration: 0.3 }}
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="text-center p-6 lg:p-8 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300"
               >
@@ -345,9 +357,9 @@ const EventsPage: React.FC = () => {
 
           {/* Category Filter */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
             className="flex flex-wrap justify-center gap-3 lg:gap-4 mb-12 lg:mb-16"
           >
             {categories.map((category) => (
@@ -356,10 +368,11 @@ const EventsPage: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-3 rounded-full font-medium transition-all duration-300 ${selectedCategory === category.id
-                  ? 'bg-gradient-to-r from-violet-600 via-pink-600 to-purple-700 text-white shadow-lg'
-                  : 'bg-gray-800/50 text-gray-400 hover:text-cyan-400 hover:bg-gray-700/50 border border-gray-700/50'
-                  }`}
+                className={`flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-3 rounded-full font-medium transition-all duration-300 ${
+                  selectedCategory === category.id
+                    ? "bg-gradient-to-r from-violet-600 via-pink-600 to-purple-700 text-white shadow-lg"
+                    : "bg-gray-800/50 text-gray-400 hover:text-cyan-400 hover:bg-gray-700/50 border border-gray-700/50"
+                }`}
               >
                 <category.icon size={16} />
                 {category.label}
@@ -402,7 +415,11 @@ const EventsPage: React.FC = () => {
                     </div>
 
                     {/* Role Badge */}
-                    <div className={`absolute top-4 right-4 px-3 py-1 bg-gradient-to-r ${getRoleColor(event.role)} text-white text-sm font-medium rounded-full`}>
+                    <div
+                      className={`absolute top-4 right-4 px-3 py-1 bg-gradient-to-r ${getRoleColor(
+                        event.role
+                      )} text-white text-sm font-medium rounded-full`}
+                    >
                       {event.role}
                     </div>
 
@@ -477,8 +494,12 @@ const EventsPage: React.FC = () => {
               animate={{ opacity: 1 }}
               className="text-center py-16 lg:py-24"
             >
-              <h3 className="text-2xl lg:text-3xl font-bold text-gray-400 mb-4">No events found</h3>
-              <p className="text-gray-500">Try selecting a different category</p>
+              <h3 className="text-2xl lg:text-3xl font-bold text-gray-400 mb-4">
+                No events found
+              </h3>
+              <p className="text-gray-500">
+                Try selecting a different category
+              </p>
             </motion.div>
           )}
         </div>

@@ -1,6 +1,15 @@
-import React, { useState } from 'react';
-import { AnimatePresence, motion, Variants } from 'framer-motion';
-import { Calendar, ExternalLink, X, GraduationCap, CircuitBoard, BadgeCheck, Rocket, NotebookPen } from 'lucide-react';
+import React, { useState } from "react";
+import { AnimatePresence, motion, Variants } from "framer-motion";
+import {
+  Calendar,
+  ExternalLink,
+  X,
+  GraduationCap,
+  CircuitBoard,
+  BadgeCheck,
+  Rocket,
+  NotebookPen,
+} from "lucide-react";
 
 const CertificationsPage: React.FC = () => {
   const certifications = [
@@ -139,11 +148,17 @@ const CertificationsPage: React.FC = () => {
     {
       id: 12,
       title: "AOTS–JEC Programme Certificate",
-      issuer: "Association for Overseas Technical Cooperation and Sustainable Partnerships (AOTS)",
+      issuer:
+        "Association for Overseas Technical Cooperation and Sustainable Partnerships (AOTS)",
       date: "June 2025",
       logo: "./certifications/logo9.png",
       verifyUrl: "./certifications/certificate12.jpg",
-      skills: ["Problem-Solving Skills", "Leadership", "Marketing Stratergies", "Critical Thinking"],
+      skills: [
+        "Problem-Solving Skills",
+        "Leadership",
+        "Marketing Stratergies",
+        "Critical Thinking",
+      ],
       level: "Course",
       score: "100%",
     },
@@ -154,9 +169,14 @@ const CertificationsPage: React.FC = () => {
       date: "August 2025",
       logo: "./certifications/logo10.png",
       verifyUrl: "./certifications/certificate13.jpg",
-      skills: ["React.js", "Frontend Development", "JavaScript", "Problem-Solving"],
+      skills: [
+        "React.js",
+        "Frontend Development",
+        "JavaScript",
+        "Problem-Solving",
+      ],
       level: "Course",
-      score: "100%"
+      score: "100%",
     },
     {
       id: 14,
@@ -165,9 +185,14 @@ const CertificationsPage: React.FC = () => {
       date: "September 2025",
       logo: "./certifications/logo10.png",
       verifyUrl: "./certifications/certificate14.jpg",
-      skills: ["REST API", "Backend Development", "API Design", "Problem-Solving"],
+      skills: [
+        "REST API",
+        "Backend Development",
+        "API Design",
+        "Problem-Solving",
+      ],
       level: "Course",
-      score: "100%"
+      score: "100%",
     },
     {
       id: 15,
@@ -176,9 +201,14 @@ const CertificationsPage: React.FC = () => {
       date: "September 2025",
       logo: "./certifications/logo10.png",
       verifyUrl: "./certifications/certificate15.jpg",
-      skills: ["CSS", "Frontend Development", "Web Design", "Responsive Layouts"],
+      skills: [
+        "CSS",
+        "Frontend Development",
+        "Web Design",
+        "Responsive Layouts",
+      ],
       level: "Course",
-      score: "100%"
+      score: "100%",
     },
     {
       id: 16,
@@ -189,7 +219,7 @@ const CertificationsPage: React.FC = () => {
       verifyUrl: "./certifications/certificate16.jpg",
       skills: ["LangGraph", "NLP", "LLM Models"],
       level: "Course",
-      score: "100%"
+      score: "100%",
     },
     {
       id: 17,
@@ -200,7 +230,7 @@ const CertificationsPage: React.FC = () => {
       verifyUrl: "./certifications/certificate17.png",
       skills: ["AI in Education", "Gemini AI", "LLM Models"],
       level: "Course",
-      score: "100%"
+      score: "100%",
     },
     {
       id: 18,
@@ -209,16 +239,24 @@ const CertificationsPage: React.FC = () => {
       date: "December 2025",
       logo: "./certifications/logo13.png",
       verifyUrl: "./certifications/certificate18.jpg",
-      skills: ["Critical Thinking", "Decision-Making", "AI Content Analysis", "Bias Mitigation", "Fact-Checking"],
+      skills: [
+        "Critical Thinking",
+        "Decision-Making",
+        "AI Content Analysis",
+        "Bias Mitigation",
+        "Fact-Checking",
+      ],
       level: "Course",
-      score: "100%"
+      score: "100%",
     },
   ];
 
-  const [selectedCert, setSelectedCert] = useState<typeof certifications[0] | null>(null);
+  const [selectedCert, setSelectedCert] = useState<
+    (typeof certifications)[0] | null
+  >(null);
   const [showModal, setShowModal] = useState(false);
 
-  const openModal = (cert: typeof certifications[0]) => {
+  const openModal = (cert: (typeof certifications)[0]) => {
     setSelectedCert(cert);
     setShowModal(true);
   };
@@ -230,12 +268,18 @@ const CertificationsPage: React.FC = () => {
 
   const getLevelColor = (level: string) => {
     switch (level) {
-      case 'Hackathon': return 'from-purple-700 to-purple-900';
-      case 'Internship': return 'from-blue-700 to-blue-900';
-      case 'Workshop': return 'from-gray-700 to-gray-900';
-      case 'Industrial Visit': return 'from-yellow-700 to-yellow-900';
-      case 'Course': return 'from-red-700 to-red-900';
-      default: return;
+      case "Hackathon":
+        return "from-purple-700 to-purple-900";
+      case "Internship":
+        return "from-blue-700 to-blue-900";
+      case "Workshop":
+        return "from-gray-700 to-gray-900";
+      case "Industrial Visit":
+        return "from-yellow-700 to-yellow-900";
+      case "Course":
+        return "from-red-700 to-red-900";
+      default:
+        return;
     }
   };
 
@@ -243,16 +287,16 @@ const CertificationsPage: React.FC = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 },
+      transition: { staggerChildren: 0.05 },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, x: -20 },
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
+      transition: { duration: 0.3, ease: "easeOut" },
     },
   };
 
@@ -263,15 +307,17 @@ const CertificationsPage: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4 }}
             className="text-center mb-16"
           >
             <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-violet-400 text-transparent bg-clip-text">
               Certifications
             </h1>
-            <p className="text-xl text-gray-400">Professional certifications and achievements in tech</p>
+            <p className="text-xl text-gray-400">
+              Professional certifications and achievements in tech
+            </p>
           </motion.div>
 
           {/* STATS */}
@@ -282,12 +328,11 @@ const CertificationsPage: React.FC = () => {
             className="grid grid-cols-2 md:grid-cols-5 gap-6 mb-16"
           >
             {[
-              { label: 'Total Certifications', value: '14+', icon: BadgeCheck },
-              { label: 'Hackathons', value: '7', icon: CircuitBoard },
-              { label: 'Interships', value: '3', icon: GraduationCap },
-              { label: 'Courses', value: '3+', icon: NotebookPen },
-              { label: 'Deployed Projects', value: '10+', icon: Rocket },
-
+              { label: "Total Certifications", value: "14+", icon: BadgeCheck },
+              { label: "Hackathons", value: "7", icon: CircuitBoard },
+              { label: "Interships", value: "3", icon: GraduationCap },
+              { label: "Courses", value: "3+", icon: NotebookPen },
+              { label: "Deployed Projects", value: "10+", icon: Rocket },
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -319,10 +364,18 @@ const CertificationsPage: React.FC = () => {
               className="relative bg-gray-800/50 rounded-2xl p-6 border border-gray-700/50 backdrop-blur-md hover:border-cyan-500/50 transition-all"
             >
               {/* Badge + Score */}
-              <div className={`absolute -top-3 -right-3 px-3 py-1 bg-gradient-to-br ${getLevelColor(cert.level)} text-xs font-bold text-white rounded-full`}>
+              <div
+                className={`absolute -top-3 -right-3 px-3 py-1 bg-gradient-to-br ${getLevelColor(
+                  cert.level
+                )} text-xs font-bold text-white rounded-full`}
+              >
                 {cert.level}
               </div>
-              <div className={`absolute -top-3 -left-3 w-12 h-12 bg-gradient-to-br ${getLevelColor(cert.level)} rounded-full flex items-center justify-center shadow-lg text-xs font-bold text-white`}>
+              <div
+                className={`absolute -top-3 -left-3 w-12 h-12 bg-gradient-to-br ${getLevelColor(
+                  cert.level
+                )} rounded-full flex items-center justify-center shadow-lg text-xs font-bold text-white`}
+              >
                 {cert.score}
               </div>
 
@@ -345,7 +398,10 @@ const CertificationsPage: React.FC = () => {
               </div>
               <div className="flex flex-wrap gap-2 mb-4">
                 {cert.skills.map((skill) => (
-                  <span key={skill} className="text-xs px-3 py-1 rounded-full border border-cyan-400/30 bg-cyan-500/10 text-cyan-300">
+                  <span
+                    key={skill}
+                    className="text-xs px-3 py-1 rounded-full border border-cyan-400/30 bg-cyan-500/10 text-cyan-300"
+                  >
                     {skill}
                   </span>
                 ))}
@@ -379,7 +435,7 @@ const CertificationsPage: React.FC = () => {
               initial={{ scale: 0.95, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 50 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
               className="relative bg-zinc-900 rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden border border-gray-700"
             >
               {/* Centered Certificate */}

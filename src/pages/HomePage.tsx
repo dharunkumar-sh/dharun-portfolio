@@ -1,16 +1,22 @@
-import React from 'react';
-import { motion, Variants } from 'framer-motion';
-import { Download, Github, Linkedin, Instagram, ArrowRight, Terminal } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import TypewriterEffect from '../components/TypewriterEffect';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { motion, Variants } from "framer-motion";
+import {
+  Download,
+  Github,
+  Linkedin,
+  Instagram,
+  ArrowRight,
+  Terminal,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import TypewriterEffect from "../components/TypewriterEffect";
+import { useNavigate } from "react-router-dom";
 
 const HomePage: React.FC = () => {
-
   const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = '/resume.pdf';
-    link.download = 'Dharun_Kumar_Resume.pdf';
+    const link = document.createElement("a");
+    link.href = "/resume.pdf";
+    link.download = "Dharun_Kumar_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -19,15 +25,15 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
   const typewriterWords = [
-    'Composing sleek UIs with React and Next.js...',
-    'Hooking into interactivity...',
-    'Turning components into experiences...',
-    'Writing clean JSX and TSX like poetry...',
-    'Managing state, like a boss...',
-    'Building fast, responsive apps...',
-    'Breaking the UI into reusable pieces...',
-    'Animating interfaces with Framer Motion...',
-    'Shipping pixel-perfect components...'
+    "Composing sleek UIs with React and Next.js...",
+    "Hooking into interactivity...",
+    "Turning components into experiences...",
+    "Writing clean JSX and TSX like poetry...",
+    "Managing state, like a boss...",
+    "Building fast, responsive apps...",
+    "Breaking the UI into reusable pieces...",
+    "Animating interfaces with Framer Motion...",
+    "Shipping pixel-perfect components...",
   ];
 
   const containerVariants: Variants = {
@@ -35,39 +41,39 @@ const HomePage: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.4,
         ease: "easeOut",
       },
     },
   };
 
   const stats = [
-    { label: 'Projects Completed', value: '10+' },
-    { label: 'Technologies Mastered', value: '3+' },
-    { label: 'Hackathon Won', value: '1' },
-    { label: 'Years of Experience', value: '1.5+' },
+    { label: "Projects Completed", value: "10+" },
+    { label: "Technologies Mastered", value: "3+" },
+    { label: "Hackathon Won", value: "1" },
+    { label: "Years of Experience", value: "1.5+" },
   ];
 
   const getTailwindColor = (color: string): string => {
     const colors: Record<string, string> = {
-      'gray-600': '#4B5563',
-      'blue-500': '#3B82F6',
-      'pink-500': '#EC4899',
-      'cyan-500': '#06b6d4',
+      "gray-600": "#4B5563",
+      "blue-500": "#3B82F6",
+      "pink-500": "#EC4899",
+      "cyan-500": "#06b6d4",
     };
-    return colors[color] || '#4B5563';
+    return colors[color] || "#4B5563";
   };
 
   return (
@@ -87,13 +93,12 @@ const HomePage: React.FC = () => {
           animate="visible"
           className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
         >
-          <motion.div
-            variants={itemVariants}
-            className="mb-6 lg:mb-8"
-          >
+          <motion.div variants={itemVariants} className="mb-6 lg:mb-8">
             <div className="inline-block p-1 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 mb-4">
               <div className="bg-gray-900 rounded-full px-4 py-2 lg:px-6 lg:py-3">
-                <span className="text-sm lg:text-lg font-semibold text-gray-300">Hello, I'm</span>
+                <span className="text-sm lg:text-lg font-semibold text-gray-300">
+                  Hello, I'm
+                </span>
               </div>
             </div>
           </motion.div>
@@ -105,10 +110,7 @@ const HomePage: React.FC = () => {
             Dharun Kumar S H
           </motion.h1>
 
-          <motion.div
-            variants={itemVariants}
-            className="mb-8 lg:mb-12"
-          >
+          <motion.div variants={itemVariants} className="mb-8 lg:mb-12">
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-300/75 mb-4 lg:mb-6">
               Aspring React Developer | UI/UX Enthusiast
             </h2>
@@ -120,7 +122,6 @@ const HomePage: React.FC = () => {
                 className="min-h-[2em] flex items-center justify-center"
               />
             </div>
-
           </motion.div>
 
           <motion.div
@@ -129,7 +130,10 @@ const HomePage: React.FC = () => {
           >
             <motion.button
               onClick={handleDownload}
-              whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(6,182,212,0.5)" }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 25px rgba(6,182,212,0.5)",
+              }}
               whileTap={{ scale: 0.95 }}
               className="flex items-center gap-2 px-6 lg:px-8 py-3 lg:py-4 bg-gradient-to-r from-purple-700 via-pink-600 to-violet-700 text-white font-semibold rounded-full hover:from-pink-600 hover:to-violet-700 transition-all duration-300"
             >
@@ -137,7 +141,7 @@ const HomePage: React.FC = () => {
               Download Resume
             </motion.button>
             <motion.button
-              onClick={() => navigate('/about')}
+              onClick={() => navigate("/about")}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="flex items-center gap-2 px-6 lg:px-8 py-3 lg:py-4 border-2 border-cyan-500/50 text-cyan-400 font-semibold rounded-full hover:bg-cyan-500/10 transition-all duration-300"
@@ -154,36 +158,36 @@ const HomePage: React.FC = () => {
             {[
               {
                 icon: Github,
-                href: 'https://github.com/dharunkumar-sh',
-                label: 'GitHub',
-                color: 'text-gray-500',
-                bg: 'gray-600',
+                href: "https://github.com/dharunkumar-sh",
+                label: "GitHub",
+                color: "text-gray-500",
+                bg: "gray-600",
               },
               {
                 icon: Linkedin,
-                href: 'https://www.linkedin.com/in/dharun-kumar-sh',
-                label: 'LinkedIn',
-                color: 'text-blue-500',
-                bg: 'blue-500',
+                href: "https://www.linkedin.com/in/dharun-kumar-sh",
+                label: "LinkedIn",
+                color: "text-blue-500",
+                bg: "blue-500",
               },
               {
                 icon: Instagram,
-                href: 'https://www.instagram.com/iam.dharunkumar',
-                label: 'Instagram',
-                color: 'text-pink-500',
-                bg: 'pink-500',
+                href: "https://www.instagram.com/iam.dharunkumar",
+                label: "Instagram",
+                color: "text-pink-500",
+                bg: "pink-500",
               },
               {
                 icon: Terminal,
-                href: 'https://leetcode.com/u/dharunkumarsh/',
-                label: 'LeetCode',
-                color: 'text-cyan-400',
-                bg: 'cyan-500',
+                href: "https://leetcode.com/u/dharunkumarsh/",
+                label: "LeetCode",
+                color: "text-cyan-400",
+                bg: "cyan-500",
               },
             ].map(({ icon: Icon, href, label, color, bg }) => (
               <motion.div
                 key={label}
-                onClick={() => window.open(href, '_blank')}
+                onClick={() => window.open(href, "_blank")}
                 whileHover={{ scale: 1.2, y: -5 }}
                 whileTap={{ scale: 0.9 }}
                 className="relative group p-3 lg:p-4 rounded-xl cursor-pointer bg-gray-800/50 border border-gray-700 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300"
@@ -200,7 +204,6 @@ const HomePage: React.FC = () => {
               </motion.div>
             ))}
           </motion.div>
-
         </motion.div>
       </section>
 
@@ -210,10 +213,10 @@ const HomePage: React.FC = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4 }}
             className="text-center mb-12 lg:mb-16"
           >
             <h2 className="text-3xl lg:text-5xl font-bold mb-4 lg:mb-6">
@@ -230,10 +233,10 @@ const HomePage: React.FC = () => {
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
+                transition={{ delay: index * 0.04, duration: 0.3 }}
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="text-center p-6 lg:p-8 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300"
               >
@@ -253,10 +256,10 @@ const HomePage: React.FC = () => {
       <section className="py-16 lg:py-24 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4 }}
             className="text-center mb-12 lg:mb-16"
           >
             <h2 className="text-3xl lg:text-5xl font-bold mb-4 lg:mb-6">
@@ -271,16 +274,31 @@ const HomePage: React.FC = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {[
-              { title: 'Projects', path: '/projects', description: 'Innovative solutions', icon: '🚀' },
-              { title: 'Certifications', path: '/certifications', description: 'Professional Achievements', icon: '🏆' },
-              { title: 'Events', path: '/events', description: 'Hackathons & Events', icon: '🎯' },
+              {
+                title: "Projects",
+                path: "/projects",
+                description: "Innovative solutions",
+                icon: "🚀",
+              },
+              {
+                title: "Certifications",
+                path: "/certifications",
+                description: "Professional Achievements",
+                icon: "🏆",
+              },
+              {
+                title: "Events",
+                path: "/events",
+                description: "Hackathons & Events",
+                icon: "🎯",
+              },
             ].map((item, index) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
+                transition={{ delay: index * 0.05, duration: 0.3 }}
                 whileHover={{ scale: 1.05, y: -10 }}
                 className="group"
               >
@@ -298,8 +316,13 @@ const HomePage: React.FC = () => {
                     {item.description}
                   </p>
                   <div className="mt-4 lg:mt-6 flex items-center text-cyan-400 group-hover:text-violet-400 transition-colors">
-                    <span className="text-sm lg:text-base font-medium">Explore</span>
-                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    <span className="text-sm lg:text-base font-medium">
+                      Explore
+                    </span>
+                    <ArrowRight
+                      size={16}
+                      className="ml-2 group-hover:translate-x-1 transition-transform"
+                    />
                   </div>
                 </Link>
               </motion.div>

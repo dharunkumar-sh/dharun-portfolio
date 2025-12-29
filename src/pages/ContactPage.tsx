@@ -1,8 +1,20 @@
-import React, { useState } from 'react';
-import { motion, Variants } from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, MessageCircle, Clock, Globe, Instagram } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, Variants } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Github,
+  Linkedin,
+  Twitter,
+  MessageCircle,
+  Clock,
+  Globe,
+  Instagram,
+} from "lucide-react";
 
 interface ContactFormData {
   name: string;
@@ -13,21 +25,26 @@ interface ContactFormData {
 
 const ContactPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<ContactFormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ContactFormData>();
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('https://formspree.io/f/mnnvkoyg', {
-        method: 'POST',
+      const response = await fetch("https://formspree.io/f/mnnvkoyg", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) throw new Error('Form submission failed');
+      if (!response.ok) throw new Error("Form submission failed");
 
       toast.success("Message sent successfully! I'll get back to you soon.");
       reset();
@@ -38,68 +55,91 @@ const ContactPage: React.FC = () => {
     }
   };
 
-
   const contactInfo = [
     {
       icon: Mail,
-      title: 'Email',
-      value: 'iam.dharunkumarsh@gmail.com',
-      href: 'iam.dharunkumarsh@gmail.com',
-      description: 'Send me an email anytime',
+      title: "Email",
+      value: "iam.dharunkumarsh@gmail.com",
+      href: "iam.dharunkumarsh@gmail.com",
+      description: "Send me an email anytime",
     },
     {
       icon: Phone,
-      title: 'Phone',
-      value: '+91 6383113382',
-      href: '6383113382',
-      description: 'Call me during business hours',
+      title: "Phone",
+      value: "+91 6383113382",
+      href: "6383113382",
+      description: "Call me during business hours",
     },
     {
       icon: MapPin,
-      title: 'Location',
-      value: '32/27, Kutty St, Perumalpet, Purasaiwakkam, Chennai, Tamil Nadu 600007',
-      href: 'https://www.google.com/maps/place/32%2F27,+Kutty+St,+Perumalpet,+Purasaiwakkam,+Chennai,+Tamil+Nadu+600012/@13.093087,80.2551661,17z/data=!3m1!4b1!4m6!3m5!1s0x3a5265e8827d7429:0xc5740ef09fb4b965!8m2!3d13.093087!4d80.257741!16s%2Fg%2F11y44kpyqc?entry=ttu&g_ep=EgoyMDI1MDcwNy4wIKXMDSoASAFQAw%3D%3D',
-      description: 'Available for local meetups',
+      title: "Location",
+      value:
+        "32/27, Kutty St, Perumalpet, Purasaiwakkam, Chennai, Tamil Nadu 600007",
+      href: "https://www.google.com/maps/place/32%2F27,+Kutty+St,+Perumalpet,+Purasaiwakkam,+Chennai,+Tamil+Nadu+600012/@13.093087,80.2551661,17z/data=!3m1!4b1!4m6!3m5!1s0x3a5265e8827d7429:0xc5740ef09fb4b965!8m2!3d13.093087!4d80.257741!16s%2Fg%2F11y44kpyqc?entry=ttu&g_ep=EgoyMDI1MDcwNy4wIKXMDSoASAFQAw%3D%3D",
+      description: "Available for local meetups",
     },
     {
       icon: Clock,
-      title: 'Response Time',
-      value: 'Within 24 hours',
-      href: '#',
-      description: 'I typically respond quickly',
+      title: "Response Time",
+      value: "Within 24 hours",
+      href: "#",
+      description: "I typically respond quickly",
     },
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/freebird-prod', label: 'GitHub', color: 'text-gray-500', bg: 'gray-500' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/dharun-kumar-sh', label: 'LinkedIn', color: 'text-blue-500', bg: 'blue-500' },
-    { icon: Instagram, href: 'https://www.instagram.com/iam.dharunkumar', label: 'Instagram', color: 'text-pink-500', bg: 'pink-500' },
-    { icon: Twitter, href: 'https://x.com/DharunSH0302006', label: 'Twitter', color: 'text-cyan-400', bg: 'blue-500' },
+    {
+      icon: Github,
+      href: "https://github.com/freebird-prod",
+      label: "GitHub",
+      color: "text-gray-500",
+      bg: "gray-500",
+    },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/dharun-kumar-sh",
+      label: "LinkedIn",
+      color: "text-blue-500",
+      bg: "blue-500",
+    },
+    {
+      icon: Instagram,
+      href: "https://www.instagram.com/iam.dharunkumar",
+      label: "Instagram",
+      color: "text-pink-500",
+      bg: "pink-500",
+    },
+    {
+      icon: Twitter,
+      href: "https://x.com/DharunSH0302006",
+      label: "Twitter",
+      color: "text-cyan-400",
+      bg: "blue-500",
+    },
   ];
 
   const OnCopy = (href: string) => {
     navigator.clipboard.writeText(href);
-    toast.success('Copied to clipboard!');
+    toast.success("Copied to clipboard!");
   };
-
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.05,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.3,
         ease: "easeOut",
       },
     },
@@ -113,9 +153,9 @@ const ContactPage: React.FC = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4 }}
             className="text-center mb-16 lg:mb-24"
           >
             <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold mb-6 lg:mb-8">
@@ -124,28 +164,29 @@ const ContactPage: React.FC = () => {
               </span>
             </h1>
             <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto">
-              Ready to collaborate? Let's discuss your next project or just say hello!
+              Ready to collaborate? Let's discuss your next project or just say
+              hello!
             </p>
           </motion.div>
 
           {/* Quick Stats */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.1, duration: 0.3 }}
             className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16 lg:mb-24"
           >
             {[
-              { label: 'Response Rate', value: '95%', icon: MessageCircle },
-              { label: 'Avg Response Time', value: '< 24h', icon: Clock },
-              { label: 'Projects Completed', value: '10+', icon: Globe },
-              { label: 'Happy Clients', value: '2', icon: Mail },
+              { label: "Response Rate", value: "95%", icon: MessageCircle },
+              { label: "Avg Response Time", value: "< 24h", icon: Clock },
+              { label: "Projects Completed", value: "10+", icon: Globe },
+              { label: "Happy Clients", value: "2", icon: Mail },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
+                transition={{ delay: 0.15 + index * 0.04, duration: 0.3 }}
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="text-center p-6 lg:p-8 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300"
               >
@@ -175,10 +216,14 @@ const ContactPage: React.FC = () => {
               className="space-y-8 lg:space-y-12"
             >
               <motion.div variants={itemVariants}>
-                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6 lg:mb-8">Let's Start a Conversation</h2>
+                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6 lg:mb-8">
+                  Let's Start a Conversation
+                </h2>
                 <p className="text-gray-400 text-lg leading-relaxed mb-8 lg:mb-12">
-                  I'm always interested in new opportunities, innovative projects, and meaningful collaborations.
-                  Whether you have a project in mind or just want to connect, I'd love to hear from you.
+                  I'm always interested in new opportunities, innovative
+                  projects, and meaningful collaborations. Whether you have a
+                  project in mind or just want to connect, I'd love to hear from
+                  you.
                 </p>
               </motion.div>
 
@@ -195,8 +240,12 @@ const ContactPage: React.FC = () => {
                     <div className="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-cyan-500 to-violet-500 rounded-xl flex items-center justify-center mb-4 lg:mb-6">
                       <info.icon size={24} className="text-white" />
                     </div>
-                    <h3 className="font-semibold text-white text-lg lg:text-xl mb-2">{info.title}</h3>
-                    <p className="text-cyan-400 text-sm font-medium mb-2">{info.value}</p>
+                    <h3 className="font-semibold text-white text-lg lg:text-xl mb-2">
+                      {info.title}
+                    </h3>
+                    <p className="text-cyan-400 text-sm font-medium mb-2">
+                      {info.value}
+                    </p>
                     <p className="text-gray-500 text-sm">{info.description}</p>
                   </motion.a>
                 ))}
@@ -204,7 +253,9 @@ const ContactPage: React.FC = () => {
 
               {/* Social Links */}
               <motion.div variants={itemVariants} className="space-y-6">
-                <h3 className="text-2xl lg:text-3xl font-semibold text-white">Connect with me</h3>
+                <h3 className="text-2xl lg:text-3xl font-semibold text-white">
+                  Connect with me
+                </h3>
                 <div className="flex gap-4 lg:gap-6">
                   {socialLinks.map((social) => (
                     <motion.div
@@ -214,21 +265,25 @@ const ContactPage: React.FC = () => {
                       whileTap={{ scale: 0.9 }}
                     >
                       <motion.div
-                        onClick={() => window.open(social.href, '_blank')}
+                        onClick={() => window.open(social.href, "_blank")}
                         className={`w-14 h-14 lg:w-16 lg:h-16 bg-gray-800/50 backdrop-blur-sm border cursor-pointer border-gray-700/50 rounded-xl flex items-center justify-center transition-all duration-300 hover:${social.bg}`}
                       >
-                        <social.icon size={24} className={`${social.color} transition-colors`} />
+                        <social.icon
+                          size={24}
+                          className={`${social.color} transition-colors`}
+                        />
                       </motion.div>
 
                       {/* Tooltip */}
-                      <div className={`absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-${social.bg} text-white text-xs font-medium px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 whitespace-nowrap`}>
+                      <div
+                        className={`absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-${social.bg} text-white text-xs font-medium px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 whitespace-nowrap`}
+                      >
                         {social.label}
                       </div>
                     </motion.div>
                   ))}
                 </div>
               </motion.div>
-
             </motion.div>
 
             {/* Contact Form */}
@@ -244,78 +299,109 @@ const ContactPage: React.FC = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-violet-500/5 rounded-2xl" />
                 <div className="relative z-10">
-                  <h3 className="text-2xl lg:text-3xl font-bold text-white mb-6 lg:mb-8">Send a Message</h3>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-white mb-6 lg:mb-8">
+                    Send a Message
+                  </h3>
 
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 lg:space-y-8">
+                  <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="space-y-6 lg:space-y-8"
+                  >
                     <div className="grid sm:grid-cols-2 gap-4 lg:gap-6">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                        <label
+                          htmlFor="name"
+                          className="block text-sm font-medium text-gray-300 mb-2"
+                        >
                           Name *
                         </label>
                         <input
                           type="text"
                           id="name"
-                          {...register('name', { required: 'Name is required' })}
+                          {...register("name", {
+                            required: "Name is required",
+                          })}
                           className="w-full px-4 py-3 lg:py-4 bg-gray-900/50 border border-gray-600 rounded-lg focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-colors text-white placeholder-gray-400"
                           placeholder="Your name"
                         />
                         {errors.name && (
-                          <p className="mt-1 text-sm text-red-400">{errors.name.message}</p>
+                          <p className="mt-1 text-sm text-red-400">
+                            {errors.name.message}
+                          </p>
                         )}
                       </div>
 
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-medium text-gray-300 mb-2"
+                        >
                           Email *
                         </label>
                         <input
                           type="email"
                           id="email"
-                          {...register('email', {
-                            required: 'Email is required',
+                          {...register("email", {
+                            required: "Email is required",
                             pattern: {
                               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                              message: 'Invalid email address'
-                            }
+                              message: "Invalid email address",
+                            },
                           })}
                           className="w-full px-4 py-3 lg:py-4 bg-gray-900/50 border border-gray-600 rounded-lg focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-colors text-white placeholder-gray-400"
                           placeholder="your@email.com"
                         />
                         {errors.email && (
-                          <p className="mt-1 text-sm text-red-400">{errors.email.message}</p>
+                          <p className="mt-1 text-sm text-red-400">
+                            {errors.email.message}
+                          </p>
                         )}
                       </div>
                     </div>
 
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        htmlFor="subject"
+                        className="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         Subject *
                       </label>
                       <input
                         type="text"
                         id="subject"
-                        {...register('subject', { required: 'Subject is required' })}
+                        {...register("subject", {
+                          required: "Subject is required",
+                        })}
                         className="w-full px-4 py-3 lg:py-4 bg-gray-900/50 border border-gray-600 rounded-lg focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-colors text-white placeholder-gray-400"
                         placeholder="What's this about?"
                       />
                       {errors.subject && (
-                        <p className="mt-1 text-sm text-red-400">{errors.subject.message}</p>
+                        <p className="mt-1 text-sm text-red-400">
+                          {errors.subject.message}
+                        </p>
                       )}
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        htmlFor="message"
+                        className="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         Message *
                       </label>
                       <textarea
                         id="message"
                         rows={6}
-                        {...register('message', { required: 'Message is required' })}
+                        {...register("message", {
+                          required: "Message is required",
+                        })}
                         className="w-full px-4 py-3 lg:py-4 bg-gray-900/50 border border-gray-600 rounded-lg focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-colors text-white placeholder-gray-400 resize-none"
                         placeholder="Tell me about your project or just say hello..."
                       />
                       {errors.message && (
-                        <p className="mt-1 text-sm text-red-400">{errors.message.message}</p>
+                        <p className="mt-1 text-sm text-red-400">
+                          {errors.message.message}
+                        </p>
                       )}
                     </div>
 

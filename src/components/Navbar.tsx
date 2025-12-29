@@ -1,7 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { LayoutGroup, motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { LayoutGroup, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+
+// Prefetch imports for instant navigation
+const prefetchModules: Record<string, () => Promise<any>> = {
+  "/": () => import("../pages/HomePage"),
+  "/about": () => import("../pages/AboutPage"),
+  "/projects": () => import("../pages/ProjectsPage"),
+  "/certifications": () => import("../pages/CertificationsPage"),
+  "/events": () => import("../pages/EventsPage"),
+  "/contact": () => import("../pages/ContactPage"),
+};
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,12 +19,12 @@ const Navbar: React.FC = () => {
   const location = useLocation();
 
   const navItems = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/projects', label: 'Projects' },
-    { path: '/certifications', label: 'Certifications' },
-    { path: '/events', label: 'Events' },
-    { path: '/contact', label: 'Contact' },
+    { path: "/", label: "Home" },
+    { path: "/about", label: "About" },
+    { path: "/projects", label: "Projects" },
+    { path: "/certifications", label: "Certifications" },
+    { path: "/events", label: "Events" },
+    { path: "/contact", label: "Contact" },
   ];
 
   useEffect(() => {
@@ -22,8 +32,8 @@ const Navbar: React.FC = () => {
       setScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -32,12 +42,21 @@ const Navbar: React.FC = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  const handlePrefetch = (path: string) => {
+    const prefetch = prefetchModules[path];
+    if (prefetch) {
+      prefetch().catch(() => {});
+    }
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.8 }}
-      className={`fixed top-3 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'backdrop-blur-md' : 'backdrop-blur'}`}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className={`fixed top-3 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "backdrop-blur-md" : "backdrop-blur"
+      }`}
     >
       <LayoutGroup id="tubelight">
         <div className="px-2 sm:px-4 md:px-6 lg:px-8">
@@ -66,16 +85,22 @@ const Navbar: React.FC = () => {
                     <motion.div key={item.path} className="relative">
                       <Link
                         to={item.path}
-                        className={`relative block px-4 py-2 text-sm font-semibold tracking-wide rounded-full transition-colors duration-200 ${active
-                          ? 'text-cyan-100'
-                          : 'text-gray-300 hover:text-cyan-200'
-                          }`}
+                        onMouseEnter={() => handlePrefetch(item.path)}
+                        className={`relative block px-4 py-2 text-sm font-semibold tracking-wide rounded-full transition-colors duration-200 ${
+                          active
+                            ? "text-cyan-100"
+                            : "text-gray-300 hover:text-cyan-200"
+                        }`}
                       >
                         {active && (
                           <motion.span
-                            layoutId="tubelight"
+                            layoutId="tubelight-desktop"
                             className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/20 via-cyan-400/10 to-violet-500/20 border border-cyan-400/25 shadow-[0_0_25px_rgba(6,182,212,0.25)]"
-                            transition={{ type: 'spring', stiffness: 280, damping: 26 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 350,
+                              damping: 30,
+                            }}
                           />
                         )}
                         <span className="relative z-10">{item.label}</span>
@@ -104,9 +129,9 @@ const Navbar: React.FC = () => {
           initial={{ opacity: 0, height: 0 }}
           animate={{
             opacity: isOpen ? 1 : 0,
-            height: isOpen ? 'auto' : 0
+            height: isOpen ? "auto" : 0,
           }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.15, ease: "easeInOut" }}
           className="lg:hidden w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6"
         >
           <div className="rounded-[28px] bg-gray-900/80 border border-cyan-500/25 shadow-[0_10px_40px_rgba(6,182,212,0.12)] backdrop-blur px-3 sm:px-4 py-3 space-y-1.5">
@@ -121,16 +146,23 @@ const Navbar: React.FC = () => {
                 >
                   <Link
                     to={item.path}
-                    className={`relative block px-4 py-2.5 text-base font-semibold transition-colors duration-200 rounded-full overflow-hidden ${active
-                      ? 'text-cyan-200'
-                      : 'text-gray-300 hover:text-cyan-200'
-                      }`}
+                    onMouseEnter={() => handlePrefetch(item.path)}
+                    onTouchStart={() => handlePrefetch(item.path)}
+                    className={`relative block px-4 py-2.5 text-base font-semibold transition-colors duration-200 rounded-full overflow-hidden ${
+                      active
+                        ? "text-cyan-200"
+                        : "text-gray-300 hover:text-cyan-200"
+                    }`}
                   >
                     {active && (
                       <motion.span
-                        layoutId="tubelight"
+                        layoutId="tubelight-mobile"
                         className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/20 via-cyan-400/10 to-violet-500/20 border border-cyan-400/25 shadow-[0_0_25px_rgba(6,182,212,0.25)]"
-                        transition={{ type: 'spring', stiffness: 280, damping: 26 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 350,
+                          damping: 30,
+                        }}
                       />
                     )}
                     <span className="relative z-10">{item.label}</span>
