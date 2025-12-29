@@ -264,7 +264,7 @@ const ProjectsPage: React.FC = () => {
       id: 14,
       title: "CipherKey - Multi-Platform Password Manager",
       description:
-        "A secure password manager that helps users store and manage their passwords across multiple platforms.",
+        "A secure password manager that helps users manage their passwords across multiple platforms.",
       longDescription:
         "CipherKey is a secure password manager that helps users store and manage their passwords across multiple platforms. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
       image: "/projects/project17.png",
