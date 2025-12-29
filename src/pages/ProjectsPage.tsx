@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { motion, Variants } from 'framer-motion';
-import { Github, ExternalLink, Eye, Filter, Search } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, Variants } from "framer-motion";
+import { Github, ExternalLink, Eye, Filter, Search } from "lucide-react";
 
 const ProjectsPage: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const projects = [
     {
@@ -119,7 +119,14 @@ const ProjectsPage: React.FC = () => {
       longDescription:
         "Flood Analyzer is an intelligent system that predicts and assesses flood risks using both geographic coordinates and terrain image analysis. It leverages AI models and geospatial data to provide detailed risk levels, elevation data, and proximity to water sources. Users receive actionable recommendations along with AI-driven explanations, making it a powerful tool for disaster preparedness and environmental monitoring. Built with Next.js, FastAPI, TailwindCSS, and deployed on Vercel/Render for scalability.",
       image: "./projects/project10.png",
-      technologies: ["Next.js", "FastAPI", "TailwindCSS", "Gemini LLM", "Render", "Vercel"],
+      technologies: [
+        "Next.js",
+        "FastAPI",
+        "TailwindCSS",
+        "Gemini LLM",
+        "Render",
+        "Vercel",
+      ],
       category: "ai",
       githubUrl: "https://github.com/freebird-prod/aqua-pulse",
       liveUrl: "https://torrent-guard.vercel.app",
@@ -133,11 +140,21 @@ const ProjectsPage: React.FC = () => {
       longDescription:
         "ForestFire is a real-time wildfire prediction and monitoring tool that uses environmental parameters like temperature, humidity, and wind speed to assess fire risk. Leveraging models like Random Forest and SVM, it provides early warnings and visual insights to support proactive forest management. Built with Streamlit for simplicity and Seaborn for rich data visualizations.",
       image: "./projects/project9.jpg",
-      technologies: ["React Native (Expo Go)", "Python (Flask)", "PostgreSQL (Neon)", "Firebase (Auth)", "Gemini LLM", "Arduino IDE", "Random Forest", "ThingSpeak Cloud"],
+      technologies: [
+        "React Native (Expo Go)",
+        "Python (Flask)",
+        "PostgreSQL (Neon)",
+        "Firebase (Auth)",
+        "Gemini LLM",
+        "Arduino IDE",
+        "Random Forest",
+        "ThingSpeak Cloud",
+      ],
       category: "iot",
       status: false,
       githubUrl: "https://github.com/SANJAY222-R/ForestFire-Predictor",
-      liveUrl: "https://github.com/SANJAY222-R/ForestFire-Predictor/releases/tag/v1.0.0",
+      liveUrl:
+        "https://github.com/SANJAY222-R/ForestFire-Predictor/releases/tag/v1.0.0",
       featured: true,
     },
     {
@@ -148,7 +165,14 @@ const ProjectsPage: React.FC = () => {
       longDescription:
         "Pixxel is an AI-powered image editing platform offering intelligent tools like background removal, object manipulation, and advanced filters. Built with a modern tech stack including Next.js and Convex DB for high performance, it utilizes Imagekit.io for optimized image delivery and Clerk for secure user authentication. The interface is powered by ShadCN UI for a clean, intuitive user experience.",
       image: "/projects/project11.png",
-      technologies: ["Next.js", "Next.js API", "Convex DB", "Clerk (Auth)", "Imagekit.io", "ShadCN UI"],
+      technologies: [
+        "Next.js",
+        "Next.js API",
+        "Convex DB",
+        "Clerk (Auth)",
+        "Imagekit.io",
+        "ShadCN UI",
+      ],
       category: "web",
       status: false,
       githubUrl: "https://github.com/freebird-prod/pixxel-image-editor",
@@ -178,7 +202,14 @@ const ProjectsPage: React.FC = () => {
       longDescription:
         "Creafolio is a digital portfolio builder that offers a range of tools to help you create a stunning online portfolio. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. Local Storage is used to store user edits and preferences.",
       image: "/projects/project16.png",
-      technologies: ["Next.js", "Next.js API", "Daisy UI", "PostgreSQL", "Drizzle ORM", "ReCharts"],
+      technologies: [
+        "Next.js",
+        "Next.js API",
+        "Daisy UI",
+        "PostgreSQL",
+        "Drizzle ORM",
+        "ReCharts",
+      ],
       category: "web",
       status: false,
       githubUrl: "https://github.com/freebird-prod/creafolio  ",
@@ -193,7 +224,14 @@ const ProjectsPage: React.FC = () => {
       longDescription:
         "NeuraLife is an AI-powered mental health companion that offers personalized support and resources to users. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
       image: "/projects/project14.png",
-      technologies: ["Next.js", "Tailwind CSS", "Next.js API", "ShadCN UI", "Firebase", "Openrouter LLM"],
+      technologies: [
+        "Next.js",
+        "Tailwind CSS",
+        "Next.js API",
+        "ShadCN UI",
+        "Firebase",
+        "Openrouter LLM",
+      ],
       category: "web",
       status: false,
       githubUrl: "https://github.com/freebird-prod/neura-life",
@@ -208,28 +246,54 @@ const ProjectsPage: React.FC = () => {
       longDescription:
         "FlowFund is an expense tracker and budget planner that helps users manage their finances. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
       image: "/projects/project15.png",
-      technologies: ["Next.js", "Tailwind CSS", "Next.js API", "ShadCN UI", "PostgreSQL", "Drizzle ORM"],
+      technologies: [
+        "Next.js",
+        "Tailwind CSS",
+        "Next.js API",
+        "ShadCN UI",
+        "PostgreSQL",
+        "Drizzle ORM",
+      ],
       category: "web",
       status: false,
       githubUrl: "https://github.com/freebird-prod/expenses-tracker",
       liveUrl: "https://flow-funder.vercel.app",
       featured: true,
-    }
-  ]
-
-  const categories = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'web', label: 'Full Stack Web App' },
-    { id: 'ai', label: 'Machine Learning' },
-    { id: 'iot', label: 'IoT' },
-    { id: 'entertainment', label: 'Entertainment' },
+    },
+    {
+      id: 14,
+      title: "CipherKey - Multi-Platform Password Manager",
+      description:
+        "A secure password manager that helps users store and manage their passwords across multiple platforms.",
+      longDescription:
+        "CipherKey is a secure password manager that helps users store and manage their passwords across multiple platforms. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
+      image: "/projects/project17.png",
+      technologies: ["React.js", "Tailwind CSS", "ShadCN UI", "LocalStorage"],
+      category: "web",
+      status: false,
+      githubUrl: "https://github.com/dharunkumar-sh/password-gen",
+      liveUrl: "https://cipher-key.vercel.app",
+      featured: true,
+    },
   ];
 
-  const filteredProjects = projects.filter(project => {
-    const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory;
-    const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  const categories = [
+    { id: "all", label: "All Projects" },
+    { id: "web", label: "Full Stack Web App" },
+    { id: "ai", label: "Machine Learning" },
+    { id: "iot", label: "IoT" },
+    { id: "entertainment", label: "Entertainment" },
+  ];
+
+  const filteredProjects = projects.filter((project) => {
+    const matchesCategory =
+      selectedCategory === "all" || project.category === selectedCategory;
+    const matchesSearch =
+      project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()));
+      project.technologies.some((tech) =>
+        tech.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     return matchesCategory && matchesSearch;
   });
 
@@ -287,7 +351,10 @@ const ProjectsPage: React.FC = () => {
           >
             {/* Search Bar */}
             <div className="relative max-w-md mx-auto mb-8">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <Search
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
+                size={20}
+              />
               <input
                 type="text"
                 placeholder="Search projects..."
@@ -305,10 +372,11 @@ const ProjectsPage: React.FC = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-3 rounded-full font-medium transition-all duration-300 ${selectedCategory === category.id
-                    ? 'bg-gradient-to-r from-purple-700 via-pink-600 to-violet-600 text-white shadow-lg'
-                    : 'bg-gray-800/50 text-gray-400 hover:text-pink-400 hover:bg-gray-700/50 border border-gray-700/50'
-                    }`}
+                  className={`flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-3 rounded-full font-medium transition-all duration-300 ${
+                    selectedCategory === category.id
+                      ? "bg-gradient-to-r from-purple-700 via-pink-600 to-violet-600 text-white shadow-lg"
+                      : "bg-gray-800/50 text-gray-400 hover:text-pink-400 hover:bg-gray-700/50 border border-gray-700/50"
+                  }`}
                 >
                   <Filter size={16} />
                   {category.label}
@@ -399,13 +467,16 @@ const ProjectsPage: React.FC = () => {
               animate={{ opacity: 1 }}
               className="text-center py-16 lg:py-24"
             >
-              <h3 className="text-2xl lg:text-3xl font-bold text-gray-400 mb-4">No projects found</h3>
-              <p className="text-gray-500">Try adjusting your search or filter criteria</p>
+              <h3 className="text-2xl lg:text-3xl font-bold text-gray-400 mb-4">
+                No projects found
+              </h3>
+              <p className="text-gray-500">
+                Try adjusting your search or filter criteria
+              </p>
             </motion.div>
           )}
         </div>
       </section>
-
 
       {/* Project Modal */}
       {selectedProject && (
@@ -420,11 +491,10 @@ const ProjectsPage: React.FC = () => {
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="relative w-full max-w-3xl mx-auto bg-gradient-to-br from-gray-900/80 to-gray-800/90 shadow-2xl border border-gray-700 text-white rounded-xl backdrop-blur-xl"
             onClick={(e) => e.stopPropagation()}
           >
-
             {(() => {
               const project = projects.find((p) => p.id === selectedProject);
               if (!project) return null;
@@ -502,7 +572,6 @@ const ProjectsPage: React.FC = () => {
           </motion.div>
         </motion.div>
       )}
-
     </div>
   );
 };
