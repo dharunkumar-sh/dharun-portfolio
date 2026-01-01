@@ -15,7 +15,7 @@ const ProjectsPage: React.FC = () => {
         "Effortlessly Craft a Standout Resume with Our AI-Powered Resume Builder",
       longDescription:
         "BuilderBuddy is an intelligent resume-building platform that leverages AI to analyze user input and generate personalized, ATS-friendly resumes. Integrated with Strapi CMS for content control and Clerk for authentication, it’s deployed on Vercel for lightning-fast performance.",
-      image: "./projects/project1.png",
+      image: "./projects/project1.webp",
       technologies: [
         "React.js",
         "Tailwind CSS",
@@ -38,7 +38,7 @@ const ProjectsPage: React.FC = () => {
         "Generate stunning visuals from text prompts using cutting-edge AI models.",
       longDescription:
         "An intelligent image generation platform that transforms user prompts into high-quality visuals using advanced neural networks. Features include prompt-based rendering, style customization, resolution scaling, and download options. Built with a robust full-stack architecture for seamless user experience and lightning-fast generation.",
-      image: "./projects/project3.png",
+      image: "./projects/project3.webp",
       technologies: [
         "HTML 5",
         "CSS 3",
@@ -58,7 +58,7 @@ const ProjectsPage: React.FC = () => {
         "Smart resume screening tool that extracts skills and analyzes job fit using AI.",
       longDescription:
         "An intelligent resume analysis platform that uses advanced NLP and Gemini LLM to extract key details like name, email, and technical skills. It evaluates job-resume fit, provides match scores, suggests suitable roles, and offers a clean UI with PDF previews and email outreach without a backend database, leveraging LocalStorage and frontend APIs.",
-      image: "./projects/project4.png",
+      image: "./projects/project4.webp",
       technologies: [
         "React.js",
         "Tailwind CSS",
@@ -83,7 +83,7 @@ const ProjectsPage: React.FC = () => {
         "A vibrant community portal celebrating actor Amaran’s legacy with media, news, and fan interactions.",
       longDescription:
         "A dynamic fan website dedicated to the iconic actor Amaran, featuring a media gallery, latest news updates, fan forums, polls, and interactive timelines of his filmography. Built to connect fans with exclusive content, behind-the-scenes features, and event announcements, all wrapped in a visually engaging and mobile-optimized design.",
-      image: "./projects/project5.png",
+      image: "./projects/project5.webp",
       technologies: [
         "React.js",
         "Typescript",
@@ -104,7 +104,7 @@ const ProjectsPage: React.FC = () => {
         "Discover trending movies, browse genres, and track your watchlist with ease.",
       longDescription:
         "Popcorn Path is an intuitive movie discovery platform powered by the TMDB API. Users can explore trending films, browse by genre, search for specific titles, and manage their personal watchlist. Featuring a sleek UI, real-time data fetching, and smooth interactions, it delivers a binge-worthy experience for movie buffs and casual viewers alike.",
-      image: "./projects/project7.png",
+      image: "./projects/project7.webp",
       technologies: ["React", "Tailwind CSS", "Appwrite", "TMDB API", "Vercel"],
       category: "entertainment",
       githubUrl: "https://github.com/freebird-prod/movie-app",
@@ -118,7 +118,7 @@ const ProjectsPage: React.FC = () => {
         "Analyze flood risk using coordinates or terrain images with AI-powered insights.",
       longDescription:
         "Flood Analyzer is an intelligent system that predicts and assesses flood risks using both geographic coordinates and terrain image analysis. It leverages AI models and geospatial data to provide detailed risk levels, elevation data, and proximity to water sources. Users receive actionable recommendations along with AI-driven explanations, making it a powerful tool for disaster preparedness and environmental monitoring. Built with Next.js, FastAPI, TailwindCSS, and deployed on Vercel/Render for scalability.",
-      image: "./projects/project10.png",
+      image: "./projects/project10.webp",
       technologies: [
         "Next.js",
         "FastAPI",
@@ -139,7 +139,7 @@ const ProjectsPage: React.FC = () => {
         "Monitor and predict forest fire risks using environmental data and machine learning.",
       longDescription:
         "ForestFire is a real-time wildfire prediction and monitoring tool that uses environmental parameters like temperature, humidity, and wind speed to assess fire risk. Leveraging models like Random Forest and SVM, it provides early warnings and visual insights to support proactive forest management. Built with Streamlit for simplicity and Seaborn for rich data visualizations.",
-      image: "./projects/project9.jpg",
+      image: "./projects/project9.webp",
       technologies: [
         "React Native (Expo Go)",
         "Python (Flask)",
@@ -164,7 +164,7 @@ const ProjectsPage: React.FC = () => {
         "Apply advanced AI-driven edits and transformations to images with a powerful, modern online editor.",
       longDescription:
         "Pixxel is an AI-powered image editing platform offering intelligent tools like background removal, object manipulation, and advanced filters. Built with a modern tech stack including Next.js and Convex DB for high performance, it utilizes Imagekit.io for optimized image delivery and Clerk for secure user authentication. The interface is powered by ShadCN UI for a clean, intuitive user experience.",
-      image: "/projects/project11.png",
+      image: "/projects/project11.webp",
       technologies: [
         "Next.js",
         "Next.js API",
@@ -186,7 +186,7 @@ const ProjectsPage: React.FC = () => {
         "A simple image editor with advanced edits and transformations.",
       longDescription:
         "Grafixion is an image editing platform offering tools like background removal, object manipulation, and advanced filters. Built with React.js, Tailwind CSS, and ShadCN UI for a clean, intuitive user experience. It utilizes Local Storage for storing user edits and preferences.",
-      image: "/projects/project12.png",
+      image: "/projects/project12.webp",
       technologies: ["React.js", "Tailwind CSS", "ShadCN UI", "Local Storage"],
       category: "web",
       status: false,
@@ -201,7 +201,7 @@ const ProjectsPage: React.FC = () => {
         "Easily create a beautiful digital portfolio with advanced edits and transformations.",
       longDescription:
         "Creafolio is a digital portfolio builder that offers a range of tools to help you create a stunning online portfolio. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. Local Storage is used to store user edits and preferences.",
-      image: "/projects/project16.png",
+      image: "/projects/project16.webp",
       technologies: [
         "Next.js",
         "Next.js API",
@@ -223,7 +223,7 @@ const ProjectsPage: React.FC = () => {
         "A mental health companion that provides personalized support and resources.",
       longDescription:
         "NeuraLife is an AI-powered mental health companion that offers personalized support and resources to users. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
-      image: "/projects/project14.png",
+      image: "/projects/project14.webp",
       technologies: [
         "Next.js",
         "Tailwind CSS",
@@ -245,7 +245,7 @@ const ProjectsPage: React.FC = () => {
         "An expense tracker and budget planner that helps users manage their finances.",
       longDescription:
         "FlowFund is an expense tracker and budget planner that helps users manage their finances. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
-      image: "/projects/project15.png",
+      image: "/projects/project15.webp",
       technologies: [
         "Next.js",
         "Tailwind CSS",
@@ -267,12 +267,34 @@ const ProjectsPage: React.FC = () => {
         "A secure password manager that helps users manage their passwords across multiple platforms.",
       longDescription:
         "CipherKey is a secure password manager that helps users store and manage their passwords across multiple platforms. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
-      image: "/projects/project17.png",
+      image: "/projects/project17.webp",
       technologies: ["React.js", "Tailwind CSS", "ShadCN UI", "LocalStorage"],
       category: "web",
       status: false,
       githubUrl: "https://github.com/dharunkumar-sh/password-gen",
       liveUrl: "https://cipher-key.vercel.app",
+      featured: true,
+    },
+    {
+      id: 14,
+      title: "SkCine - Sivakarthikeyan Movie Database",
+      description:
+        "A movie database dedicated to the films of Sivakarthikeyan.",
+      longDescription:
+        "SkCine is a comprehensive movie database dedicated to the films of Sivakarthikeyan. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
+      image: "/projects/project18.webp",
+      technologies: [
+        "React.js",
+        "Tailwind CSS",
+        "ShadCN UI",
+        "LocalStorage",
+        "Firebase (Auth)",
+        "Firestore DB",
+      ],
+      category: "entertainment",
+      status: false,
+      githubUrl: "https://github.com/dharunkumar-sh/cine-hub",
+      liveUrl: "https://skcine.vercel.app",
       featured: true,
     },
   ];
