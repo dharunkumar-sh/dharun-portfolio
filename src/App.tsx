@@ -12,12 +12,10 @@ import Footer from "./components/Footer";
 import { applyPageSEO } from "./utils/seo";
 import { usePrefetch } from "./hooks/usePrefetch";
 
-// Lazy load components
 const ParticleBackground = lazy(
   () => import("./components/ParticleBackground")
 );
 
-// Lazy load pages
 const HomePage = lazy(() => import("./pages/HomePage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
@@ -25,7 +23,7 @@ const CertificationsPage = lazy(() => import("./pages/CertificationsPage"));
 const EventsPage = lazy(() => import("./pages/EventsPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 
-// Loading component
+
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-gray-900">
     <div className="w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
@@ -36,7 +34,6 @@ function AppContent(): JSX.Element {
   const location = useLocation();
   const [mounted, setMounted] = useState(false);
 
-  // Prefetch all pages during idle time for instant navigation
   usePrefetch();
 
   useEffect(() => {
@@ -45,8 +42,7 @@ function AppContent(): JSX.Element {
 
   useEffect(() => {
     applyPageSEO(location.pathname);
-    // Smooth scroll to top on route change
-    window.scrollTo({ top: 0, behavior: "instant" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location.pathname]);
 
   return (

@@ -93,7 +93,7 @@ const HomePage: React.FC = () => {
           animate="visible"
           className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
         >
-          <motion.div variants={itemVariants} className="mb-6 lg:mb-8">
+          <motion.div variants={itemVariants} className="mb-12 lg:mb-4 lg:my-6">
             <div className="inline-block p-1 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 mb-4">
               <div className="bg-gray-900 rounded-full px-4 py-2 lg:px-6 lg:py-3">
                 <span className="text-sm lg:text-lg font-semibold text-gray-300">
@@ -112,7 +112,7 @@ const HomePage: React.FC = () => {
 
           <motion.div variants={itemVariants} className="mb-8 lg:mb-12">
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-300/75 mb-4 lg:mb-6">
-              Aspring React Developer | UI/UX Enthusiast
+              Aspiring Frontend Developer | React.js Developer
             </h2>
 
             {/* Dynamic Typewriter Effect */}
