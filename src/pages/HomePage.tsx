@@ -7,6 +7,7 @@ import {
   Instagram,
   ArrowRight,
   Terminal,
+  CreditCard,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import TypewriterEffect from "../components/TypewriterEffect";
@@ -178,11 +179,11 @@ const HomePage: React.FC = () => {
                 bg: "pink-500",
               },
               {
-                icon: Terminal,
-                href: "https://leetcode.com/u/dharunkumarsh/",
-                label: "LeetCode",
-                color: "text-cyan-400",
-                bg: "cyan-500",
+                icon: CreditCard,
+                href: "https://dinq.me/dharunkumar",
+                label: "DinQ",
+                color: "text-gray-400",
+                bg: "gray-400",
               },
             ].map(({ icon: Icon, href, label, color, bg }) => (
               <motion.div
