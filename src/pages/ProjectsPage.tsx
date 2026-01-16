@@ -84,13 +84,12 @@ const ProjectsPage: React.FC = () => {
         "Discover trending movies, browse genres, and track your watchlist with ease.",
       longDescription:
         "Popcorn Path is an intuitive movie discovery platform powered by the TMDB API. Users can explore trending films, browse by genre, search for specific titles, and manage their personal watchlist. Featuring a sleek UI, real-time data fetching, and smooth interactions, it delivers a binge-worthy experience for movie buffs and casual viewers alike.",
-      image:
-        "/projects/project4.webp",
+      image: "/projects/project4.webp",
       technologies: ["React", "Tailwind CSS", "Appwrite", "TMDB API", "Vercel"],
       category: "entertainment",
       githubUrl: "https://github.com/freebird-prod/movie-app",
       liveUrl: "https://popcorn-path.vercel.app",
-      featured: false,
+      featured: true,
     },
     {
       id: 5,
@@ -99,8 +98,7 @@ const ProjectsPage: React.FC = () => {
         "Analyze flood risk using coordinates or terrain images with AI-powered insights.",
       longDescription:
         "Flood Analyzer is an intelligent system that predicts and assesses flood risks using both geographic coordinates and terrain image analysis. It leverages AI models and geospatial data to provide detailed risk levels, elevation data, and proximity to water sources. Users receive actionable recommendations along with AI-driven explanations, making it a powerful tool for disaster preparedness and environmental monitoring. Built with Next.js, FastAPI, TailwindCSS, and deployed on Vercel/Render for scalability.",
-      image:
-        "/projects/project5.webp",
+      image: "/projects/project5.webp",
       technologies: [
         "Next.js",
         "FastAPI",
@@ -121,8 +119,7 @@ const ProjectsPage: React.FC = () => {
         "Monitor and predict forest fire risks using environmental data and machine learning.",
       longDescription:
         "ForestFire is a real-time wildfire prediction and monitoring tool that uses environmental parameters like temperature, humidity, and wind speed to assess fire risk. Leveraging models like Random Forest and SVM, it provides early warnings and visual insights to support proactive forest management. Built with Streamlit for simplicity and Seaborn for rich data visualizations.",
-      image:
-        "/projects/project6.webp",
+      image: "/projects/project6.webp",
       technologies: [
         "React Native (Expo Go)",
         "Python (Flask)",
@@ -147,8 +144,7 @@ const ProjectsPage: React.FC = () => {
         "Apply advanced AI-driven edits and transformations to images with a powerful, modern online editor.",
       longDescription:
         "Pixxel is an AI-powered image editing platform offering intelligent tools like background removal, object manipulation, and advanced filters. Built with a modern tech stack including Next.js and Convex DB for high performance, it utilizes Imagekit.io for optimized image delivery and Clerk for secure user authentication. The interface is powered by ShadCN UI for a clean, intuitive user experience.",
-      image:
-        "/projects/project7.webp",
+      image: "/projects/project7.webp",
       technologies: [
         "Next.js",
         "Next.js API",
@@ -161,7 +157,7 @@ const ProjectsPage: React.FC = () => {
       status: false,
       githubUrl: "https://github.com/freebird-prod/pixxel-image-editor",
       liveUrl: "https://pixxel-image.vercel.app",
-      featured: false,
+      featured: true,
     },
     {
       id: 8,
@@ -170,8 +166,7 @@ const ProjectsPage: React.FC = () => {
         "A simple image editor with advanced edits and transformations.",
       longDescription:
         "Grafixion is an image editing platform offering tools like background removal, object manipulation, and advanced filters. Built with React.js, Tailwind CSS, and ShadCN UI for a clean, intuitive user experience. It utilizes Local Storage for storing user edits and preferences.",
-      image:
-        "/projects/project8.webp",
+      image: "/projects/project8.webp",
       technologies: ["React.js", "Tailwind CSS", "ShadCN UI", "Local Storage"],
       category: "web",
       status: false,
@@ -186,8 +181,7 @@ const ProjectsPage: React.FC = () => {
         "Easily create a beautiful digital portfolio with advanced edits and transformations.",
       longDescription:
         "Creafolio is a digital portfolio builder that offers a range of tools to help you create a stunning online portfolio. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. Local Storage is used to store user edits and preferences.",
-      image:
-        "/projects/project9.webp",
+      image: "/projects/project9.webp",
       technologies: [
         "Next.js",
         "Next.js API",
@@ -203,14 +197,13 @@ const ProjectsPage: React.FC = () => {
       featured: true,
     },
     {
-      id: 12,
+      id: 10,
       title: "NeuraLife - AI-Powered Mental Health Companion",
       description:
         "A mental health companion that provides personalized support and resources.",
       longDescription:
         "NeuraLife is an AI-powered mental health companion that offers personalized support and resources to users. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
-      image:
-        "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&q=80",
+      image: "/projects/project10.webp",
       technologies: [
         "Next.js",
         "Tailwind CSS",
@@ -223,17 +216,16 @@ const ProjectsPage: React.FC = () => {
       status: false,
       githubUrl: "https://github.com/freebird-prod/neura-life",
       liveUrl: "https://neura-life.vercel.app",
-      featured: true,
+      featured: false,
     },
     {
-      id: 13,
+      id: 11,
       title: "FlowFund - Expense Tracker and Budget Planner",
       description:
         "An expense tracker and budget planner that helps users manage their finances.",
       longDescription:
         "FlowFund is an expense tracker and budget planner that helps users manage their finances. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
-      image:
-        "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80",
+      image: "/projects/project11.webp",
       technologies: [
         "Next.js",
         "Tailwind CSS",
@@ -246,33 +238,31 @@ const ProjectsPage: React.FC = () => {
       status: false,
       githubUrl: "https://github.com/freebird-prod/expenses-tracker",
       liveUrl: "https://flow-funder.vercel.app",
-      featured: true,
+      featured: false,
     },
     {
-      id: 14,
+      id: 12,
       title: "CipherKey - Multi-Platform Password Manager",
       description:
-        "A secure password manager that helps users manage their passwords across multiple platforms.",
+        "A password manager that helps users manage their passwords across valrious platforms.",
       longDescription:
-        "CipherKey is a secure password manager that helps users store and manage their passwords across multiple platforms. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
-      image:
-        "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&q=80",
+        "CipherKey is a password manager that helps users store and manage their passwords across multiple platforms. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
+      image: "/projects/project12.webp",
       technologies: ["React.js", "Tailwind CSS", "ShadCN UI", "LocalStorage"],
       category: "web",
       status: false,
       githubUrl: "https://github.com/dharunkumar-sh/password-gen",
       liveUrl: "https://cipher-key.vercel.app",
-      featured: true,
+      featured: false,
     },
     {
-      id: 15,
+      id: 13,
       title: "SkCine - Sivakarthikeyan Movie Database",
       description:
         "A movie database dedicated to the films of Sivakarthikeyan.",
       longDescription:
         "SkCine is a comprehensive movie database dedicated to the films of Sivakarthikeyan. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
-      image:
-        "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&q=80",
+      image: "/projects/project13.webp",
       technologies: [
         "React.js",
         "Tailwind CSS",
@@ -285,6 +275,28 @@ const ProjectsPage: React.FC = () => {
       status: false,
       githubUrl: "https://github.com/dharunkumar-sh/cine-hub",
       liveUrl: "https://skcine.vercel.app",
+      featured: true,
+    },
+    {
+      id: 14,
+      title: "Career Lens - AI Career Guide Companion",
+      description:
+        "A career guide that helps users find the right career path.",
+      longDescription:
+        "Career Lens is an AI-powered career guide that helps users find the right career path. Built with Next.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
+      image: "/projects/project14.webp",
+      technologies: [
+        "Next.js",
+        "Tailwind CSS",
+        "ShadCN UI",
+        "Next.js API",
+        "Firebase (Auth)",
+        "Firestore DB",
+      ],
+      category: "web",
+      status: false,
+      githubUrl: "https://github.com/dharunkumar-sh/career-lens",
+      liveUrl: "https://careerlens-guide.vercel.app",
       featured: true,
     },
   ];
@@ -444,7 +456,7 @@ const ProjectsPage: React.FC = () => {
                     <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-2 sm:mb-3 lg:mb-4 group-hover:text-cyan-400 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-gray-400 mb-3 sm:mb-4 lg:mb-6 line-clamp-3 text-sm lg:text-base">
+                    <p className="text-gray-400 mb-3 sm:mb-4 lg:mb-6 line-clamp-2 text-sm lg:text-base">
                       {project.description}
                     </p>
 
