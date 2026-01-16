@@ -17,16 +17,16 @@ const AboutPage: React.FC = () => {
     { name: "CSS", image: "/css.webp" },
     { name: "JavaScript", image: "/js.webp" },
     { name: "TypeScript", image: "/typescript.webp" },
-    { name: "D3.js", image: "/d3.webp" },
+    { name: "Angular", image: "/angular.webp" },
     { name: "React", image: "/react.webp" },
     { name: "Next.js", image: "/next.webp" },
     { name: "Tailwind CSS", image: "/tailwind.webp" },
     { name: "SaSS", image: "/sass.webp" },
     { name: "Bootstrap", image: "/bootstrap.webp" },
-    { name: "Strapi CMS", image: "/strapi.webp" },
-    { name: "Figma", image: "/figma.webp" },
+    { name: "MySQL", image: "/mysql.webp" },
     { name: "PostgreSQL", image: "/postgre.webp" },
     { name: "Firebase", image: "/firebase.webp" },
+    { name: "Strapi CMS", image: "/strapi.webp" },
     { name: "Supabase", image: "/supabase.webp" },
     { name: "Convex DB", image: "/convex.webp" },
   ];
@@ -180,12 +180,12 @@ const AboutPage: React.FC = () => {
                 </span>
               </motion.h1>
 
-              <motion.div variants={itemVariants} className="space-y-4">
+              <motion.div variants={itemVariants} className="space-y-2">
                 <h2 className="text-2xl lg:text-3xl font-semibold text-white">
                   Dharun Kumar S H
                 </h2>
-                <p className="text-xl lg:text-xl text-gray-400 leading-relaxed">
-                  Passionate React Developer & UI/UX Enthusiast
+                <p className="text-xl lg:text-lg text-slate-400 leading-relaxed font-medium">
+                  Aspiring Frontend Developer | React.js Developer
                 </p>
               </motion.div>
 
@@ -428,18 +428,18 @@ const AboutPage: React.FC = () => {
                     area: "Frontend Development",
                     percentage: 85,
                     description:
-                      "React.js, Next.js, Tailwind CSS, Bootstrap, JavaScript, TypeScript",
+                      "React, Next.js, Angular, Tailwind CSS, Bootstrap, JavaScript, TypeScript",
                   },
                   {
                     area: "Backend Development",
-                    percentage: 45,
+                    percentage: 40,
                     description: "Node.js, Python (Flask), APIs",
                   },
                   {
                     area: "Database Management",
-                    percentage: 65,
+                    percentage: 70,
                     description:
-                      "PostgreSQL, Firebase, Supabase, Convex, Strapi CMS",
+                      "MySQL, PostgreSQL, Firebase, Supabase, Convex, Strapi CMS",
                   },
                 ].map((item, index) => (
                   <motion.div
@@ -501,7 +501,7 @@ const AboutPage: React.FC = () => {
             {[
               { label: "Current Year", value: "3rd Year" },
               { label: "CGPA", value: "8.44" },
-              { label: "Programming Languages", value: "3" },
+              { label: "Programming Languages", value: "2" },
               { label: "Open Source Contributions", value: "10+" },
             ].map((stat, index) => (
               <motion.div

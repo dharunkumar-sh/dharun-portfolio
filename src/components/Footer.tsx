@@ -5,6 +5,7 @@ import {
   Linkedin,
   Instagram,
   Terminal,
+  CreditCard,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -33,11 +34,11 @@ const Footer: React.FC = () => {
       bg: "pink-500",
     },
     {
-      icon: Terminal,
-      href: "https://leetcode.com/u/dharunkumarsh",
-      label: "LeetCode",
-      color: "text-cyan-400",
-      bg: "cyan-500",
+      icon: CreditCard,
+      href: "https://dinq.me/dharunkumar",
+      label: "DinQ",
+      color: "text-gray-400",
+      bg: "gray-400",
     },
   ];
 

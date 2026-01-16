@@ -6,7 +6,6 @@ import {
   Linkedin,
   Instagram,
   ArrowRight,
-  Terminal,
   CreditCard,
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -64,7 +63,7 @@ const HomePage: React.FC = () => {
     { label: "Projects Completed", value: "10+" },
     { label: "Technologies Mastered", value: "3+" },
     { label: "Hackathon Won", value: "1" },
-    { label: "Years of Experience", value: "1.5+" },
+    { label: "Years of Experience", value: "2+" },
   ];
 
   const getTailwindColor = (color: string): string => {
@@ -147,7 +146,7 @@ const HomePage: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               className="flex items-center gap-2 px-6 lg:px-8 py-3 lg:py-4 border-2 border-cyan-500/50 text-cyan-400 font-semibold rounded-full hover:bg-cyan-500/10 transition-all duration-300"
             >
-              Learn More
+              View More
               <ArrowRight size={20} />
             </motion.button>
           </motion.div>
@@ -226,7 +225,15 @@ const HomePage: React.FC = () => {
               </span>
             </h2>
             <p className="text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto">
-              A glimpse into my journey as a developer and student
+              A glimpse into my journey as a{" "}
+              <span className="text-orange-500 font-semibold">
+                passionate developer{" "}
+              </span>
+              and{" "}
+              <span className="text-yellow-500 font-semibold">
+                {" "}
+                engineering student
+              </span>
             </p>
           </motion.div>
 
