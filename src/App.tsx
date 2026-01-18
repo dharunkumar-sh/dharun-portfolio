@@ -13,7 +13,7 @@ import { applyPageSEO } from "./utils/seo";
 import { usePrefetch } from "./hooks/usePrefetch";
 
 const ParticleBackground = lazy(
-  () => import("./components/ParticleBackground")
+  () => import("./components/ParticleBackground"),
 );
 
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -22,7 +22,7 @@ const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
 const CertificationsPage = lazy(() => import("./pages/CertificationsPage"));
 const EventsPage = lazy(() => import("./pages/EventsPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
-
+const StatsPage = lazy(() => import("./pages/StatsPage"));
 
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-gray-900">
@@ -85,6 +85,7 @@ function AppContent(): JSX.Element {
                   element={<CertificationsPage />}
                 />
                 <Route path="/events" element={<EventsPage />} />
+                <Route path="/stats" element={<StatsPage />} />
                 <Route path="/contact" element={<ContactPage />} />
               </Routes>
             </motion.div>

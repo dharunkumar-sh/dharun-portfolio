@@ -10,6 +10,7 @@ const prefetchModules: Record<string, () => Promise<any>> = {
   "/projects": () => import("../pages/ProjectsPage"),
   "/certifications": () => import("../pages/CertificationsPage"),
   "/events": () => import("../pages/EventsPage"),
+  "/stats": () => import("../pages/StatsPage"),
   "/contact": () => import("../pages/ContactPage"),
 };
 
@@ -24,6 +25,7 @@ const Navbar: React.FC = () => {
     { path: "/projects", label: "Projects" },
     { path: "/certifications", label: "Certifications" },
     { path: "/events", label: "Events" },
+    { path: "/stats", label: "Stats" },
     { path: "/contact", label: "Contact" },
   ];
 
