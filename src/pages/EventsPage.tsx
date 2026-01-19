@@ -16,7 +16,7 @@ const EventsPage: React.FC = () => {
       description:
         "Led a team of 4 developers to build an AI-powered resume analyzer that streamlines candidate screening with intelligent skill extraction and job matching.",
       achievement: "Participated",
-      image: "./events/event1.png",
+      image: "./events/event1.webp",
       technologies: [
         "React",
         "Tailwind CSS",
@@ -41,7 +41,7 @@ const EventsPage: React.FC = () => {
       description:
         "Attended a hands-on 2-day Flutter workshop focused on cross-platform mobile app development using Dart and Gemini LLM integrations.",
       achievement: "Participated",
-      image: "./events/event2.png",
+      image: "./events/event2.webp",
       technologies: ["Flutter", "Dart", "Gemini LLM"],
       participants: 45,
       duration: "2 days",
@@ -56,7 +56,7 @@ const EventsPage: React.FC = () => {
       description:
         "Participated in a high-energy Game Fest featuring LAN tournaments, game dev showcases, and multiplayer strategy battles.",
       achievement: "Participated",
-      image: "./events/event3.png",
+      image: "./events/event3.webp",
       technologies: [
         "Gaming",
         "Multiplayer Systems",
@@ -76,7 +76,7 @@ const EventsPage: React.FC = () => {
       description:
         "Developed a responsive time management web application to help users schedule tasks, track productivity, and visualize daily routines.",
       achievement: "Top 3 Finalist",
-      image: "./events/event4.png",
+      image: "./events/event4.webp",
       technologies: ["HTML 5", "CSS 3", "Javascript", "Firebase"],
       participants: 75,
       prize: "₹500",
@@ -92,7 +92,7 @@ const EventsPage: React.FC = () => {
       description:
         "Designed a functional college website using the power of Bolt AI, leveraging advanced prompting techniques to streamline ideation, layout structuring, and content generation during a hands-on technical event.",
       achievement: "Participated",
-      image: "./events/event5.png",
+      image: "./events/event5.webp",
       technologies: [
         "Bolt AI",
         "Prompt Engineering",
@@ -113,7 +113,7 @@ const EventsPage: React.FC = () => {
       description:
         "Presented a technical paper on real-world applications of Artificial Intelligence in modern education systems. Gained insights from peer presentations and expert feedback.",
       achievement: "Participated",
-      image: "./events/event6.png",
+      image: "./events/event6.webp",
       technologies: [
         "AI",
         "Research Writing",
@@ -133,7 +133,7 @@ const EventsPage: React.FC = () => {
       description:
         "Tackled a series of challenging algorithmic problems using C, C++, Java, and Python. Demonstrated versatility across programming paradigms and optimized solutions under time constraints.",
       achievement: "Participated",
-      image: "./events/event7.png",
+      image: "./events/event7.webp",
       technologies: ["C", "C++", "Java", "Python", "Problem Solving"],
       participants: 40,
       duration: "3 hours",
@@ -148,7 +148,7 @@ const EventsPage: React.FC = () => {
       description:
         "Led a team of 4 developers to create a collaborative e-book sharing platform that enables users to upload, discover, and exchange digital books securely and efficiently.",
       achievement: "Participated",
-      image: "./events/event8.png",
+      image: "./events/event8.webp",
       technologies: [
         "HTML 5",
         "CSS 3",
@@ -170,7 +170,7 @@ const EventsPage: React.FC = () => {
       description:
         "Participated as a team of 4 to develop an AI-powered tool that automates the generation of precise Boolean queries for the healthcare domain. The system enhances medical database searches, aiding research, diagnostics, and clinical decision-making through intelligent NLP and contextual understanding.",
       achievement: "Participated",
-      image: "./events/event9.png",
+      image: "./events/event9.webp",
       technologies: [
         "React",
         "Tailwind CSS",
@@ -193,7 +193,7 @@ const EventsPage: React.FC = () => {
       description:
         "Collaborated in a team of five to design and develop an AI-driven farmer-friendly platform enabling farmers to sell their produce directly to consumers at their chosen prices. The solution incorporated AI-powered price recommendations, demand forecasting, and automated product descriptions to empower farmers, eliminate middlemen, and ensure fair trade. The system leveraged NLP and contextual analysis to optimize transactions and connect rural producers with urban buyers seamlessly.",
       achievement: "Participated",
-      image: "./events/event10.jpeg",
+      image: "./events/event10.webp",
       technologies: ["React.js", "Tailwind CSS", "Node.js", "PostgreSQL"],
       participants: 500,
       duration: "24 hours",
@@ -208,7 +208,7 @@ const EventsPage: React.FC = () => {
       description:
         "Worked in a team of five to develop a web-based platform addressing the challenges street food vendors face in sourcing raw materials from trusted and affordable suppliers. The solution focused on building a verified vendor network, enabling bulk purchasing at competitive rates, and integrating AI-driven supplier recommendations based on price trends, quality ratings, and location proximity. Through real-world interviews and market research, the platform was tailored to streamline the supply chain, foster trust, and reduce operational costs for small-scale food entrepreneurs.",
       achievement: "Participated",
-      image: "./events/event11.png",
+      image: "./events/event11.webp",
       technologies: ["React.js", "Tailwind CSS", "Node.js", "PostgreSQL"],
       participants: 650,
       duration: "48 hours",
@@ -223,7 +223,7 @@ const EventsPage: React.FC = () => {
       description:
         "Presented a paper as part of a team of three, proposing a machine learning–based approach for predicting customer personality traits. The work explored models such as Recurrent Neural Networks (RNN) and Random Forest to analyze customer data, aiming to improve personalization, targeted marketing, and decision-making in businesses.",
       achievement: "Participated",
-      image: "./events/event12.png",
+      image: "./events/event12.webp",
       technologies: [
         "Machine Learning",
         "RNN",
@@ -243,7 +243,7 @@ const EventsPage: React.FC = () => {
       description:
         "Worked as part of a team of two to design an entertainment-focused mobile application prototype using Figma. The project emphasized user-friendly navigation, engaging visual design, and usability principles to deliver a seamless and enjoyable user experience.",
       achievement: "Participated",
-      image: "./events/event12.png",
+      image: "./events/event12.webp",
       technologies: ["UI/UX Design", "Figma", "Prototyping", "User Research"],
       participants: 70,
       duration: "1 hour 45 minutes",
