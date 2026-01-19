@@ -1,6 +1,20 @@
 import React, { useState } from "react";
-import { motion, Variants } from "framer-motion";
-import { Github, ExternalLink, Filter, Search } from "lucide-react";
+import { motion, Variants, AnimatePresence } from "framer-motion";
+import {
+  Github,
+  ExternalLink,
+  Search,
+  Sparkles,
+  Code2,
+  Layers,
+  Cpu,
+  Gamepad2,
+  LayoutGrid,
+  X,
+  Rocket,
+  Star,
+  GitFork,
+} from "lucide-react";
 
 const ProjectsPage: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
@@ -14,7 +28,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "Effortlessly Craft a Standout Resume with Our AI-Powered Resume Builder",
       longDescription:
-        "BuilderBuddy is an intelligent resume-building platform that leverages AI to analyze user input and generate personalized, ATS-friendly resumes. Integrated with Strapi CMS for content control and Clerk for authentication, it’s deployed on Vercel for lightning-fast performance.",
+        "BuilderBuddy is an intelligent resume-building platform that leverages AI to analyze user input and generate personalized, ATS-friendly resumes. Integrated with Strapi CMS for content control and Clerk for authentication, it's deployed on Vercel for lightning-fast performance.",
       image: "/projects/project1.webp",
       technologies: [
         "React.js",
@@ -60,7 +74,7 @@ const ProjectsPage: React.FC = () => {
       id: 3,
       title: "Amaran Fanhub - Fan Website",
       description:
-        "A vibrant community portal celebrating actor Amaran’s legacy with media, news, and fan interactions.",
+        "A vibrant community portal celebrating actor Amaran's legacy with media, news, and fan interactions.",
       longDescription:
         "A dynamic fan website dedicated to the iconic actor Amaran, featuring a media gallery, latest news updates, fan forums, polls, and interactive timelines of his filmography. Built to connect fans with exclusive content, behind-the-scenes features, and event announcements, all wrapped in a visually engaging and mobile-optimized design.",
       image: "/projects/project3.webp",
@@ -302,11 +316,11 @@ const ProjectsPage: React.FC = () => {
   ];
 
   const categories = [
-    { id: "all", label: "All Projects" },
-    { id: "web", label: "Full Stack Web App" },
-    { id: "ai", label: "Machine Learning" },
-    { id: "iot", label: "IoT" },
-    { id: "entertainment", label: "Entertainment" },
+    { id: "all", label: "All Projects", icon: LayoutGrid },
+    { id: "web", label: "Full Stack", icon: Code2 },
+    { id: "ai", label: "Machine Learning", icon: Cpu },
+    { id: "iot", label: "IoT", icon: Layers },
+    { id: "entertainment", label: "Entertainment", icon: Gamepad2 },
   ];
 
   const filteredProjects = projects.filter((project) => {
@@ -316,7 +330,7 @@ const ProjectsPage: React.FC = () => {
       project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.technologies.some((tech) =>
-        tech.toLowerCase().includes(searchTerm.toLowerCase())
+        tech.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     return matchesCategory && matchesSearch;
   });
@@ -326,26 +340,57 @@ const ProjectsPage: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0,
+        staggerChildren: 0.08,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
+      scale: 1,
+      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
     },
   };
 
+  const stats = [
+    {
+      label: "Total Projects",
+      value: "14+",
+      icon: Rocket,
+      gradient: "from-cyan-500 to-blue-600",
+    },
+    {
+      label: "Featured",
+      value: "9",
+      icon: Star,
+      gradient: "from-yellow-500 to-orange-600",
+    },
+    {
+      label: "Open Source",
+      value: "14",
+      icon: GitFork,
+      gradient: "from-emerald-500 to-teal-600",
+    },
+    {
+      label: "Tech Stacks",
+      value: "20+",
+      icon: Layers,
+      gradient: "from-violet-500 to-purple-600",
+    },
+  ];
+
   return (
-    <div className="min-h-screen pt-16 lg:pt-20">
+    <div className="min-h-screen pt-16 lg:pt-20 bg-gray-900 text-white relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-40 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-500/5 to-cyan-500/5 rounded-full blur-3xl" />
+      </div>
+
       {/* Hero Section */}
       <section className="py-16 lg:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" />
@@ -354,128 +399,192 @@ const ProjectsPage: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-12 lg:mb-16"
           >
-            <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold mb-6 lg:mb-8">
-              <span className="bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30 mb-6"
+            >
+              <Sparkles className="w-4 h-4 text-purple-400" />
+              <span className="text-sm font-medium text-purple-300">
+                Innovative Solutions
+              </span>
+            </motion.div>
+
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent bg-[length:200%] animate-gradient">
                 My Projects
               </span>
             </h1>
-            <p className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto">
-              Showcasing innovative solutions and cutting-edge technologies
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Showcasing innovative solutions and cutting-edge technologies that
+              solve real-world problems
             </p>
           </motion.div>
 
-          {/* Search and Filter */}
+          {/* Stats */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 mb-12"
+          >
+            {stats.map((stat, i) => (
+              <motion.div
+                key={i}
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="relative group"
+              >
+                <div className="text-center p-5 lg:p-6 rounded-2xl bg-gray-800/60 border border-gray-700/50 backdrop-blur-xl hover:border-purple-500/50 transition-all duration-500">
+                  <div
+                    className={`w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-r ${stat.gradient} flex items-center justify-center shadow-lg`}
+                  >
+                    <stat.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs lg:text-sm text-gray-400 mt-1">
+                    {stat.label}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Search Bar */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.3 }}
-            className="mb-12 lg:mb-16"
+            transition={{ delay: 0.3, duration: 0.4 }}
+            className="relative max-w-xl mx-auto mb-8"
           >
-            {/* Search Bar */}
-            <div className="relative max-w-md mx-auto mb-8">
-              <Search
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
-                size={20}
-              />
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur-xl opacity-50 pointer-events-none" />
+            <div className="relative">
+              <div className="absolute left-5 top-1/2 transform -translate-y-1/2 z-10 pointer-events-none">
+                <Search className="text-purple-400 w-5 h-5" />
+              </div>
               <input
                 type="text"
-                placeholder="Search projects..."
+                placeholder="Search projects by name or technology..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 lg:py-4 bg-gray-800/50 border border-gray-700 rounded-full focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-colors text-white placeholder-gray-400"
+                className="w-full pl-14 pr-6 py-4 bg-gray-800/80 border border-gray-700/50 rounded-2xl focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 text-white placeholder-gray-500 backdrop-blur-xl"
               />
             </div>
+          </motion.div>
 
-            {/* Category Filter */}
-            <div className="flex flex-wrap justify-center gap-3 lg:gap-4">
-              {categories.map((category) => (
-                <motion.button
-                  key={category.id}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-3 rounded-full font-medium transition-all duration-300 ${
-                    selectedCategory === category.id
-                      ? "bg-gradient-to-r from-purple-700 via-pink-600 to-violet-600 text-white shadow-lg"
-                      : "bg-gray-800/50 text-gray-400 hover:text-pink-400 hover:bg-gray-700/50 border border-gray-700/50"
-                  }`}
-                >
-                  <Filter size={16} />
-                  {category.label}
-                </motion.button>
-              ))}
-            </div>
+          {/* Category Filter */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+            className="flex flex-wrap justify-center gap-3 lg:gap-4"
+          >
+            {categories.map((category) => (
+              <motion.button
+                key={category.id}
+                type="button"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setSelectedCategory(category.id);
+                }}
+                className={`flex items-center gap-2 px-5 lg:px-6 py-2.5 lg:py-3 rounded-xl font-medium transition-all duration-300 ${
+                  selectedCategory === category.id
+                    ? "bg-gradient-to-r from-purple-600 via-pink-600 to-violet-600 text-white shadow-lg shadow-purple-500/25"
+                    : "bg-gray-800/60 text-gray-400 hover:text-purple-300 hover:bg-gray-700/60 border border-gray-700/50 hover:border-purple-500/30"
+                }`}
+              >
+                <category.icon size={18} />
+                {category.label}
+              </motion.button>
+            ))}
           </motion.div>
         </div>
       </section>
 
       {/* Projects Grid */}
-      <section className="pb-14 lg:pb-32">
+      <section id="projects-grid" className="pt-8 pb-24 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 md:gap-6 lg:gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
           >
             {filteredProjects.map((project) => (
               <motion.div
                 key={project.id}
                 variants={itemVariants}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className={`relative group cursor-pointer`}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 onClick={() => setSelectedProject(project.id)}
+                className="group relative cursor-pointer"
               >
-                <div className="relative overflow-hidden rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 h-[420px] sm:h-[450px] md:h-[480px] lg:h-[500px]">
+                {/* Glow Effect */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500" />
+
+                {/* Card */}
+                <div className="relative h-full bg-gradient-to-br from-gray-800/80 via-gray-800/60 to-gray-900/80 rounded-2xl border border-gray-700/50 group-hover:border-purple-500/40 backdrop-blur-xl overflow-hidden transition-all duration-300">
+                  {/* Featured Badge */}
                   {project.featured && (
-                    <div className="absolute top-4 right-4 z-10 px-3 py-1 bg-gradient-to-r from-purple-700 via-pink-600 to-violet-600 text-white text-xs font-semibold rounded-full">
+                    <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-yellow-500/90 to-orange-500/90 text-white text-xs font-semibold rounded-full shadow-lg">
+                      <Star size={12} className="fill-current" />
                       Featured
                     </div>
                   )}
 
-                  {project.status && (
-                    <div className="absolute top-4 right-4 z-10 px-3 py-1 bg-gradient-to-r from-green-700 via-gray-700 to-orange-600 text-white text-xs font-semibold rounded-full">
-                      In Progress
-                    </div>
-                  )}
-
-                  <div className="relative h-40 sm:h-48 md:h-52 lg:h-56 xl:h-60 overflow-hidden">
+                  {/* Image */}
+                  <div className="relative h-48 lg:h-52 overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
                       loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent" />
+
+                    {/* Category Badge */}
+                    <div className="absolute bottom-4 left-4 px-3 py-1 bg-gray-900/80 backdrop-blur-sm rounded-lg text-xs font-medium text-purple-400 border border-purple-500/30">
+                      {categories.find((c) => c.id === project.category)?.label}
+                    </div>
                   </div>
 
-                  <div className="p-4 sm:p-6 lg:p-8">
-                    <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-2 sm:mb-3 lg:mb-4 group-hover:text-cyan-400 transition-colors">
+                  {/* Content */}
+                  <div className="p-5 lg:p-6">
+                    <h3 className="text-lg lg:text-xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors duration-300 line-clamp-1">
                       {project.title}
                     </h3>
-                    <p className="text-gray-400 mb-3 sm:mb-4 lg:mb-6 line-clamp-2 text-sm lg:text-base">
+                    <p className="text-gray-400 text-sm mb-4 line-clamp-2">
                       {project.description}
                     </p>
 
-                    <div className="flex flex-wrap gap-2 mb-3 sm:mb-4 lg:mb-6">
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2">
                       {project.technologies.slice(0, 3).map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 bg-gradient-to-r from-cyan-500/20 to-violet-500/20 border border-cyan-500/30 rounded-full text-xs lg:text-sm font-medium text-cyan-300"
+                          className="text-xs px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-500/10 to-cyan-500/10 border border-purple-500/20 text-purple-300 group-hover:border-purple-400/40 transition-colors duration-300"
                         >
                           {tech}
                         </span>
                       ))}
                       {project.technologies.length > 3 && (
-                        <span className="px-3 py-1 bg-gray-700/50 rounded-full text-xs lg:text-sm font-medium text-gray-400">
-                          +{project.technologies.length - 3} more
+                        <span className="text-xs px-3 py-1.5 rounded-lg bg-gray-800/60 border border-gray-700/50 text-gray-400">
+                          +{project.technologies.length - 3}
                         </span>
                       )}
                     </div>
                   </div>
+
+                  {/* Decorative Corner */}
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-purple-500/10 to-transparent" />
                 </div>
               </motion.div>
             ))}
@@ -487,6 +596,9 @@ const ProjectsPage: React.FC = () => {
               animate={{ opacity: 1 }}
               className="text-center py-16 lg:py-24"
             >
+              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gray-800/60 border border-gray-700/50 flex items-center justify-center">
+                <Search className="w-8 h-8 text-gray-500" />
+              </div>
               <h3 className="text-2xl lg:text-3xl font-bold text-gray-400 mb-4">
                 No projects found
               </h3>
@@ -499,99 +611,114 @@ const ProjectsPage: React.FC = () => {
       </section>
 
       {/* Project Modal */}
-      {selectedProject && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md pt-[5rem] flex items-center justify-center px-10 h-screen overscroll-y-none sm:px-16"
-          onClick={() => setSelectedProject(null)}
-        >
+      <AnimatePresence>
+        {selectedProject && (
           <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.95, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="relative w-full max-w-3xl mx-auto bg-gradient-to-br from-gray-900/80 to-gray-800/90 shadow-2xl border border-gray-700 text-white rounded-xl backdrop-blur-xl"
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center px-4 pt-20 pb-4"
+            onClick={() => setSelectedProject(null)}
           >
-            {(() => {
-              const project = projects.find((p) => p.id === selectedProject);
-              if (!project) return null;
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 50 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[85vh] overflow-hidden border border-gray-700/50"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {(() => {
+                const project = projects.find((p) => p.id === selectedProject);
+                if (!project) return null;
 
-              return (
-                <>
-                  {/* Banner */}
-                  <div className="relative h-56 sm:h-[15.2rem] overflow-hidden rounded-t-xl">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover object-center"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
-                    <div className="absolute bottom-4 left-6 text-left">
-                      <h2 className="text-2xl sm:text-3xl font-bold text-white drop-shadow-lg">
-                        {project.title}
-                      </h2>
-                    </div>
-                  </div>
+                return (
+                  <>
+                    {/* Banner */}
+                    <div className="relative h-56 sm:h-64 overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent" />
 
-                  {/* Scrollable Body */}
-                  <div className="overflow-y-auto max-h-[70vh] px-6 py-6 sm:px-8 sm:py-8 space-y-6">
-                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                      {project.longDescription}
-                    </p>
+                      {/* Close Button */}
+                      <motion.button
+                        onClick={() => setSelectedProject(null)}
+                        whileHover={{ scale: 1.1, rotate: 90 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="absolute top-4 right-4 w-10 h-10 rounded-xl bg-gray-900/80 backdrop-blur-sm border border-gray-700/50 hover:border-red-500/50 hover:bg-red-500/20 text-gray-400 hover:text-red-400 flex items-center justify-center transition-all duration-300"
+                      >
+                        <X className="w-5 h-5" strokeWidth={2.5} />
+                      </motion.button>
 
-                    <div>
-                      <h4 className="text-cyan-400 font-semibold mb-4 text-lg">
-                        🖥️ Tech Stack
-                      </h4>
-                      <div className="flex flex-wrap gap-3">
-                        {project.technologies.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-3 py-1 text-xs sm:text-sm bg-gray-800 text-cyan-300 rounded-full border border-cyan-500/30"
-                          >
-                            {tech}
-                          </span>
-                        ))}
+                      {/* Title Overlay */}
+                      <div className="absolute bottom-6 left-6 right-6">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-white drop-shadow-lg">
+                          {project.title}
+                        </h2>
                       </div>
                     </div>
 
-                    {/* Buttons */}
-                    <div className="flex flex-wrap gap-4 pt-2">
-                      <motion.a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex items-center gap-2 px-4 py-2 bg-gray-900 border border-gray-700 rounded-xl text-sm hover:bg-gray-800 transition"
-                      >
-                        <Github size={18} className="text-cyan-400" />
-                        GitHub
-                      </motion.a>
+                    {/* Scrollable Body */}
+                    <div className="overflow-y-auto max-h-[50vh] px-6 py-6 sm:px-8 sm:py-8 space-y-6">
+                      <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        {project.longDescription}
+                      </p>
 
-                      <motion.a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-800 via-pink-700 to-violet-800 text-white rounded-xl text-sm shadow-lg"
-                      >
-                        <ExternalLink size={18} />
-                        Live Demo
-                      </motion.a>
+                      <div>
+                        <h4 className="text-purple-400 font-semibold mb-4 text-lg flex items-center gap-2">
+                          <Code2 size={20} />
+                          Tech Stack
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {project.technologies.map((tech) => (
+                            <span
+                              key={tech}
+                              className="px-4 py-2 text-sm bg-gray-800/80 text-purple-300 rounded-xl border border-purple-500/30 hover:border-purple-400/50 transition-colors"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Buttons */}
+                      <div className="flex flex-wrap gap-4 pt-2">
+                        <motion.a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="flex items-center gap-2 px-6 py-3 bg-gray-800 border border-gray-700 rounded-xl text-sm font-medium hover:bg-gray-700 hover:border-gray-600 transition-all"
+                        >
+                          <Github size={18} className="text-gray-400" />
+                          View Code
+                        </motion.a>
+
+                        <motion.a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 via-pink-600 to-violet-600 text-white rounded-xl text-sm font-medium shadow-lg shadow-purple-500/25"
+                        >
+                          <ExternalLink size={18} />
+                          Live Demo
+                        </motion.a>
+                      </div>
                     </div>
-                  </div>
-                </>
-              );
-            })()}
+                  </>
+                );
+              })()}
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
 };

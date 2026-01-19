@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import {
   Calendar,
-  ExternalLink,
   X,
   GraduationCap,
   CircuitBoard,
   BadgeCheck,
   Rocket,
   NotebookPen,
+  Sparkles,
 } from "lucide-react";
 
 const CertificationsPage: React.FC = () => {
@@ -21,8 +21,6 @@ const CertificationsPage: React.FC = () => {
       logo: "./certifications/logo1.png",
       verifyUrl: "./certifications/certificate1.jpeg",
       skills: ["Flutter", "Responsive Design", "Dart", "Android Studio"],
-      level: "Internship",
-      score: "75%",
     },
     {
       id: 2,
@@ -32,8 +30,6 @@ const CertificationsPage: React.FC = () => {
       logo: "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=100",
       verifyUrl: "./certifications/certificate2.png",
       skills: ["Tamil", "Poetry", "Literature", "Grammar"],
-      level: "External",
-      score: "65%",
     },
     {
       id: 3,
@@ -43,8 +39,6 @@ const CertificationsPage: React.FC = () => {
       logo: "./certifications/logo1.png",
       verifyUrl: "./certifications/certificate3.png",
       skills: ["Flutter", "Responsive Design", "Dart", "Android Studio"],
-      level: "Internship",
-      score: "75%",
     },
     {
       id: 4,
@@ -60,8 +54,6 @@ const CertificationsPage: React.FC = () => {
         "Chatbot",
         "Android Studio",
       ],
-      level: "Workshop",
-      score: "100%",
     },
     {
       id: 5,
@@ -71,8 +63,6 @@ const CertificationsPage: React.FC = () => {
       logo: "./certifications/logo3.png",
       verifyUrl: "./certifications/certificate5.png",
       skills: ["HTML 5", "CSS 3", "Javascript", "Team Work", "Firebase"],
-      level: "Hackathon",
-      score: "87%",
     },
     {
       id: 6,
@@ -82,8 +72,6 @@ const CertificationsPage: React.FC = () => {
       logo: "./certifications/logo4.png",
       verifyUrl: "./certifications/certificate6.png",
       skills: ["Artificial Intelligence", "Cyber Security", "Team Work"],
-      level: "Industrial Visit",
-      score: "96%",
     },
     {
       id: 7,
@@ -93,8 +81,6 @@ const CertificationsPage: React.FC = () => {
       logo: "./certifications/logo5.png",
       verifyUrl: "./certifications/certificate7.png",
       skills: ["Python", "RAG", "Database"],
-      level: "Course",
-      score: "70%",
     },
     {
       id: 8,
@@ -104,8 +90,6 @@ const CertificationsPage: React.FC = () => {
       logo: "./certifications/logo6.png",
       verifyUrl: "./certifications/certificate8.png",
       skills: ["React.js", "Tailwind CSS", "Rest APIs", "LocalStorage"],
-      level: "Internship",
-      score: "97%",
     },
     {
       id: 9,
@@ -115,8 +99,6 @@ const CertificationsPage: React.FC = () => {
       logo: "./certifications/logo7.png",
       verifyUrl: "./certifications/certificate9.jpg",
       skills: ["React.js", "Tailwind CSS", "Rest APIs", "PostgreSQL"],
-      level: "Hackathon",
-      score: "87%",
     },
     {
       id: 10,
@@ -131,8 +113,6 @@ const CertificationsPage: React.FC = () => {
         "Prompt Engineering",
         "Critical Thinking",
       ],
-      level: "Course",
-      score: "99%",
     },
     {
       id: 11,
@@ -142,8 +122,6 @@ const CertificationsPage: React.FC = () => {
       logo: "./certifications/logo6.png",
       verifyUrl: "./certifications/certificate11.jpg",
       skills: ["React.js", "Tailwind CSS", "Rest APIs", "LocalStorage"],
-      level: "Course",
-      score: "99%",
     },
     {
       id: 12,
@@ -159,8 +137,6 @@ const CertificationsPage: React.FC = () => {
         "Marketing Stratergies",
         "Critical Thinking",
       ],
-      level: "Course",
-      score: "100%",
     },
     {
       id: 13,
@@ -175,8 +151,6 @@ const CertificationsPage: React.FC = () => {
         "JavaScript",
         "Problem-Solving",
       ],
-      level: "Course",
-      score: "100%",
     },
     {
       id: 14,
@@ -191,8 +165,6 @@ const CertificationsPage: React.FC = () => {
         "API Design",
         "Problem-Solving",
       ],
-      level: "Course",
-      score: "100%",
     },
     {
       id: 15,
@@ -207,8 +179,6 @@ const CertificationsPage: React.FC = () => {
         "Web Design",
         "Responsive Layouts",
       ],
-      level: "Course",
-      score: "100%",
     },
     {
       id: 16,
@@ -218,8 +188,6 @@ const CertificationsPage: React.FC = () => {
       logo: "./certifications/logo11.png",
       verifyUrl: "./certifications/certificate16.jpg",
       skills: ["LangGraph", "NLP", "LLM Models"],
-      level: "Course",
-      score: "100%",
     },
     {
       id: 17,
@@ -229,8 +197,6 @@ const CertificationsPage: React.FC = () => {
       logo: "./certifications/logo12.png",
       verifyUrl: "./certifications/certificate17.png",
       skills: ["AI in Education", "Gemini AI", "LLM Models"],
-      level: "Course",
-      score: "100%",
     },
     {
       id: 18,
@@ -246,8 +212,6 @@ const CertificationsPage: React.FC = () => {
         "Bias Mitigation",
         "Fact-Checking",
       ],
-      level: "Course",
-      score: "100%",
     },
   ];
 
@@ -266,42 +230,33 @@ const CertificationsPage: React.FC = () => {
     setSelectedCert(null);
   };
 
-  const getLevelColor = (level: string) => {
-    switch (level) {
-      case "Hackathon":
-        return "from-purple-700 to-purple-900";
-      case "Internship":
-        return "from-blue-700 to-blue-900";
-      case "Workshop":
-        return "from-gray-700 to-gray-900";
-      case "Industrial Visit":
-        return "from-yellow-700 to-yellow-900";
-      case "Course":
-        return "from-red-700 to-red-900";
-      default:
-        return;
-    }
-  };
-
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.05 },
+      transition: { staggerChildren: 0.08 },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: {
       opacity: 1,
-      x: 0,
-      transition: { duration: 0.3, ease: "easeOut" },
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
     },
   };
 
   return (
-    <div className="min-h-screen pt-16 lg:pt-20 bg-gray-900 text-white relative">
+    <div className="min-h-screen pt-16 lg:pt-20 bg-gray-900 text-white relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-40 right-10 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-cyan-500/5 to-violet-500/5 rounded-full blur-3xl" />
+      </div>
+
       {/* HERO */}
       <section className="py-16 lg:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" />
@@ -309,14 +264,29 @@ const CertificationsPage: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-violet-400 text-transparent bg-clip-text">
-              Certifications
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-violet-500/20 border border-cyan-500/30 mb-6"
+            >
+              <Sparkles className="w-4 h-4 text-cyan-400" />
+              <span className="text-sm font-medium text-cyan-300">
+                Professional Achievements
+              </span>
+            </motion.div>
+
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-cyan-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent bg-[length:200%] animate-gradient">
+                Certifications
+              </span>
             </h1>
-            <p className="text-xl text-gray-400">
-              Professional certifications and achievements in tech
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              A showcase of my professional growth through certifications,
+              courses, and technical achievements
             </p>
           </motion.div>
 
@@ -325,100 +295,146 @@ const CertificationsPage: React.FC = () => {
             initial="hidden"
             animate="visible"
             variants={containerVariants}
-            className="grid grid-cols-2 md:grid-cols-5 gap-6 mb-16"
+            className="grid grid-cols-2 md:grid-cols-5 gap-4 lg:gap-6 mb-16"
           >
             {[
-              { label: "Total Certifications", value: "14+", icon: BadgeCheck },
-              { label: "Hackathons", value: "7", icon: CircuitBoard },
-              { label: "Interships", value: "3", icon: GraduationCap },
-              { label: "Courses", value: "3+", icon: NotebookPen },
-              { label: "Deployed Projects", value: "10+", icon: Rocket },
+              {
+                label: "Total Certifications",
+                value: "18+",
+                icon: BadgeCheck,
+                gradient: "from-cyan-500 to-blue-600",
+              },
+              {
+                label: "Hackathons",
+                value: "7",
+                icon: CircuitBoard,
+                gradient: "from-purple-500 to-pink-600",
+              },
+              {
+                label: "Internships",
+                value: "3",
+                icon: GraduationCap,
+                gradient: "from-emerald-500 to-teal-600",
+              },
+              {
+                label: "Courses",
+                value: "3+",
+                icon: NotebookPen,
+                gradient: "from-orange-500 to-red-600",
+              },
+              {
+                label: "Deployed Projects",
+                value: "10+",
+                icon: Rocket,
+                gradient: "from-violet-500 to-purple-600",
+              },
             ].map((stat, i) => (
               <motion.div
                 key={i}
                 variants={itemVariants}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="text-center p-6 rounded-2xl bg-gray-800/50 border border-gray-700/50 backdrop-blur-sm"
+                className="relative group"
               >
-                <stat.icon className="w-8 h-8 mb-3 mx-auto text-cyan-400" />
-                <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-violet-400 text-transparent bg-clip-text">
-                  {stat.value}
+                <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl -z-10" />
+                <div className="text-center p-5 lg:p-6 rounded-2xl bg-gray-800/60 border border-gray-700/50 backdrop-blur-xl hover:border-cyan-500/50 transition-all duration-500">
+                  <div
+                    className={`w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-r ${stat.gradient} flex items-center justify-center shadow-lg`}
+                  >
+                    <stat.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs lg:text-sm text-gray-400 mt-1">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-sm text-gray-400">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* CERT CARDS */}
-      <section className="pb-24">
-        <div className="max-w-7xl mx-auto px-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {certifications.map((cert, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="relative bg-gray-800/50 rounded-2xl p-6 border border-gray-700/50 backdrop-blur-md hover:border-cyan-500/50 transition-all"
-            >
-              {/* Badge + Score */}
-              <div
-                className={`absolute -top-3 -right-3 px-3 py-1 bg-gradient-to-br ${getLevelColor(
-                  cert.level
-                )} text-xs font-bold text-white rounded-full`}
-              >
-                {cert.level}
-              </div>
-              <div
-                className={`absolute -top-3 -left-3 w-12 h-12 bg-gradient-to-br ${getLevelColor(
-                  cert.level
-                )} rounded-full flex items-center justify-center shadow-lg text-xs font-bold text-white`}
-              >
-                {cert.score}
-              </div>
-
-              {/* Content */}
-              <div className="flex gap-4 mb-4">
-                <img
-                  src={cert.logo}
-                  alt={cert.issuer}
-                  loading="lazy"
-                  className="w-16 h-16 rounded-xl object-cover"
-                />
-                <div>
-                  <h3 className="text-lg font-bold text-white">{cert.title}</h3>
-                  <p className="text-cyan-400 text-sm">{cert.issuer}</p>
-                  <div className="flex items-center gap-2 text-sm text-gray-400 mt-1">
-                    <Calendar size={14} />
-                    {cert.date}
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {cert.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="text-xs px-3 py-1 rounded-full border border-cyan-400/30 bg-cyan-500/10 text-cyan-300"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-
-              {/* Button */}
-              <motion.button
+      {/* CERT CARDS - Bento Grid Style */}
+      <section className="pt-16 pb-24 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={containerVariants}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          >
+            {certifications.map((cert) => (
+              <motion.div
+                key={cert.id}
+                variants={itemVariants}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 onClick={() => openModal(cert)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-cyan-500/20 to-violet-500/20 border border-cyan-500/30 rounded-lg text-cyan-400 hover:from-cyan-500/30 hover:to-violet-500/30 transition-all duration-300 font-medium"
+                className="group relative cursor-pointer"
               >
-                <ExternalLink size={16} />
-                View Certificate
-              </motion.button>
-            </motion.div>
-          ))}
+                {/* Glow Effect */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-violet-500 to-cyan-500 rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500" />
+
+                {/* Card */}
+                <div className="relative h-full bg-gradient-to-br from-gray-800/80 via-gray-800/60 to-gray-900/80 rounded-2xl border border-gray-700/50 group-hover:border-cyan-500/40 backdrop-blur-xl overflow-hidden transition-all duration-300">
+                  {/* Content */}
+                  <div className="relative p-6 lg:p-7">
+                    {/* Header with Logo */}
+                    <div className="flex items-start gap-4 mb-5">
+                      <div className="relative flex-shrink-0">
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-xl blur-md opacity-50 group-hover:opacity-70 transition-opacity duration-300" />
+                        <div className="relative w-14 h-14 rounded-xl bg-gray-900 border border-gray-700 overflow-hidden">
+                          <img
+                            src={cert.logo}
+                            alt={cert.issuer}
+                            loading="lazy"
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-lg font-bold text-white leading-tight line-clamp-2 group-hover:text-cyan-300 transition-colors duration-300">
+                          {cert.title}
+                        </h3>
+                        <p className="text-cyan-400 text-sm font-medium mt-1 truncate">
+                          {cert.issuer}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Date Badge */}
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-900/60 border border-gray-700/50 mb-5">
+                      <Calendar size={14} className="text-violet-400" />
+                      <span className="text-sm text-gray-300">{cert.date}</span>
+                    </div>
+
+                    {/* Skills */}
+                    <div className="flex flex-wrap gap-2">
+                      {cert.skills.slice(0, 4).map((skill) => (
+                        <span
+                          key={skill}
+                          className="text-xs px-3 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500/10 to-violet-500/10 border border-cyan-500/20 text-cyan-300 group-hover:border-cyan-400/40 transition-colors duration-300"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                      {cert.skills.length > 4 && (
+                        <span className="text-xs px-3 py-1.5 rounded-lg bg-gray-800/60 border border-gray-700/50 text-gray-400">
+                          +{cert.skills.length - 4}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Decorative Corner */}
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-cyan-500/10 to-transparent" />
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -429,36 +445,52 @@ const CertificationsPage: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 mt-20 bg-black/70 backdrop-blur-md flex items-center justify-center px-4 pt-1"
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center px-4 pt-20 pb-4"
+            onClick={closeModal}
           >
             <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 50 }}
+              initial={{ scale: 0.9, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 50 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className="relative bg-zinc-900 rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden border border-gray-700"
+              exit={{ scale: 0.9, opacity: 0, y: 50 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[85vh] overflow-hidden border border-gray-700/50"
+              onClick={(e) => e.stopPropagation()}
             >
-              {/* Centered Certificate */}
-              {/* Header */}
-              <div className="flex justify-between items-center px-5 py-3 bg-zinc-800 border-b border-gray-700">
-                <h2 className="text-white text-lg font-semibold">
-                  {selectedCert.title}
-                </h2>
-                <button
+              {/* Modal Header */}
+              <div className="relative flex justify-between items-center px-6 py-4 bg-gradient-to-r from-gray-800/80 to-gray-900/80 border-b border-gray-700/50 backdrop-blur-xl">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-cyan-500 to-violet-500 flex items-center justify-center">
+                    <BadgeCheck className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h2 className="text-white text-lg font-semibold line-clamp-1">
+                      {selectedCert.title}
+                    </h2>
+                    <p className="text-cyan-400 text-sm">
+                      {selectedCert.issuer}
+                    </p>
+                  </div>
+                </div>
+                <motion.button
                   onClick={closeModal}
-                  className="bg-red-700 hover:bg-red-600 transition-all p-2 rounded-xl text-white flex items-center justify-center"
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="w-10 h-10 rounded-xl bg-red-500/20 hover:bg-red-500 border border-red-500/30 hover:border-red-500 text-red-400 hover:text-white flex items-center justify-center transition-all duration-300"
                 >
-                  <X className="w-6 h-6" strokeWidth={3} />
-                </button>
+                  <X className="w-5 h-5" strokeWidth={2.5} />
+                </motion.button>
               </div>
 
               {/* Certificate Image */}
-              <div className="flex justify-center items-center bg-zinc-900 p-5 overflow-auto">
-                <img
+              <div className="flex justify-center items-center bg-gradient-to-b from-gray-900 to-gray-800 p-6 overflow-auto">
+                <motion.img
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.1 }}
                   src={selectedCert.verifyUrl}
                   alt="Certificate"
                   loading="lazy"
-                  className="max-w-full max-h-[70vh] rounded-lg object-contain"
+                  className="max-w-full max-h-[65vh] rounded-xl shadow-2xl shadow-black/50 object-contain border border-gray-700/30"
                 />
               </div>
             </motion.div>

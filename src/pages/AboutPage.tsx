@@ -297,7 +297,7 @@ const AboutPage: React.FC = () => {
                 </p>
               </motion.div>
 
-              {/* Skills (static) */}
+              {/* Skills with 3D Icons */}
               <motion.div
                 variants={itemVariants}
                 className="space-y-4 lg:space-y-6"
@@ -305,30 +305,79 @@ const AboutPage: React.FC = () => {
                 <h3 className="text-2xl lg:text-3xl font-bold text-gray-200 mb-4 lg:mb-6">
                   Developer Skills
                 </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-5">
                   {skillsData?.map((skill, index) => (
                     <motion.div
                       key={skill.name}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
+                      initial={{ opacity: 0, y: 20, rotateX: -15 }}
+                      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: index * 0.08 }}
-                      className="p-4 bg-gradient-to-r from-cyan-500/15 to-violet-500/15 border border-cyan-500/25 rounded-xl text-center"
+                      transition={{ delay: index * 0.05, duration: 0.5 }}
+                      whileHover={{
+                        scale: 1.08,
+                        rotateY: 10,
+                        rotateX: -5,
+                        z: 50,
+                      }}
+                      className="group relative"
+                      style={{
+                        perspective: "1000px",
+                        transformStyle: "preserve-3d",
+                      }}
                     >
-                      <div className="flex justify-center items-center w-full h-16 mb-2">
-                        <img
-                          src={skill.image}
-                          alt={skill.name}
-                          loading="lazy"
-                          className="w-12 h-12 object-contain"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src =
-                              "/fallback.png";
-                          }}
-                        />
-                      </div>
-                      <div className="text-sm font-medium text-white truncate">
-                        {skill.name}
+                      {/* Glow Effect */}
+                      <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-violet-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-40 blur-xl transition-all duration-500" />
+
+                      {/* 3D Card */}
+                      <div
+                        className="relative p-5 bg-gradient-to-br from-gray-800/90 via-gray-800/70 to-gray-900/90 border border-gray-700/50 group-hover:border-cyan-500/50 rounded-2xl transition-all duration-300 backdrop-blur-xl overflow-hidden"
+                        style={{ transformStyle: "preserve-3d" }}
+                      >
+                        {/* Background Gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                        {/* 3D Icon Container */}
+                        <div
+                          className="relative flex justify-center items-center w-full h-20 mb-3"
+                          style={{ transform: "translateZ(30px)" }}
+                        >
+                          {/* Icon Shadow */}
+                          <div className="absolute bottom-0 w-14 h-4 bg-black/30 rounded-full blur-md transform scale-75 group-hover:scale-100 transition-transform duration-300" />
+
+                          {/* Floating Icon */}
+                          <motion.div
+                            animate={{ y: [0, -6, 0] }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                              delay: index * 0.1,
+                            }}
+                            className="relative"
+                          >
+                            <img
+                              src={skill.image}
+                              alt={skill.name}
+                              loading="lazy"
+                              className="w-14 h-14 object-contain drop-shadow-[0_8px_16px_rgba(6,182,212,0.3)] group-hover:drop-shadow-[0_12px_24px_rgba(139,92,246,0.4)] transition-all duration-300"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).src =
+                                  "/fallback.png";
+                              }}
+                            />
+                          </motion.div>
+                        </div>
+
+                        {/* Skill Name */}
+                        <div
+                          className="text-sm font-semibold text-white truncate text-center group-hover:text-cyan-300 transition-colors duration-300"
+                          style={{ transform: "translateZ(20px)" }}
+                        >
+                          {skill.name}
+                        </div>
+
+                        {/* Decorative Corner */}
+                        <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-cyan-500/20 to-transparent rounded-bl-2xl" />
                       </div>
                     </motion.div>
                   ))}
