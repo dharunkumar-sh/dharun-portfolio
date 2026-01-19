@@ -15,6 +15,7 @@ import {
   Star,
   GitFork,
 } from "lucide-react";
+import SearchBar from "../components/SearchBar";
 
 const ProjectsPage: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
@@ -457,26 +458,17 @@ const ProjectsPage: React.FC = () => {
           </motion.div>
 
           {/* Search Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.4 }}
-            className="relative max-w-xl mx-auto mb-8"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur-xl opacity-50 pointer-events-none" />
-            <div className="relative">
-              <div className="absolute left-5 top-1/2 transform -translate-y-1/2 z-10 pointer-events-none">
-                <Search className="text-purple-400 w-5 h-5" />
-              </div>
-              <input
-                type="text"
-                placeholder="Search projects by name or technology..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-14 pr-6 py-4 bg-gray-800/80 border border-gray-700/50 rounded-2xl focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 text-white placeholder-gray-500 backdrop-blur-xl"
-              />
-            </div>
-          </motion.div>
+          <SearchBar
+            searchTerm={searchTerm}
+            onSearchChange={setSearchTerm}
+            placeholder="Search projects by name or technology..."
+            scrollTargetId="projects-grid"
+            gradientFrom="purple-500"
+            gradientTo="cyan-500"
+            iconColor="purple-400"
+            focusBorderColor="focus:border-purple-500/50"
+            focusRingColor="focus:ring-purple-500/20"
+          />
 
           {/* Category Filter */}
           <motion.div
@@ -512,20 +504,12 @@ const ProjectsPage: React.FC = () => {
       {/* Projects Grid */}
       <section id="projects-grid" className="pt-8 pb-24 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {filteredProjects.map((project) => (
-              <motion.div
+              <div
                 key={project.id}
-                variants={itemVariants}
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
                 onClick={() => setSelectedProject(project.id)}
-                className="group relative cursor-pointer"
+                className="group relative cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02]"
               >
                 {/* Glow Effect */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500" />
@@ -586,9 +570,9 @@ const ProjectsPage: React.FC = () => {
                   {/* Decorative Corner */}
                   <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-purple-500/10 to-transparent" />
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
           {filteredProjects.length === 0 && (
             <motion.div

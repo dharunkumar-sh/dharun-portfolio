@@ -9,7 +9,9 @@ import {
   Rocket,
   NotebookPen,
   Sparkles,
+  Search,
 } from "lucide-react";
+import SearchBar from "../components/SearchBar";
 
 const CertificationsPage: React.FC = () => {
   const certifications = [
@@ -219,6 +221,18 @@ const CertificationsPage: React.FC = () => {
     (typeof certifications)[0] | null
   >(null);
   const [showModal, setShowModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filter certifications based on search
+  const filteredCertifications = certifications.filter((cert) => {
+    const matchesSearch =
+      cert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      cert.issuer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      cert.skills.some((skill) =>
+        skill.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
+    return matchesSearch;
+  });
 
   const openModal = (cert: (typeof certifications)[0]) => {
     setSelectedCert(cert);
@@ -352,27 +366,31 @@ const CertificationsPage: React.FC = () => {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Search Bar */}
+          <SearchBar
+            searchTerm={searchTerm}
+            onSearchChange={setSearchTerm}
+            placeholder="Search certifications by title, issuer, or skill..."
+            scrollTargetId="certifications-grid"
+            gradientFrom="cyan-500"
+            gradientTo="violet-500"
+            iconColor="cyan-400"
+            focusBorderColor="focus:border-cyan-500/50"
+            focusRingColor="focus:ring-cyan-500/20"
+          />
         </div>
       </section>
 
       {/* CERT CARDS - Bento Grid Style */}
-      <section className="pt-16 pb-24 relative">
+      <section id="certifications-grid" className="pt-16 pb-24 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-          >
-            {certifications.map((cert) => (
-              <motion.div
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {filteredCertifications.map((cert) => (
+              <div
                 key={cert.id}
-                variants={itemVariants}
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
                 onClick={() => openModal(cert)}
-                className="group relative cursor-pointer"
+                className="group relative cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02]"
               >
                 {/* Glow Effect */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-violet-500 to-cyan-500 rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500" />
@@ -432,9 +450,27 @@ const CertificationsPage: React.FC = () => {
                   {/* Decorative Corner */}
                   <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-cyan-500/10 to-transparent" />
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
+
+          {filteredCertifications.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-16 lg:py-24"
+            >
+              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gray-800/60 border border-gray-700/50 flex items-center justify-center">
+                <Search className="w-8 h-8 text-gray-500" />
+              </div>
+              <h3 className="text-2xl lg:text-3xl font-bold text-gray-400 mb-4">
+                No certifications found
+              </h3>
+              <p className="text-gray-500">
+                Try adjusting your search criteria
+              </p>
+            </motion.div>
+          )}
         </div>
       </section>
 
