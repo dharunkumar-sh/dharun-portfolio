@@ -18,6 +18,7 @@ const AboutPage: React.FC = () => {
     { name: "JavaScript", image: "/js.webp" },
     { name: "TypeScript", image: "/typescript.webp" },
     { name: "Angular", image: "/angular.webp" },
+    { name: "Astro", image: "/astro.webp" },
     { name: "React", image: "/react.webp" },
     { name: "Next.js", image: "/next.webp" },
     { name: "Tailwind CSS", image: "/tailwind.webp" },
@@ -549,9 +550,9 @@ const AboutPage: React.FC = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {[
               { label: "Current Year", value: "3rd Year" },
-              { label: "CGPA", value: "8.44" },
+              { label: "CGPA", value: "8.10" },
               { label: "Programming Languages", value: "2" },
-              { label: "Open Source Contributions", value: "10+" },
+              { label: "Open Source Contributions", value: "5+" },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
