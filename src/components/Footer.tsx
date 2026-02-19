@@ -4,7 +4,6 @@ import {
   Github,
   Linkedin,
   Instagram,
-  Terminal,
   CreditCard,
 } from "lucide-react";
 import toast from "react-hot-toast";
@@ -14,7 +13,7 @@ const Footer: React.FC = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: "https://github.com/freebird-prod",
+      href: "https://github.com/dharunkumar-sh",
       label: "GitHub",
       color: "text-gray-500",
       bg: "gray-600",
@@ -84,7 +83,7 @@ const Footer: React.FC = () => {
     },
   };
 
-  const email = "iam.dharunkumarsh@gmail.com";
+  const email = "dharunkumar.dev@gmail.com";
 
   return (
     <footer className="relative overflow-hidden bg-gray-900 border-t z-0 border-gray-800">

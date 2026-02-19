@@ -59,8 +59,8 @@ const ContactPage: React.FC = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "iam.dharunkumarsh@gmail.com",
-      href: "iam.dharunkumarsh@gmail.com",
+      value: "dharunkumar.dev@gmail.com",
+      href: "dharunkumar.dev@gmail.com",
       description: "Send me an email anytime",
     },
     {
@@ -90,7 +90,7 @@ const ContactPage: React.FC = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: "https://github.com/freebird-prod",
+      href: "https://github.com/dharunkumar-sh",
       label: "GitHub",
       color: "text-gray-500",
       bg: "gray-500",
