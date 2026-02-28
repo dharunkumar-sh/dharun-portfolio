@@ -8,6 +8,7 @@ import {
   Brain,
   Rocket,
   Users,
+  CodeIcon,
 } from "lucide-react";
 import TechStackRadar from "../components/TechStackRadar";
 
@@ -17,11 +18,11 @@ const AboutPage: React.FC = () => {
     { name: "CSS", image: "/css.webp" },
     { name: "JavaScript", image: "/js.webp" },
     { name: "TypeScript", image: "/typescript.webp" },
-    { name: "Angular", image: "/angular.webp" },
     { name: "Astro", image: "/astro.webp" },
-    { name: "React", image: "/react.webp" },
+    { name: "React.js", image: "/react.webp" },
     { name: "Next.js", image: "/next.webp" },
-    { name: "Tailwind CSS", image: "/tailwind.webp" },
+    { name: "React Native", image: "/react-native.webp" },
+    { name: "Tailwind", image: "/tailwind.webp" },
     { name: "SaSS", image: "/sass.webp" },
     { name: "Bootstrap", image: "/bootstrap.webp" },
     { name: "MySQL", image: "/mysql.webp" },
@@ -61,7 +62,7 @@ const AboutPage: React.FC = () => {
       year: "2026",
       title: "Future Goals",
       description:
-        "Aspiring to become a leading React developer, contribute to impactful open-source projects, and secure a role at a top-tier tech company where innovation meets scale.",
+        "Aspiring to become a leading Frontend developer, contribute to impactful open-source projects, and secure a role at a top-tier tech company where innovation meets scale.",
       icon: Target,
     },
     {
@@ -194,9 +195,9 @@ const AboutPage: React.FC = () => {
                 variants={itemVariants}
                 className="text-lg lg:text-base text-gray-300 leading-relaxed max-w-2xl"
               >
-                Passionate about crafting seamless React interfaces and pushing
-                the boundaries of modern web development. I transform ideas into
-                interactive digital experiences.
+                Meta Certified Frontend Developer with highly skilled expertise
+                in React.js and Next.js. I transform ideas into interactive
+                digital experiences with modern web development best practices.
               </motion.p>
 
               <motion.div
@@ -220,14 +221,14 @@ const AboutPage: React.FC = () => {
                     color: "from-amber-700 to-lime-800",
                   },
                   {
-                    icon: Users,
+                    icon: GraduationCap,
                     label: "Quick Learner",
                     color: "from-rose-600 to-indigo-800",
                   },
                   {
-                    icon: Users,
-                    label: "Problem Solver",
-                    color: "from-sky-600 to-emerald-800",
+                    icon: CodeIcon,
+                    label: "Vibe Coder",
+                    color: "from-orange-600 to-pink-700",
                   },
                 ].map((badge, index) => (
                   <motion.div
@@ -476,9 +477,9 @@ const AboutPage: React.FC = () => {
                 {[
                   {
                     area: "Frontend Development",
-                    percentage: 85,
+                    percentage: 90,
                     description:
-                      "React, Next.js, Angular, Tailwind CSS, Bootstrap, JavaScript, TypeScript",
+                      "React, Next.js, React Native, Tailwind CSS, Bootstrap, JavaScript, TypeScript",
                   },
                   {
                     area: "Backend Development",
@@ -487,7 +488,7 @@ const AboutPage: React.FC = () => {
                   },
                   {
                     area: "Database Management",
-                    percentage: 70,
+                    percentage: 75,
                     description:
                       "MySQL, PostgreSQL, Firebase, Supabase, Convex, Strapi CMS",
                   },

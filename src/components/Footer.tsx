@@ -1,11 +1,6 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import {
-  Github,
-  Linkedin,
-  Instagram,
-  CreditCard,
-} from "lucide-react";
+import { Github, Linkedin, Instagram, CreditCard } from "lucide-react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
@@ -108,9 +103,9 @@ const Footer: React.FC = () => {
               />
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
-              Aspiring React Developer passionate about building modern,
-              responsive web interfaces and bringing interactive UIs to life
-              with code.
+              Meta Certified Frontend Developer with expertise in React.js and
+              Next.js, passionate about crafting modern, responsive web
+              applications and delivering exceptional user experiences.
             </p>
             <div className="flex items-center gap-4">
               {socialLinks.map((social) => (
@@ -182,7 +177,6 @@ const Footer: React.FC = () => {
             </div>
           </motion.div>
         </motion.div>
-
       </div>
     </footer>
   );

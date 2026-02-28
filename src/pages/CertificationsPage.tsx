@@ -215,6 +215,24 @@ const CertificationsPage: React.FC = () => {
         "Fact-Checking",
       ],
     },
+    {
+      id: 19,
+      title: "Introduction to AWS Certification",
+      issuer: "Amazon Web Services",
+      date: "December 2025",
+      logo: "./certifications/logo14.png",
+      verifyUrl: "./certifications/certificate19.jpg",
+      skills: ["AWS Cloud", "Cloud Computing", "EC2", "S3", "IAM"],
+    },
+    {
+      id: 20,
+      title: "Frontend Web Development Certificate",
+      issuer: "Skill India Digital Hub",
+      date: "January 2026",
+      logo: "./certifications/logo15.png",
+      verifyUrl: "./certifications/certificate20.png",
+      skills: ["HTML", "CSS", "JavaScript", "React.js", "Responsive Design"],
+    },
   ];
 
   const [selectedCert, setSelectedCert] = useState<
