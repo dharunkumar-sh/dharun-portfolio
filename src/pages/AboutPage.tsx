@@ -187,7 +187,7 @@ const AboutPage: React.FC = () => {
                   Dharun Kumar S H
                 </h2>
                 <p className="text-xl lg:text-lg text-slate-400 leading-relaxed font-medium">
-                  Aspiring Frontend Developer | React.js Developer
+                Meta Certified Front-End Dev | React.js & Next.js | Vibe Coder
                 </p>
               </motion.div>
 
