@@ -1,5 +1,11 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { motion, Variants } from "framer-motion";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+} from "react";
+import { motion, Variants, AnimatePresence } from "framer-motion";
 import {
   Github,
   Activity,
@@ -16,6 +22,11 @@ import {
   TrendingUp,
   ChevronLeft,
   ChevronRight,
+  Search,
+  X,
+  Lock,
+  Unlock,
+  RefreshCw,
 } from "lucide-react";
 import {
   AreaChart,
@@ -35,6 +46,10 @@ import {
 // GitHub Configuration
 const GITHUB_USERNAME = "dharunkumar-sh";
 const GITHUB_API_URL = "https://api.github.com";
+const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN as string | undefined;
+
+// Auto-refresh interval (3.5 seconds)
+const REFRESH_INTERVAL_MS = 3500;
 
 // Pagination Configuration
 const REPOS_PER_PAGE = 6;
@@ -62,6 +77,10 @@ interface GitHubRepo {
   updated_at: string;
   fork: boolean;
   size: number;
+  private: boolean;
+  visibility: string;
+  watchers_count: number;
+  open_issues_count: number;
 }
 
 interface RepoDisplay {
@@ -73,6 +92,10 @@ interface RepoDisplay {
   languageColor: string;
   url: string;
   updatedAt: string;
+  isPrivate: boolean;
+  watchers: number;
+  openIssues: number;
+  size: number;
 }
 
 interface GitHubStats {
@@ -360,145 +383,237 @@ const StatsPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [githubStats, setGithubStats] = useState<GitHubStats | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const isInitialLoad = useRef(true);
 
-  // Fetch GitHub data
-  const fetchGitHubData = useCallback(async () => {
-    try {
-      setIsLoading(true);
-      setError(null);
-
-      // Fetch user profile
-      const userResponse = await fetch(
-        `${GITHUB_API_URL}/users/${GITHUB_USERNAME}`,
-      );
-      if (!userResponse.ok) {
-        throw new Error(`GitHub API error: ${userResponse.status}`);
-      }
-      const userData: GitHubUser = await userResponse.json();
-
-      // Fetch repositories (get up to 100 repos)
-      const reposResponse = await fetch(
-        `${GITHUB_API_URL}/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`,
-      );
-      if (!reposResponse.ok) {
-        throw new Error(`GitHub API error: ${reposResponse.status}`);
-      }
-      const reposData: GitHubRepo[] = await reposResponse.json();
-
-      // Filter out forked repos for stats calculation
-      const ownRepos = reposData.filter((repo) => !repo.fork);
-
-      // Calculate total stars and forks
-      const totalStars = ownRepos.reduce(
-        (sum, repo) => sum + repo.stargazers_count,
-        0,
-      );
-      const totalForks = ownRepos.reduce(
-        (sum, repo) => sum + repo.forks_count,
-        0,
-      );
-
-      // Calculate language distribution
-      const languageCounts: Record<string, number> = {};
-      ownRepos.forEach((repo) => {
-        if (repo.language) {
-          languageCounts[repo.language] =
-            (languageCounts[repo.language] || 0) + 1;
-        }
-      });
-
-      const totalLangCount = Object.values(languageCounts).reduce(
-        (a, b) => a + b,
-        0,
-      );
-      const languages = Object.entries(languageCounts)
-        .map(([name, count]) => ({
-          name,
-          value: Math.round((count / totalLangCount) * 100),
-          color: languageColors[name] || "#718096",
-        }))
-        .sort((a, b) => b.value - a.value)
-        .slice(0, 6);
-
-      // Get ALL repos for pagination display
-      const allRepos: RepoDisplay[] = ownRepos.map((repo) => ({
-        name: repo.name,
-        description: repo.description || "No description available",
-        stars: repo.stargazers_count,
-        forks: repo.forks_count,
-        language: repo.language || "Unknown",
-        languageColor: languageColors[repo.language || ""] || "#718096",
-        url: repo.html_url,
-        updatedAt: formatRelativeTime(repo.updated_at),
-      }));
-
-      // Get top repos by stars
-      const topReposByStars = [...ownRepos]
-        .sort((a, b) => b.stargazers_count - a.stargazers_count)
-        .slice(0, 5)
-        .map((repo) => ({
-          name:
-            repo.name.length > 15 ? repo.name.slice(0, 15) + "..." : repo.name,
-          stars: repo.stargazers_count,
-        }));
-
-      setGithubStats({
-        user: userData,
-        repos: ownRepos,
-        totalStars,
-        totalForks,
-        languages,
-        allRepos,
-        topReposByStars,
-      });
-
-      setIsLoading(false);
-    } catch (err) {
-      console.error("Error fetching GitHub data:", err);
-      setError(
-        err instanceof Error ? err.message : "Failed to fetch GitHub data",
-      );
-      setIsLoading(false);
+  // Build request headers with optional auth
+  const getHeaders = useCallback((): HeadersInit => {
+    const headers: HeadersInit = {
+      Accept: "application/vnd.github.v3+json",
+    };
+    if (GITHUB_TOKEN) {
+      headers.Authorization = `Bearer ${GITHUB_TOKEN}`;
     }
+    return headers;
   }, []);
 
-  // Initial fetch and auto-refresh on page visibility
+  // Fetch all pages of repos (handles GitHub pagination)
+  const fetchAllRepos = useCallback(
+    async (headers: HeadersInit): Promise<GitHubRepo[]> => {
+      const allRepos: GitHubRepo[] = [];
+      let page = 1;
+      const perPage = 100;
+
+      while (true) {
+        // Use authenticated endpoint for private repos if token is available
+        const url = GITHUB_TOKEN
+          ? `${GITHUB_API_URL}/user/repos?per_page=${perPage}&page=${page}&sort=updated&affiliation=owner`
+          : `${GITHUB_API_URL}/users/${GITHUB_USERNAME}/repos?per_page=${perPage}&page=${page}&sort=updated`;
+
+        const response = await fetch(url, { headers });
+        if (!response.ok) {
+          throw new Error(`GitHub API error: ${response.status}`);
+        }
+        const repos: GitHubRepo[] = await response.json();
+        if (repos.length === 0) break;
+        allRepos.push(...repos);
+        if (repos.length < perPage) break;
+        page++;
+      }
+
+      return allRepos;
+    },
+    [],
+  );
+
+  // Fetch GitHub data
+  const fetchGitHubData = useCallback(
+    async (silent = false) => {
+      try {
+        if (!silent) {
+          setIsLoading(true);
+        } else {
+          setIsRefreshing(true);
+        }
+        setError(null);
+
+        const headers = getHeaders();
+
+        // Fetch user profile
+        const userResponse = await fetch(
+          `${GITHUB_API_URL}/users/${GITHUB_USERNAME}`,
+          { headers },
+        );
+        if (!userResponse.ok) {
+          throw new Error(`GitHub API error: ${userResponse.status}`);
+        }
+        const userData: GitHubUser = await userResponse.json();
+
+        // Fetch all repositories (including private if token provided)
+        const reposData = await fetchAllRepos(headers);
+
+        // Filter out forked repos for stats calculation
+        const ownRepos = reposData.filter((repo) => !repo.fork);
+
+        // Calculate total stars and forks
+        const totalStars = ownRepos.reduce(
+          (sum, repo) => sum + repo.stargazers_count,
+          0,
+        );
+        const totalForks = ownRepos.reduce(
+          (sum, repo) => sum + repo.forks_count,
+          0,
+        );
+
+        // Calculate language distribution
+        const languageCounts: Record<string, number> = {};
+        ownRepos.forEach((repo) => {
+          if (repo.language) {
+            languageCounts[repo.language] =
+              (languageCounts[repo.language] || 0) + 1;
+          }
+        });
+
+        const totalLangCount = Object.values(languageCounts).reduce(
+          (a, b) => a + b,
+          0,
+        );
+        const languages = Object.entries(languageCounts)
+          .map(([name, count]) => ({
+            name,
+            value: Math.round((count / totalLangCount) * 100),
+            color: languageColors[name] || "#718096",
+          }))
+          .sort((a, b) => b.value - a.value)
+          .slice(0, 6);
+
+        // Get ALL repos for pagination display
+        const allRepos: RepoDisplay[] = ownRepos.map((repo) => ({
+          name: repo.name,
+          description: repo.description || "No description available",
+          stars: repo.stargazers_count,
+          forks: repo.forks_count,
+          language: repo.language || "Unknown",
+          languageColor: languageColors[repo.language || ""] || "#718096",
+          url: repo.html_url,
+          updatedAt: formatRelativeTime(repo.updated_at),
+          isPrivate: repo.private,
+          watchers: repo.watchers_count || 0,
+          openIssues: repo.open_issues_count || 0,
+          size: repo.size || 0,
+        }));
+
+        // Get top repos by stars
+        const topReposByStars = [...ownRepos]
+          .sort((a, b) => b.stargazers_count - a.stargazers_count)
+          .slice(0, 5)
+          .map((repo) => ({
+            name:
+              repo.name.length > 15
+                ? repo.name.slice(0, 15) + "..."
+                : repo.name,
+            stars: repo.stargazers_count,
+          }));
+
+        setGithubStats({
+          user: userData,
+          repos: ownRepos,
+          totalStars,
+          totalForks,
+          languages,
+          allRepos,
+          topReposByStars,
+        });
+
+        setLastUpdated(new Date());
+        if (!silent) setIsLoading(false);
+        setIsRefreshing(false);
+        isInitialLoad.current = false;
+      } catch (err) {
+        console.error("Error fetching GitHub data:", err);
+        if (!silent || isInitialLoad.current) {
+          setError(
+            err instanceof Error ? err.message : "Failed to fetch GitHub data",
+          );
+        }
+        if (!silent) setIsLoading(false);
+        setIsRefreshing(false);
+      }
+    },
+    [getHeaders, fetchAllRepos],
+  );
+
+  // Initial fetch + 3.5s polling + visibility-based refresh
   useEffect(() => {
     fetchGitHubData();
 
-    // Auto-refresh when page becomes visible
+    // Start 3.5 second polling
+    intervalRef.current = setInterval(() => {
+      fetchGitHubData(true);
+    }, REFRESH_INTERVAL_MS);
+
+    // Also refresh when page becomes visible
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
-        fetchGitHubData();
+        fetchGitHubData(true);
       }
     };
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [fetchGitHubData]);
 
+  // Filter repos by search query
+  const filteredRepos = useMemo(() => {
+    if (!githubStats) return [];
+    if (!searchQuery.trim()) return githubStats.allRepos;
+    const query = searchQuery.toLowerCase().trim();
+    return githubStats.allRepos.filter(
+      (repo) =>
+        repo.name.toLowerCase().includes(query) ||
+        repo.description.toLowerCase().includes(query) ||
+        repo.language.toLowerCase().includes(query) ||
+        (repo.isPrivate ? "private" : "public").includes(query),
+    );
+  }, [githubStats, searchQuery]);
+
+  // Reset to page 1 when search changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery]);
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    // Scroll to repositories section
     document.getElementById("repositories-section")?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
   };
 
-  // Get current page repos
+  // Get current page repos from filtered list
   const getCurrentPageRepos = () => {
-    if (!githubStats) return [];
     const startIndex = (currentPage - 1) * REPOS_PER_PAGE;
     const endIndex = startIndex + REPOS_PER_PAGE;
-    return githubStats.allRepos.slice(startIndex, endIndex);
+    return filteredRepos.slice(startIndex, endIndex);
   };
 
-  const totalPages = githubStats
-    ? Math.ceil(githubStats.allRepos.length / REPOS_PER_PAGE)
+  const totalPages = Math.ceil(filteredRepos.length / REPOS_PER_PAGE);
+
+  // Count private/public repos
+  const privateRepoCount = githubStats
+    ? githubStats.allRepos.filter((r) => r.isPrivate).length
+    : 0;
+  const publicRepoCount = githubStats
+    ? githubStats.allRepos.filter((r) => !r.isPrivate).length
     : 0;
 
   if (isLoading) {
@@ -552,6 +667,14 @@ const StatsPage: React.FC = () => {
               coding activity on{" "}
               <span className="text-white font-semibold">GitHub</span>
             </p>
+            {GITHUB_TOKEN && (
+              <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30">
+                <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-green-400 text-sm font-medium">
+                  Live · Includes private repositories
+                </span>
+              </div>
+            )}
           </motion.div>
         </motion.div>
       </section>
@@ -614,14 +737,26 @@ const StatsPage: React.FC = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="grid grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6 mb-12"
+              className={`grid gap-4 lg:gap-6 mb-12 ${
+                GITHUB_TOKEN
+                  ? "grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
+                  : "grid-cols-2 lg:grid-cols-5"
+              }`}
             >
               <StatCard
                 icon={FolderGit2}
                 label="Public Repos"
-                value={githubStats.user?.public_repos || 0}
+                value={publicRepoCount}
                 delay={0}
               />
+              {GITHUB_TOKEN && (
+                <StatCard
+                  icon={Lock}
+                  label="Private Repos"
+                  value={privateRepoCount}
+                  delay={0.05}
+                />
+              )}
               <StatCard
                 icon={Star}
                 label="Total Stars"
@@ -799,7 +934,7 @@ const StatsPage: React.FC = () => {
               </ResponsiveContainer>
             </ChartCard>
 
-            {/* All Repositories with Pagination */}
+            {/* All Repositories with Search and Pagination */}
             <motion.div
               id="repositories-section"
               initial={{ opacity: 0, y: 20 }}
@@ -807,67 +942,164 @@ const StatsPage: React.FC = () => {
               viewport={{ once: true }}
               className="mb-12"
             >
-              <h3 className="text-2xl font-bold text-white mb-2 flex items-center gap-3">
-                <GitBranch className="w-6 h-6 text-cyan-400" />
-                All Repositories
-              </h3>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-2">
+                <h3 className="text-2xl font-bold text-white flex items-center gap-3">
+                  <GitBranch className="w-6 h-6 text-cyan-400" />
+                  All Repositories
+                  {isRefreshing && (
+                    <RefreshCw className="w-4 h-4 text-cyan-400 animate-spin" />
+                  )}
+                </h3>
+                {lastUpdated && (
+                  <p className="text-gray-600 text-xs flex items-center gap-1">
+                    <RefreshCw className="w-3 h-3" />
+                    Live · Updated {lastUpdated.toLocaleTimeString()}
+                  </p>
+                )}
+              </div>
+
+              {/* Search Bar */}
+              <div className="relative mb-6 mt-4">
+                <div className="relative">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search repositories by name, description, language..."
+                    className="w-full pl-12 pr-12 py-3.5 rounded-xl bg-gray-800/70 border border-gray-700/50 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/60 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300 backdrop-blur-sm"
+                  />
+                  <AnimatePresence>
+                    {searchQuery && (
+                      <motion.button
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        onClick={() => setSearchQuery("")}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-gray-700/50 text-gray-400 hover:text-white transition-colors"
+                      >
+                        <X className="w-4 h-4" />
+                      </motion.button>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+
               <p className="text-gray-500 mb-6">
-                Showing {(currentPage - 1) * REPOS_PER_PAGE + 1} -{" "}
-                {Math.min(
-                  currentPage * REPOS_PER_PAGE,
-                  githubStats.allRepos.length,
-                )}{" "}
-                of {githubStats.allRepos.length} repositories
+                {searchQuery ? (
+                  <>
+                    Found{" "}
+                    <span className="text-cyan-400 font-semibold">
+                      {filteredRepos.length}
+                    </span>{" "}
+                    {filteredRepos.length === 1 ? "repository" : "repositories"}{" "}
+                    matching “
+                    <span className="text-gray-300">{searchQuery}</span>”
+                  </>
+                ) : (
+                  <>
+                    Showing{" "}
+                    {filteredRepos.length > 0
+                      ? (currentPage - 1) * REPOS_PER_PAGE + 1
+                      : 0}{" "}
+                    -{" "}
+                    {Math.min(
+                      currentPage * REPOS_PER_PAGE,
+                      filteredRepos.length,
+                    )}{" "}
+                    of {filteredRepos.length} repositories
+                    {GITHUB_TOKEN && (
+                      <span className="text-gray-600">
+                        {" "}
+                        ({publicRepoCount} public, {privateRepoCount} private)
+                      </span>
+                    )}
+                  </>
+                )}
               </p>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {getCurrentPageRepos().map((repo, index) => (
-                  <motion.a
-                    key={repo.name}
-                    href={repo.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    className="group p-6 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300"
-                  >
-                    <div className="flex items-start justify-between mb-3">
-                      <h4 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center gap-2">
-                        <FolderGit2 className="w-5 h-5 flex-shrink-0" />
-                        <span className="truncate">{repo.name}</span>
-                      </h4>
-                      <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-cyan-400 transition-colors flex-shrink-0" />
-                    </div>
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-2 min-h-[40px]">
-                      {repo.description}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div
-                          className="w-3 h-3 rounded-full"
-                          style={{ backgroundColor: repo.languageColor }}
-                        />
-                        <span className="text-gray-400 text-sm">
-                          {repo.language}
-                        </span>
+              {filteredRepos.length === 0 && searchQuery ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-center py-16 rounded-2xl bg-gray-800/30 border border-gray-700/30"
+                >
+                  <Search className="w-12 h-12 text-gray-600 mx-auto mb-4" />
+                  <p className="text-gray-400 text-lg mb-2">
+                    No repositories found
+                  </p>
+                  <p className="text-gray-500 text-sm">
+                    Try searching with different keywords
+                  </p>
+                </motion.div>
+              ) : (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {getCurrentPageRepos().map((repo, index) => (
+                    <motion.a
+                      key={repo.name}
+                      href={repo.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      whileHover={{ scale: 1.02, y: -5 }}
+                      className={`group p-6 rounded-2xl bg-gray-800/50 backdrop-blur-sm border transition-all duration-300 ${
+                        repo.isPrivate
+                          ? "border-amber-500/20 hover:border-amber-500/50"
+                          : "border-gray-700/50 hover:border-cyan-500/50"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between mb-3">
+                        <h4 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center gap-2">
+                          <FolderGit2 className="w-5 h-5 flex-shrink-0" />
+                          <span className="truncate">{repo.name}</span>
+                        </h4>
+                        <div className="flex items-center gap-2 flex-shrink-0">
+                          {repo.isPrivate ? (
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-medium">
+                              <Lock className="w-3 h-3" />
+                              Private
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-medium">
+                              <Unlock className="w-3 h-3" />
+                              Public
+                            </span>
+                          )}
+                          <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-cyan-400 transition-colors" />
+                        </div>
                       </div>
-                      <div className="flex items-center gap-4 text-gray-500 text-sm">
-                        <span className="flex items-center gap-1">
-                          <Star className="w-4 h-4" /> {repo.stars}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <GitFork className="w-4 h-4" /> {repo.forks}
-                        </span>
+                      <p className="text-gray-400 text-sm mb-4 line-clamp-2 min-h-[40px]">
+                        {repo.description}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div
+                            className="w-3 h-3 rounded-full"
+                            style={{ backgroundColor: repo.languageColor }}
+                          />
+                          <span className="text-gray-400 text-sm">
+                            {repo.language}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-4 text-gray-500 text-sm">
+                          <span className="flex items-center gap-1">
+                            <Star className="w-4 h-4" /> {repo.stars}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <GitFork className="w-4 h-4" /> {repo.forks}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <p className="text-gray-500 text-xs mt-3 flex items-center gap-1">
-                      <Calendar className="w-3 h-3" /> Updated {repo.updatedAt}
-                    </p>
-                  </motion.a>
-                ))}
-              </div>
+                      <p className="text-gray-500 text-xs mt-3 flex items-center gap-1">
+                        <Calendar className="w-3 h-3" /> Updated{" "}
+                        {repo.updatedAt}
+                      </p>
+                    </motion.a>
+                  ))}
+                </div>
+              )}
 
               {/* Pagination */}
               {totalPages > 1 && (
