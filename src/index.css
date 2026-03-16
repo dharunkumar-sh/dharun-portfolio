@@ -5,10 +5,29 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 
   body {
     @apply bg-gray-900 text-white;
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-weight: 400;
+  }
+
+  * {
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 }
 

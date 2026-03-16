@@ -84,30 +84,32 @@ const Footer: React.FC = () => {
     <footer className="relative overflow-hidden bg-gray-900 border-t z-0 border-gray-800">
       <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-violet-500/5" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-4 gap-8"
+          className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6"
         >
           {/* Brand Section */}
-          <motion.div variants={itemVariants} className="md:col-span-2">
-            <div className="flex items-center mb-4">
+          <motion.div
+            variants={itemVariants}
+            className="col-span-2 sm:col-span-2"
+          >
+            <div className="flex items-center mb-2 sm:mb-3">
               <img
                 src="/logo.svg"
                 alt="Logo"
                 loading="lazy"
-                className="h-5 w-auto"
+                className="h-4 sm:h-5 w-auto"
               />
             </div>
-            <p className="text-gray-400 mb-6 max-w-md">
+            <p className="text-gray-400 mb-3 sm:mb-4 max-w-md text-xs sm:text-sm md:text-base">
               Meta Certified Frontend Developer with expertise in React.js and
-              Next.js, passionate about crafting modern, responsive web
-              applications and delivering exceptional user experiences.
+              Next.js.
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-3">
               {socialLinks.map((social) => (
                 <motion.div
                   key={social.label}
@@ -117,17 +119,17 @@ const Footer: React.FC = () => {
                 >
                   <motion.div
                     onClick={() => window.open(social.href, "_blank")}
-                    className={`w-10 h-10 bg-gray-800/50 cursor-pointer backdrop-blur-sm border border-gray-700/50 rounded-lg flex items-center justify-center transition-all duration-300`}
+                    className={`w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-gray-800/50 cursor-pointer backdrop-blur-sm border border-gray-700/50 rounded-lg flex items-center justify-center transition-all duration-300`}
                   >
                     <social.icon
-                      className={`${social.color} w-5 h-5 transition-colors`}
+                      className={`${social.color} w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 transition-colors`}
                     />
                   </motion.div>
 
                   {/* Tooltip */}
                   <div
                     style={{ backgroundColor: getTailwindColor(social.bg) }}
-                    className={`absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-white text-xs font-medium px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 whitespace-nowrap`}
+                    className={`absolute -bottom-6 sm:-bottom-8 left-1/2 transform -translate-x-1/2 text-white text-xs font-medium px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 whitespace-nowrap`}
                   >
                     {social.label}
                   </div>
@@ -138,16 +140,16 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-lg font-semibold text-white mb-4">
+            <h3 className="text-xs sm:text-sm md:text-lg font-semibold text-white mb-2 sm:mb-3">
               Quick Links
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               {quickLinks.map((link) => (
                 <li key={link.label}>
                   <motion.a
                     onClick={() => navigate(link.href)}
                     whileHover={{ x: 5 }}
-                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-300 cursor-pointer"
+                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-300 cursor-pointer text-xs sm:text-sm"
                   >
                     {link.label}
                   </motion.a>
@@ -158,22 +160,22 @@ const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-lg font-semibold text-white mb-4">Contact</h3>
-            <div className="space-y-2 text-gray-400">
-              <p>No:32/27, Kutty Street, Perumalpet</p>
-              <p>Chennai - 600007</p>
-              <div className="space-y-2">
-                <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigator.clipboard.writeText(email);
-                    toast.success("Email copied to clipboard!");
-                  }}
-                  className="text-cyan-400 cursor-pointer font-semibold"
-                >
-                  {email}
-                </a>
-              </div>
+            <h3 className="text-xs sm:text-sm md:text-lg font-semibold text-white mb-2 sm:mb-3">
+              Contact
+            </h3>
+            <div className="space-y-1 text-gray-400 text-xs sm:text-sm">
+              <p>No:32/27, Kutty Street,</p>
+              <p>Perumalpet, Chennai - 600007</p>
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigator.clipboard.writeText(email);
+                  toast.success("Email copied!");
+                }}
+                className="text-cyan-400 cursor-pointer font-semibold block mt-1"
+              >
+                {email}
+              </a>
             </div>
           </motion.div>
         </motion.div>

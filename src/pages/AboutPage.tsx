@@ -18,7 +18,6 @@ const AboutPage: React.FC = () => {
     { name: "CSS", image: "/css.webp" },
     { name: "JavaScript", image: "/js.webp" },
     { name: "TypeScript", image: "/typescript.webp" },
-    { name: "Astro", image: "/astro.webp" },
     { name: "React.js", image: "/react.webp" },
     { name: "Next.js", image: "/next.webp" },
     { name: "React Native", image: "/react-native.webp" },
