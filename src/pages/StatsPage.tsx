@@ -24,8 +24,6 @@ import {
   ChevronRight,
   Search,
   X,
-  Lock,
-  Unlock,
   RefreshCw,
 } from "lucide-react";
 import {
@@ -77,8 +75,6 @@ interface GitHubRepo {
   updated_at: string;
   fork: boolean;
   size: number;
-  private: boolean;
-  visibility: string;
   watchers_count: number;
   open_issues_count: number;
 }
@@ -92,7 +88,6 @@ interface RepoDisplay {
   languageColor: string;
   url: string;
   updatedAt: string;
-  isPrivate: boolean;
   watchers: number;
   openIssues: number;
   size: number;
@@ -400,7 +395,7 @@ const StatsPage: React.FC = () => {
     return headers;
   }, []);
 
-  // Fetch all pages of repos (handles GitHub pagination)
+  // Fetch all pages of public repos (handles GitHub pagination)
   const fetchAllRepos = useCallback(
     async (headers: HeadersInit): Promise<GitHubRepo[]> => {
       const allRepos: GitHubRepo[] = [];
@@ -408,10 +403,7 @@ const StatsPage: React.FC = () => {
       const perPage = 100;
 
       while (true) {
-        // Use authenticated endpoint for private repos if token is available
-        const url = GITHUB_TOKEN
-          ? `${GITHUB_API_URL}/user/repos?per_page=${perPage}&page=${page}&sort=updated&affiliation=owner`
-          : `${GITHUB_API_URL}/users/${GITHUB_USERNAME}/repos?per_page=${perPage}&page=${page}&sort=updated`;
+        const url = `${GITHUB_API_URL}/users/${GITHUB_USERNAME}/repos?per_page=${perPage}&page=${page}&sort=updated`;
 
         const response = await fetch(url, { headers });
         if (!response.ok) {
@@ -452,7 +444,7 @@ const StatsPage: React.FC = () => {
         }
         const userData: GitHubUser = await userResponse.json();
 
-        // Fetch all repositories (including private if token provided)
+        // Fetch all public repositories
         const reposData = await fetchAllRepos(headers);
 
         // Filter out forked repos for stats calculation
@@ -500,7 +492,6 @@ const StatsPage: React.FC = () => {
           languageColor: languageColors[repo.language || ""] || "#718096",
           url: repo.html_url,
           updatedAt: formatRelativeTime(repo.updated_at),
-          isPrivate: repo.private,
           watchers: repo.watchers_count || 0,
           openIssues: repo.open_issues_count || 0,
           size: repo.size || 0,
@@ -581,8 +572,7 @@ const StatsPage: React.FC = () => {
       (repo) =>
         repo.name.toLowerCase().includes(query) ||
         repo.description.toLowerCase().includes(query) ||
-        repo.language.toLowerCase().includes(query) ||
-        (repo.isPrivate ? "private" : "public").includes(query),
+        repo.language.toLowerCase().includes(query),
     );
   }, [githubStats, searchQuery]);
 
@@ -608,13 +598,8 @@ const StatsPage: React.FC = () => {
 
   const totalPages = Math.ceil(filteredRepos.length / REPOS_PER_PAGE);
 
-  // Count private/public repos
-  const privateRepoCount = githubStats
-    ? githubStats.allRepos.filter((r) => r.isPrivate).length
-    : 0;
-  const publicRepoCount = githubStats
-    ? githubStats.allRepos.filter((r) => !r.isPrivate).length
-    : 0;
+  // Public repos only
+  const publicRepoCount = githubStats ? githubStats.allRepos.length : 0;
 
   if (isLoading) {
     return (
@@ -667,14 +652,12 @@ const StatsPage: React.FC = () => {
               coding activity on{" "}
               <span className="text-white font-semibold">GitHub</span>
             </p>
-            {GITHUB_TOKEN && (
-              <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30">
-                <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-green-400 text-sm font-medium">
-                  Live · Includes private repositories
-                </span>
-              </div>
-            )}
+            <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30">
+              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-green-400 text-sm font-medium">
+                Live · Public repositories only
+              </span>
+            </div>
           </motion.div>
         </motion.div>
       </section>
@@ -737,11 +720,7 @@ const StatsPage: React.FC = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className={`grid gap-4 lg:gap-6 mb-12 ${
-                GITHUB_TOKEN
-                  ? "grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
-                  : "grid-cols-2 lg:grid-cols-5"
-              }`}
+              className="grid grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6 mb-12"
             >
               <StatCard
                 icon={FolderGit2}
@@ -749,14 +728,6 @@ const StatsPage: React.FC = () => {
                 value={publicRepoCount}
                 delay={0}
               />
-              {GITHUB_TOKEN && (
-                <StatCard
-                  icon={Lock}
-                  label="Private Repos"
-                  value={privateRepoCount}
-                  delay={0.05}
-                />
-              )}
               <StatCard
                 icon={Star}
                 label="Total Stars"
@@ -1008,12 +979,6 @@ const StatsPage: React.FC = () => {
                       filteredRepos.length,
                     )}{" "}
                     of {filteredRepos.length} repositories
-                    {GITHUB_TOKEN && (
-                      <span className="text-gray-600">
-                        {" "}
-                        ({publicRepoCount} public, {privateRepoCount} private)
-                      </span>
-                    )}
                   </>
                 )}
               </p>
@@ -1044,11 +1009,7 @@ const StatsPage: React.FC = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.05 }}
                       whileHover={{ scale: 1.02, y: -5 }}
-                      className={`group p-6 rounded-2xl bg-gray-800/50 backdrop-blur-sm border transition-all duration-300 ${
-                        repo.isPrivate
-                          ? "border-amber-500/20 hover:border-amber-500/50"
-                          : "border-gray-700/50 hover:border-cyan-500/50"
-                      }`}
+                      className="group p-6 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300"
                     >
                       <div className="flex items-start justify-between mb-3">
                         <h4 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center gap-2">
@@ -1056,17 +1017,6 @@ const StatsPage: React.FC = () => {
                           <span className="truncate">{repo.name}</span>
                         </h4>
                         <div className="flex items-center gap-2 flex-shrink-0">
-                          {repo.isPrivate ? (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-medium">
-                              <Lock className="w-3 h-3" />
-                              Private
-                            </span>
-                          ) : (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-medium">
-                              <Unlock className="w-3 h-3" />
-                              Public
-                            </span>
-                          )}
                           <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-cyan-400 transition-colors" />
                         </div>
                       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import {
   Calendar,
@@ -322,6 +322,27 @@ const CertificationsPage: React.FC = () => {
   >(null);
   const [showModal, setShowModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const searchScrollYRef = useRef<number | null>(null);
+
+  const handleSearchChange = (value: string) => {
+    searchScrollYRef.current = window.scrollY;
+    setSearchTerm(value);
+  };
+
+  useLayoutEffect(() => {
+    if (searchScrollYRef.current === null) {
+      return;
+    }
+
+    const maxScrollTop = Math.max(
+      0,
+      document.documentElement.scrollHeight - window.innerHeight,
+    );
+    const stableScrollTop = Math.min(searchScrollYRef.current, maxScrollTop);
+
+    window.scrollTo({ top: stableScrollTop });
+    searchScrollYRef.current = null;
+  }, [searchTerm]);
 
   // Filter certifications based on search
   const filteredCertifications = certifications.filter((cert) => {
@@ -470,7 +491,7 @@ const CertificationsPage: React.FC = () => {
           {/* Search Bar */}
           <SearchBar
             searchTerm={searchTerm}
-            onSearchChange={setSearchTerm}
+            onSearchChange={handleSearchChange}
             placeholder="Search certifications by title, issuer, or skill..."
             scrollTargetId="certifications-grid"
             gradientFrom="cyan-500"
@@ -483,7 +504,10 @@ const CertificationsPage: React.FC = () => {
       </section>
 
       {/* CERT CARDS - Bento Grid Style */}
-      <section id="certifications-grid" className="pt-16 pb-24 relative">
+      <section
+        id="certifications-grid"
+        className="pt-16 pb-24 relative [overflow-anchor:none]"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {filteredCertifications.map((cert) => (

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 
@@ -27,39 +27,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
   focusBorderColor = "focus:border-purple-500/50",
   focusRingColor = "focus:ring-purple-500/20",
 }) => {
-  const prevSearchTerm = useRef<string>("");
-  const wasEmpty = useRef<boolean>(true);
-
-  useEffect(() => {
-    const currentIsEmpty = searchTerm.trim() === "";
-    const previousWasEmpty = wasEmpty.current;
-
-    // Only scroll when transitioning from empty to non-empty (starting a search)
-    // or from non-empty to empty (clearing the search)
-    const shouldScroll =
-      scrollTargetId &&
-      ((previousWasEmpty && !currentIsEmpty) || // Started typing
-        (!previousWasEmpty && currentIsEmpty)); // Cleared search
-
-    if (shouldScroll) {
-      const targetElement = document.getElementById(scrollTargetId);
-      if (targetElement) {
-        // Smooth scroll to the target section
-        const offset = 100; // Adjust for navbar height
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
-    }
-
-    wasEmpty.current = currentIsEmpty;
-    prevSearchTerm.current = searchTerm;
-  }, [searchTerm, scrollTargetId]);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}

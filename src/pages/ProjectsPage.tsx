@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import {
   Github,
@@ -21,6 +21,27 @@ const ProjectsPage: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const searchScrollYRef = useRef<number | null>(null);
+
+  const handleSearchChange = (value: string) => {
+    searchScrollYRef.current = window.scrollY;
+    setSearchTerm(value);
+  };
+
+  useLayoutEffect(() => {
+    if (searchScrollYRef.current === null) {
+      return;
+    }
+
+    const maxScrollTop = Math.max(
+      0,
+      document.documentElement.scrollHeight - window.innerHeight,
+    );
+    const stableScrollTop = Math.min(searchScrollYRef.current, maxScrollTop);
+
+    window.scrollTo({ top: stableScrollTop });
+    searchScrollYRef.current = null;
+  }, [searchTerm]);
 
   const projects = [
     {
@@ -460,7 +481,7 @@ const ProjectsPage: React.FC = () => {
           {/* Search Bar */}
           <SearchBar
             searchTerm={searchTerm}
-            onSearchChange={setSearchTerm}
+            onSearchChange={handleSearchChange}
             placeholder="Search projects by name or technology..."
             scrollTargetId="projects-grid"
             gradientFrom="purple-500"
@@ -502,7 +523,10 @@ const ProjectsPage: React.FC = () => {
       </section>
 
       {/* Projects Grid */}
-      <section id="projects-grid" className="pt-8 pb-24 relative">
+      <section
+        id="projects-grid"
+        className="pt-8 pb-24 relative [overflow-anchor:none]"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {filteredProjects.map((project) => (
