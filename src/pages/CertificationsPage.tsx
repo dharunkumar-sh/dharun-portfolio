@@ -315,6 +315,20 @@ const CertificationsPage: React.FC = () => {
         "Coding Interview Preparation",
       ],
     },
+    {
+      id: 26,
+      title: "TROJANS 2K26 – Runtime Terror",
+      issuer: "Chennai Institute of Technology",
+      date: "February 10, 2026",
+      logo: "./certifications/logo17.png",
+      verifyUrl: "./certifications/certificate26.webp",
+      skills: [
+        "Technical Event Participation",
+        "Problem Solving",
+        "Debugging",
+        "UI/UX Approach",
+      ],
+    },
   ];
 
   const [selectedCert, setSelectedCert] = useState<

@@ -2,7 +2,6 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import {
   Calendar,
-  MapPin,
   Trophy,
   Search,
   Sparkles,
@@ -281,6 +280,21 @@ const EventsPage: React.FC = () => {
       image: "./events/event12.webp",
       technologies: ["UI/UX Design", "Figma", "Prototyping", "User Research"],
       duration: "1 hour 45 minutes",
+      featured: false,
+    },
+    {
+      id: 14,
+      title: "Evolution 2K26 – Technical Symposium",
+      type: "competition",
+      role: "Participant",
+      date: "February 18, 2026",
+      location: "Chennai Institute of Technology, Chennai (Offline)",
+      description:
+        "Participated in 'Evolution 2K26', a national-level technical symposium organized by the Department of Information Technology at Chennai Institute of Technology. Engaged in competitive technical events focused on innovation, problem-solving, and practical skills in the IT domain.",
+      achievement: "Participated",
+      image: "./events/event13.webp",
+      technologies: ["Technical Events", "Problem Solving", "Innovation"],
+      duration: "1 day",
       featured: false,
     },
   ];
