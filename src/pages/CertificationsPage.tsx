@@ -329,6 +329,35 @@ const CertificationsPage: React.FC = () => {
         "UI/UX Approach",
       ],
     },
+    {
+      id: 27,
+      title: "IGNITE'26 – Hackathon",
+      issuer: "Easwari Engineering College",
+      date: "March 12, 2026",
+      logo: "./certifications/logo18.png",
+      verifyUrl: "./certifications/certificate27.jpg",
+      skills: [
+        "Problem Solving",
+        "Team Collaboration",
+        "Debugging",
+        "UI/UX Approach",
+        "Team Leadership",
+      ],
+    },
+    {
+      id: 28,
+      title: "Industrial Visit – Askan Technologies",
+      issuer: "Askan Technologies Pvt Ltd",
+      date: "April 17, 2026",
+      logo: "./certifications/logo19.png",
+      verifyUrl: "./certifications/certificate28.jpg",
+      skills: [
+        "Industry Exposure",
+        "Technical Observation",
+        "Learning & Development",
+        "Professional Awareness",
+      ],
+    },
   ];
 
   const [selectedCert, setSelectedCert] = useState<

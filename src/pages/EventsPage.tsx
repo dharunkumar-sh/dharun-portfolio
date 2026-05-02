@@ -297,6 +297,26 @@ const EventsPage: React.FC = () => {
       duration: "1 day",
       featured: false,
     },
+    {
+      id: 15,
+      title: "IGNITE'26 – Hackathon",
+      type: "competition",
+      role: "Participant",
+      date: "March 12, 2026",
+      location: "Easwari Engineering College, Chennai (Offline)",
+      description:
+        "Participated in IGNITE'26 Hackathon, an 8-hour innovation sprint organized by the Department of Information Technology under the TechSaavy Club at Easwari Engineering College. Focused on building innovative solutions through rapid development, problem-solving, and collaborative teamwork.",
+      achievement: "Participated",
+      image: "./events/event14.webp",
+      technologies: [
+        "Hackathon",
+        "Problem Solving",
+        "Innovation",
+        "Team Collaboration",
+      ],
+      duration: "8 hours",
+      featured: false,
+    },
   ];
 
   const categories = [
