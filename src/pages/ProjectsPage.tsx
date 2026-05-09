@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import {
   Github,
@@ -21,27 +21,9 @@ const ProjectsPage: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
-  const searchScrollYRef = useRef<number | null>(null);
-
   const handleSearchChange = (value: string) => {
-    searchScrollYRef.current = window.scrollY;
     setSearchTerm(value);
   };
-
-  useLayoutEffect(() => {
-    if (searchScrollYRef.current === null) {
-      return;
-    }
-
-    const maxScrollTop = Math.max(
-      0,
-      document.documentElement.scrollHeight - window.innerHeight,
-    );
-    const stableScrollTop = Math.min(searchScrollYRef.current, maxScrollTop);
-
-    window.scrollTo({ top: stableScrollTop });
-    searchScrollYRef.current = null;
-  }, [searchTerm]);
 
   const projects = [
     {

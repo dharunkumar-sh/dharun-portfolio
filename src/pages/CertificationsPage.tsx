@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import {
   Calendar,
@@ -365,27 +365,9 @@ const CertificationsPage: React.FC = () => {
   >(null);
   const [showModal, setShowModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const searchScrollYRef = useRef<number | null>(null);
-
   const handleSearchChange = (value: string) => {
-    searchScrollYRef.current = window.scrollY;
     setSearchTerm(value);
   };
-
-  useLayoutEffect(() => {
-    if (searchScrollYRef.current === null) {
-      return;
-    }
-
-    const maxScrollTop = Math.max(
-      0,
-      document.documentElement.scrollHeight - window.innerHeight,
-    );
-    const stableScrollTop = Math.min(searchScrollYRef.current, maxScrollTop);
-
-    window.scrollTo({ top: stableScrollTop });
-    searchScrollYRef.current = null;
-  }, [searchTerm]);
 
   // Filter certifications based on search
   const filteredCertifications = certifications.filter((cert) => {
