@@ -337,11 +337,11 @@ const ProjectsPage: React.FC = () => {
     },
     {
       id: 15,
-      title: "Career Skill Bridge - Smart Course Recommendation Platform",
+      title: "Skill Bridge - Smart Course Recommendation Platform",
       description:
         "A skill upgrading platform that suggests the next course based on completed skills.",
       longDescription:
-        "Career Skill Bridge is a web-based skill recommendation platform designed to help learners choose the most suitable courses to study next based on their current skills or completed courses. Built using Next.js and modern web technologies, the system provides a simple and user-friendly interface for exploring structured learning paths. The platform analyzes user input and recommends relevant next courses, helping learners progress step-by-step in their career journey and improve their technical skills efficiently.",
+        "Skill Bridge is a web-based skill recommendation platform designed to help learners choose the most suitable courses to study next based on their current skills or completed courses. Built using Next.js and modern web technologies, the system provides a simple and user-friendly interface for exploring structured learning paths. The platform analyzes user input and recommends relevant next courses, helping learners progress step-by-step in their career journey and improve their technical skills efficiently.",
       image: "/projects/project15.webp",
       technologies: [
         "Next.js",
@@ -349,11 +349,12 @@ const ProjectsPage: React.FC = () => {
         "Next.js API",
         "PostgreSQL (Neon)",
         "Drizzle ORM",
+        "Openrouter LLM",
         "Vercel",
       ],
       category: "web",
       status: true,
-      githubUrl: "https://github.com/YOUR_GITHUB_LINK",
+      githubUrl: "https://github.com/dharunkumar-sh/skill-bridge",
       liveUrl: "https://career-skill-bridge.vercel.app/",
       featured: true,
     },
