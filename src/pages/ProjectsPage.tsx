@@ -533,12 +533,23 @@ const ProjectsPage: React.FC = () => {
         className="pt-8 pb-24 relative [overflow-anchor:none]"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
-              <div
+              <motion.div
+                layout="position"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ 
+                  layout: { type: "spring", stiffness: 400, damping: 30 },
+                  opacity: { duration: 0.15 },
+                  scale: { duration: 0.15 }
+                }}
+                whileHover={{ y: -8, scale: 1.02 }}
                 key={project.id}
                 onClick={() => setSelectedProject(project.id)}
-                className="group relative cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02]"
+                className="group relative cursor-pointer"
               >
                 {/* Glow Effect */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500" />
@@ -599,14 +610,16 @@ const ProjectsPage: React.FC = () => {
                   {/* Decorative Corner */}
                   <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-purple-500/10 to-transparent" />
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+            </AnimatePresence>
+          </motion.div>
 
           {filteredProjects.length === 0 && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               className="text-center py-16 lg:py-24"
             >
               <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gray-800/60 border border-gray-700/50 flex items-center justify-center">
