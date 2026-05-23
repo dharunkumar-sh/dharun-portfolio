@@ -340,6 +340,29 @@ const ProjectsPage: React.FC = () => {
       liveUrl: "https://career-skill-bridge.vercel.app/",
       featured: true,
     },
+    {
+      id: 16,
+      title: "API Muse - AI-Powered API Documentation Generator",
+      description:
+        "Design APIs with Intelligence. Stop writing boilerplate. Describe your endpoints and let AI generate flawless, production-ready API documentation instantly.",
+      longDescription:
+        "API Muse is an AI-powered platform that generates world-class API documentation without the massive time investment. Convert basic descriptions or legacy code into robust OpenAPI specifications in seconds. Export directly to Swagger UI, Postman, or your favorite CI/CD pipeline. With real-time validation, instantly catch contract errors before they hit production with intelligent linting. Simply describe your API in plain English, review the AI-drafted perfect spec, and export as complete OpenAPI specs or Swagger UI.",
+      image: "/projects/project16.webp",
+      technologies: [
+        "Next.js",
+        "Tailwind CSS",
+        "Openrouter API",
+        "OpenAPI Specification",
+        "Swagger UI",
+        "TypeScript",
+        "Vercel",
+      ],
+      category: "web",
+      status: true,
+      githubUrl: "https://github.com/dharunkumar-sh/api-muse",
+      liveUrl: "https://api-muse.vercel.app",
+      featured: true,
+    },
   ];
 
   const categories = [
@@ -385,25 +408,25 @@ const ProjectsPage: React.FC = () => {
   const stats = [
     {
       label: "Total Projects",
-      value: "14+",
+      value: "16",
       icon: Rocket,
       gradient: "from-cyan-500 to-blue-600",
     },
     {
       label: "Featured",
-      value: "9",
+      value: "10",
       icon: Star,
       gradient: "from-yellow-500 to-orange-600",
     },
     {
       label: "Open Source",
-      value: "14",
+      value: "16",
       icon: GitFork,
       gradient: "from-emerald-500 to-teal-600",
     },
     {
       label: "Tech Stacks",
-      value: "20+",
+      value: "25+",
       icon: Layers,
       gradient: "from-violet-500 to-purple-600",
     },
@@ -533,85 +556,91 @@ const ProjectsPage: React.FC = () => {
         className="pt-8 pb-24 relative [overflow-anchor:none]"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <motion.div
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          >
             <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
-              <motion.div
-                layout="position"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ 
-                  layout: { type: "spring", stiffness: 400, damping: 30 },
-                  opacity: { duration: 0.15 },
-                  scale: { duration: 0.15 }
-                }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                key={project.id}
-                onClick={() => setSelectedProject(project.id)}
-                className="group relative cursor-pointer"
-              >
-                {/* Glow Effect */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500" />
+              {filteredProjects.map((project) => (
+                <motion.div
+                  layout="position"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{
+                    layout: { type: "spring", stiffness: 400, damping: 30 },
+                    opacity: { duration: 0.15 },
+                    scale: { duration: 0.15 },
+                  }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  key={project.id}
+                  onClick={() => setSelectedProject(project.id)}
+                  className="group relative cursor-pointer"
+                >
+                  {/* Glow Effect */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500" />
 
-                {/* Card */}
-                <div className="relative h-full bg-gradient-to-br from-gray-800/80 via-gray-800/60 to-gray-900/80 rounded-2xl border border-gray-700/50 group-hover:border-purple-500/40 backdrop-blur-xl overflow-hidden transition-all duration-300">
-                  {/* Featured Badge */}
-                  {project.featured && (
-                    <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-yellow-500/90 to-orange-500/90 text-white text-xs font-semibold rounded-full shadow-lg">
-                      <Star size={12} className="fill-current" />
-                      Featured
+                  {/* Card */}
+                  <div className="relative h-full bg-gradient-to-br from-gray-800/80 via-gray-800/60 to-gray-900/80 rounded-2xl border border-gray-700/50 group-hover:border-purple-500/40 backdrop-blur-xl overflow-hidden transition-all duration-300">
+                    {/* Featured Badge */}
+                    {project.featured && (
+                      <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-yellow-500/90 to-orange-500/90 text-white text-xs font-semibold rounded-full shadow-lg">
+                        <Star size={12} className="fill-current" />
+                        Featured
+                      </div>
+                    )}
+
+                    {/* Image */}
+                    <div className="relative h-48 lg:h-52 overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent" />
+
+                      {/* Category Badge */}
+                      <div className="absolute bottom-4 left-4 px-3 py-1 bg-gray-900/80 backdrop-blur-sm rounded-lg text-xs font-medium text-purple-400 border border-purple-500/30">
+                        {
+                          categories.find((c) => c.id === project.category)
+                            ?.label
+                        }
+                      </div>
                     </div>
-                  )}
 
-                  {/* Image */}
-                  <div className="relative h-48 lg:h-52 overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent" />
+                    {/* Content */}
+                    <div className="p-5 lg:p-6">
+                      <h3 className="text-lg lg:text-xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors duration-300 line-clamp-1">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                        {project.description}
+                      </p>
 
-                    {/* Category Badge */}
-                    <div className="absolute bottom-4 left-4 px-3 py-1 bg-gray-900/80 backdrop-blur-sm rounded-lg text-xs font-medium text-purple-400 border border-purple-500/30">
-                      {categories.find((c) => c.id === project.category)?.label}
+                      {/* Technologies */}
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.slice(0, 3).map((tech) => (
+                          <span
+                            key={tech}
+                            className="text-xs px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-500/10 to-cyan-500/10 border border-purple-500/20 text-purple-300 group-hover:border-purple-400/40 transition-colors duration-300"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                        {project.technologies.length > 3 && (
+                          <span className="text-xs px-3 py-1.5 rounded-lg bg-gray-800/60 border border-gray-700/50 text-gray-400">
+                            +{project.technologies.length - 3}
+                          </span>
+                        )}
+                      </div>
                     </div>
+
+                    {/* Decorative Corner */}
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-purple-500/10 to-transparent" />
                   </div>
-
-                  {/* Content */}
-                  <div className="p-5 lg:p-6">
-                    <h3 className="text-lg lg:text-xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors duration-300 line-clamp-1">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-2">
-                      {project.description}
-                    </p>
-
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.slice(0, 3).map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-xs px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-500/10 to-cyan-500/10 border border-purple-500/20 text-purple-300 group-hover:border-purple-400/40 transition-colors duration-300"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {project.technologies.length > 3 && (
-                        <span className="text-xs px-3 py-1.5 rounded-lg bg-gray-800/60 border border-gray-700/50 text-gray-400">
-                          +{project.technologies.length - 3}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Decorative Corner */}
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-purple-500/10 to-transparent" />
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
             </AnimatePresence>
           </motion.div>
 
