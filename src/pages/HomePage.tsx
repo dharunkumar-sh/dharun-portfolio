@@ -1,13 +1,6 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import {
-  Download,
-  Github,
-  Linkedin,
-  Instagram,
-  ArrowRight,
-  CreditCard,
-} from "lucide-react";
+import { Download, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import TypewriterEffect from "../components/TypewriterEffect";
 import { useNavigate } from "react-router-dom";
@@ -65,16 +58,6 @@ const HomePage: React.FC = () => {
     { label: "Hackathon Won", value: "1" },
     { label: "Years of Experience", value: "2+" },
   ];
-
-  const getTailwindColor = (color: string): string => {
-    const colors: Record<string, string> = {
-      "gray-600": "#4B5563",
-      "blue-500": "#3B82F6",
-      "pink-500": "#EC4899",
-      "cyan-500": "#06b6d4",
-    };
-    return colors[color] || "#4B5563";
-  };
 
   return (
     <div className="min-h-screen">
@@ -157,50 +140,43 @@ const HomePage: React.FC = () => {
           >
             {[
               {
-                icon: Github,
+                icon: "/icons/github.webp",
                 href: "https://github.com/dharunkumar-sh",
                 label: "GitHub",
-                color: "text-gray-500",
-                bg: "gray-600",
               },
               {
-                icon: Linkedin,
+                icon: "/icons/linkedin.webp",
                 href: "https://www.linkedin.com/in/dharun-kumar-sh",
                 label: "LinkedIn",
-                color: "text-blue-500",
-                bg: "blue-500",
               },
               {
-                icon: Instagram,
+                icon: "/icons/instagram.webp",
                 href: "https://www.instagram.com/iam.dharunkumar",
                 label: "Instagram",
-                color: "text-pink-500",
-                bg: "pink-500",
               },
               {
-                icon: CreditCard,
+                icon: "/icons/dinq.webp",
                 href: "https://dinq.me/dharunkumar",
                 label: "DinQ",
-                color: "text-gray-400",
-                bg: "gray-400",
               },
-            ].map(({ icon: Icon, href, label, color, bg }) => (
+              {
+                icon: "/icons/topmate.webp",
+                href: "https://topmate.io/dharun_kumar_s_h/",
+                label: "TopMate",
+              },
+            ].map(({ icon, href, label }) => (
               <motion.div
                 key={label}
                 onClick={() => window.open(href, "_blank")}
                 whileHover={{ scale: 1.2, y: -5 }}
                 whileTap={{ scale: 0.9 }}
-                className="relative group p-3 lg:p-4 rounded-xl cursor-pointer bg-gray-800/50 border border-gray-700 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300"
+                className="relative group p-3 lg:p-4 rounded-xl cursor-pointer bg-gray-800/50 border border-gray-700 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300 shadow-lg shadow-black/10"
               >
-                <Icon className={`${color} transition-colors`} />
-
-                {/* Tooltip */}
-                <div
-                  style={{ backgroundColor: getTailwindColor(bg) }}
-                  className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-white text-xs font-medium px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 whitespace-nowrap"
-                >
-                  {label}
-                </div>
+                <img
+                  src={icon}
+                  alt={label}
+                  className="h-6 w-6 lg:h-7 lg:w-7 object-contain transition-transform duration-300 group-hover:scale-110"
+                />
               </motion.div>
             ))}
           </motion.div>
