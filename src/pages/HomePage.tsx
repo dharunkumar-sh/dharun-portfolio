@@ -95,7 +95,8 @@ const HomePage: React.FC = () => {
 
           <motion.div variants={itemVariants} className="mb-8 lg:mb-12">
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-300/75 mb-4 lg:mb-6">
-              Meta Certified Front-End Dev | React.js & Next.js | Vibe Coder
+              Aspiring Software Developer | Meta Certified Front-End Dev |
+              Vibe Coder
             </h2>
 
             {/* Dynamic Typewriter Effect */}

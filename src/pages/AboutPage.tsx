@@ -186,7 +186,8 @@ const AboutPage: React.FC = () => {
                   Dharun Kumar S H
                 </h2>
                 <p className="text-xl lg:text-lg text-slate-400 leading-relaxed font-medium">
-                Meta Certified Front-End Dev | React.js & Next.js | Vibe Coder
+                  Aspiring Software Developer | Meta Certified Front-End Dev |
+                  Vibe Coder
                 </p>
               </motion.div>
 
@@ -194,9 +195,11 @@ const AboutPage: React.FC = () => {
                 variants={itemVariants}
                 className="text-lg lg:text-base text-gray-300 leading-relaxed max-w-2xl"
               >
-                Meta Certified Frontend Developer with highly skilled expertise
-                in React.js and Next.js. I transform ideas into interactive
-                digital experiences with modern web development best practices.
+                Meta Certified Front-End Developer and aspiring Software
+                Developer with expertise in React.js and Next.js. Passionate
+                about building modern, scalable, and user-friendly web
+                applications with clean design and efficient development
+                practices.
               </motion.p>
 
               <motion.div
@@ -270,12 +273,13 @@ const AboutPage: React.FC = () => {
                   My Journey
                 </h3>
                 <p className="text-gray-300 leading-relaxed text-base lg:text-lg">
-                  I'm a third-year Information Technology student at Meenakshi
-                  Sundararajan Engineering College, passionate about front-end
-                  development and constantly honing my skills as an aspiring
-                  React developer. I thrive on turning ideas into interactive
-                  web experiences and love exploring the latest in modern UI
-                  frameworks.
+                  I'm a final-year Information Technology student at Meenakshi
+                  Sundararajan Engineering College and an aspiring Software
+                  Developer passionate about building modern web applications. I
+                  enjoy creating interactive and user-friendly digital
+                  experiences using React.js and Next.js while continuously
+                  exploring new technologies and improving my development
+                  skills.
                 </p>
               </motion.div>
 
@@ -290,11 +294,11 @@ const AboutPage: React.FC = () => {
                   What Drives Me
                 </h3>
                 <p className="text-gray-300 leading-relaxed text-base lg:text-lg">
-                  I'm driven by a passion to build web experiences that make a
-                  real difference. Whether it’s crafting clean, user-focused
-                  React applications, exploring the frontiers of emerging tech,
-                  or contributing to open-source projects, I’m constantly
-                  seeking ways to turn ideas into impactful solutions.
+                  I'm passionate about building modern web experiences that
+                  create real impact. From crafting clean and user-focused React
+                  applications to exploring emerging technologies and full stack
+                  development, I enjoy turning ideas into scalable and
+                  meaningful digital solutions.
                 </p>
               </motion.div>
 
