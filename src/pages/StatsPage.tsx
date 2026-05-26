@@ -697,7 +697,7 @@ const StatsPage: React.FC = () => {
                       @{githubStats.user.login}
                     </p>
                     {githubStats.user.bio && (
-                      <p className="text-gray-400 max-w-xl mb-3">
+                      <p className="text-gray-400 mb-3">
                         {githubStats.user.bio}
                       </p>
                     )}
