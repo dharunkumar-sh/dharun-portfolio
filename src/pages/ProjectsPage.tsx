@@ -32,7 +32,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "Effortlessly Craft a Standout Resume with Our AI-Powered Resume Builder",
       longDescription:
-        "BuilderBuddy is an intelligent resume-building platform that leverages AI to analyze user input and generate personalized, ATS-friendly resumes. Integrated with Strapi CMS for content control and Clerk for authentication, it's deployed on Vercel for lightning-fast performance.",
+        "AI-powered resume builder that generates personalized, ATS-friendly resumes with Clerk authentication and Strapi CMS integration.",
       image: "/projects/project1.webp",
       technologies: [
         "React.js",
@@ -55,7 +55,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "Smart resume screening tool that extracts skills and analyzes job fit using AI.",
       longDescription:
-        "An intelligent resume analysis platform that uses advanced NLP and Gemini LLM to extract key details like name, email, and technical skills. It evaluates job-resume fit, provides match scores, suggests suitable roles, and offers a clean UI with PDF previews and email outreach without a backend database, leveraging LocalStorage and frontend APIs.",
+        "Resume analysis tool using NLP and Gemini LLM to extract skills, evaluate job fit, and suggest suitable roles.",
       image: "/projects/project2.webp",
       technologies: [
         "React.js",
@@ -80,7 +80,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "A vibrant community portal celebrating actor Amaran's legacy with media, news, and fan interactions.",
       longDescription:
-        "A dynamic fan website dedicated to the iconic actor Amaran, featuring a media gallery, latest news updates, fan forums, polls, and interactive timelines of his filmography. Built to connect fans with exclusive content, behind-the-scenes features, and event announcements, all wrapped in a visually engaging and mobile-optimized design.",
+        "Fan website for actor Amaran with media gallery, news updates, forums, polls, and interactive filmography timeline.",
       image: "/projects/project3.webp",
       technologies: [
         "React.js",
@@ -101,7 +101,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "Discover trending movies, browse genres, and track your watchlist with ease.",
       longDescription:
-        "Popcorn Path is an intuitive movie discovery platform powered by the TMDB API. Users can explore trending films, browse by genre, search for specific titles, and manage their personal watchlist. Featuring a sleek UI, real-time data fetching, and smooth interactions, it delivers a binge-worthy experience for movie buffs and casual viewers alike.",
+        "Movie discovery platform using TMDB API with genre browsing, search, and watchlist management.",
       image: "/projects/project4.webp",
       technologies: ["React", "Tailwind CSS", "Appwrite", "TMDB API", "Vercel"],
       category: "entertainment",
@@ -115,7 +115,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "Analyze flood risk using coordinates or terrain images with AI-powered insights.",
       longDescription:
-        "Flood Analyzer is an intelligent system that predicts and assesses flood risks using both geographic coordinates and terrain image analysis. It leverages AI models and geospatial data to provide detailed risk levels, elevation data, and proximity to water sources. Users receive actionable recommendations along with AI-driven explanations, making it a powerful tool for disaster preparedness and environmental monitoring. Built with Next.js, FastAPI, TailwindCSS, and deployed on Vercel/Render for scalability.",
+        "AI-powered flood risk analyzer using geographic coordinates and terrain imagery for disaster preparedness.",
       image: "/projects/project5.webp",
       technologies: [
         "Next.js",
@@ -136,7 +136,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "Monitor and predict forest fire risks using environmental data and machine learning.",
       longDescription:
-        "ForestFire is a real-time wildfire prediction and monitoring tool that uses environmental parameters like temperature, humidity, and wind speed to assess fire risk. Leveraging models like Random Forest and SVM, it provides early warnings and visual insights to support proactive forest management. Built with Streamlit for simplicity and Seaborn for rich data visualizations.",
+        "Wildfire prediction tool using environmental parameters and machine learning for forest fire risk assessment.",
       image: "/projects/project6.webp",
       technologies: [
         "React Native (Expo Go)",
@@ -161,7 +161,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "Apply advanced AI-driven edits and transformations to images with a powerful, modern online editor.",
       longDescription:
-        "Pixxel is an AI-powered image editing platform offering intelligent tools like background removal, object manipulation, and advanced filters. Built with a modern tech stack including Next.js and Convex DB for high performance, it utilizes Imagekit.io for optimized image delivery and Clerk for secure user authentication. The interface is powered by ShadCN UI for a clean, intuitive user experience.",
+        "AI-powered image editor with background removal, object manipulation, and advanced filters powered by Convex DB.",
       image: "/projects/project7.webp",
       technologies: [
         "Next.js",
@@ -183,7 +183,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "A simple image editor with advanced edits and transformations.",
       longDescription:
-        "Grafixion is an image editing platform offering tools like background removal, object manipulation, and advanced filters. Built with React.js, Tailwind CSS, and ShadCN UI for a clean, intuitive user experience. It utilizes Local Storage for storing user edits and preferences.",
+        "Simple image editor with background removal and advanced filters using React and Local Storage.",
       image: "/projects/project8.webp",
       technologies: ["React.js", "Tailwind CSS", "ShadCN UI", "Local Storage"],
       category: "web",
@@ -198,7 +198,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "Easily create a beautiful digital portfolio with advanced edits and transformations.",
       longDescription:
-        "Creafolio is a digital portfolio builder that offers a range of tools to help you create a stunning online portfolio. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. Local Storage is used to store user edits and preferences.",
+        "Digital portfolio builder with tools to create stunning online portfolios with persistent storage.",
       image: "/projects/project9.webp",
       technologies: [
         "Next.js",
@@ -220,7 +220,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "A mental health companion that provides personalized support and resources.",
       longDescription:
-        "NeuraLife is an AI-powered mental health companion that offers personalized support and resources to users. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
+        "AI-powered mental health companion offering personalized support and resources using machine learning.",
       image: "/projects/project10.webp",
       technologies: [
         "Next.js",
@@ -242,7 +242,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "An expense tracker and budget planner that helps users manage their finances.",
       longDescription:
-        "FlowFund is an expense tracker and budget planner that helps users manage their finances. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
+        "Expense tracker and budget planner to manage finances with ML-powered insights.",
       image: "/projects/project11.webp",
       technologies: [
         "Next.js",
@@ -264,7 +264,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "A password manager that helps users manage their passwords across valrious platforms.",
       longDescription:
-        "CipherKey is a password manager that helps users store and manage their passwords across multiple platforms. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
+        "Multi-platform password manager for secure password storage and management.",
       image: "/projects/project12.webp",
       technologies: ["React.js", "Tailwind CSS", "ShadCN UI", "LocalStorage"],
       category: "web",
@@ -279,7 +279,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "A movie database dedicated to the films of Sivakarthikeyan.",
       longDescription:
-        "SkCine is a comprehensive movie database dedicated to the films of Sivakarthikeyan. Built with React.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
+        "Comprehensive movie database dedicated to actor Sivakarthikeyan's filmography.",
       image: "/projects/project13.webp",
       technologies: [
         "React.js",
@@ -301,7 +301,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "A career guide that helps users find the right career path.",
       longDescription:
-        "Career Lens is an AI-powered career guide that helps users find the right career path. Built with Next.js, Tailwind CSS, and ShadCN UI, it provides a clean and intuitive user experience. The app utilizes machine learning algorithms to analyze user input and deliver tailored content and recommendations.",
+        "AI-powered career guide to help users find the right career path with ML recommendations.",
       image: "/projects/project14.webp",
       technologies: [
         "Next.js",
@@ -323,7 +323,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "A skill upgrading platform that suggests the next course based on completed skills.",
       longDescription:
-        "Skill Bridge is a web-based skill recommendation platform designed to help learners choose the most suitable courses to study next based on their current skills or completed courses. Built using Next.js and modern web technologies, the system provides a simple and user-friendly interface for exploring structured learning paths. The platform analyzes user input and recommends relevant next courses, helping learners progress step-by-step in their career journey and improve their technical skills efficiently.",
+        "Smart course recommendation platform that suggests next courses based on current skills and learning paths.",
       image: "/projects/project15.webp",
       technologies: [
         "Next.js",
@@ -346,7 +346,7 @@ const ProjectsPage: React.FC = () => {
       description:
         "Design APIs with Intelligence. Stop writing boilerplate. Describe your endpoints and let AI generate flawless, production-ready API documentation instantly.",
       longDescription:
-        "API Muse is an AI-powered platform that generates world-class API documentation without the massive time investment. Convert basic descriptions or legacy code into robust OpenAPI specifications in seconds. Export directly to Swagger UI, Postman, or your favorite CI/CD pipeline. With real-time validation, instantly catch contract errors before they hit production with intelligent linting. Simply describe your API in plain English, review the AI-drafted perfect spec, and export as complete OpenAPI specs or Swagger UI.",
+        "AI-powered API documentation generator that converts descriptions into production-ready OpenAPI specs.",
       image: "/projects/project16.webp",
       technologies: [
         "Next.js",
@@ -672,7 +672,7 @@ const ProjectsPage: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center px-4 pt-20 pb-4"
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center px-4 pt-[6.5rem] pb-4"
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
@@ -680,7 +680,7 @@ const ProjectsPage: React.FC = () => {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 50 }}
               transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[85vh] overflow-hidden border border-gray-700/50"
+              className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden border border-gray-700/50"
               onClick={(e) => e.stopPropagation()}
             >
               {(() => {
@@ -690,7 +690,7 @@ const ProjectsPage: React.FC = () => {
                 return (
                   <>
                     {/* Banner */}
-                    <div className="relative h-56 sm:h-64 overflow-hidden">
+                    <div className="relative h-50 sm:h-[18rem] overflow-hidden">
                       <img
                         src={project.image}
                         alt={project.title}
@@ -698,16 +698,6 @@ const ProjectsPage: React.FC = () => {
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent" />
-
-                      {/* Close Button */}
-                      <motion.button
-                        onClick={() => setSelectedProject(null)}
-                        whileHover={{ scale: 1.1, rotate: 90 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="absolute top-4 right-4 w-10 h-10 rounded-xl bg-gray-900/80 backdrop-blur-sm border border-gray-700/50 hover:border-red-500/50 hover:bg-red-500/20 text-gray-400 hover:text-red-400 flex items-center justify-center transition-all duration-300"
-                      >
-                        <X className="w-5 h-5" strokeWidth={2.5} />
-                      </motion.button>
 
                       {/* Title Overlay */}
                       <div className="absolute bottom-6 left-6 right-6">
@@ -717,8 +707,8 @@ const ProjectsPage: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Scrollable Body */}
-                    <div className="overflow-y-auto max-h-[50vh] px-6 py-6 sm:px-8 sm:py-8 space-y-6">
+                    {/* Content Body */}
+                    <div className="px-6 py-6 sm:px-8 sm:py-8 space-y-6">
                       <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
                         {project.longDescription}
                       </p>
