@@ -96,26 +96,12 @@ const ProjectsPage: React.FC = () => {
     },
     {
       id: 4,
-      title: "Popcorn Path - Movie Finder",
-      description:
-        "Discover trending movies, browse genres, and track your watchlist with ease.",
-      longDescription:
-        "Movie discovery platform using TMDB API with genre browsing, search, and watchlist management.",
-      image: "/projects/project4.webp",
-      technologies: ["React", "Tailwind CSS", "Appwrite", "TMDB API", "Vercel"],
-      category: "entertainment",
-      githubUrl: "https://github.com/freebird-prod/movie-app",
-      liveUrl: "https://popcorn-path.vercel.app",
-      featured: true,
-    },
-    {
-      id: 5,
       title: "Torrent Guard - Flood Analyzer & Risk Detection",
       description:
         "Analyze flood risk using coordinates or terrain images with AI-powered insights.",
       longDescription:
         "AI-powered flood risk analyzer using geographic coordinates and terrain imagery for disaster preparedness.",
-      image: "/projects/project5.webp",
+      image: "/projects/project4.webp",
       technologies: [
         "Next.js",
         "FastAPI",
@@ -130,13 +116,13 @@ const ProjectsPage: React.FC = () => {
       featured: false,
     },
     {
-      id: 6,
+      id: 5,
       title: "ForestFire - Prediction and Prevention",
       description:
         "Monitor and predict forest fire risks using environmental data and machine learning.",
       longDescription:
         "Wildfire prediction tool using environmental parameters and machine learning for forest fire risk assessment.",
-      image: "/projects/project6.webp",
+      image: "/projects/project5.webp",
       technologies: [
         "React Native (Expo Go)",
         "Python (Flask)",
@@ -155,13 +141,13 @@ const ProjectsPage: React.FC = () => {
       featured: true,
     },
     {
-      id: 7,
+      id: 6,
       title: "Pixxel - AI Powered Image Editor",
       description:
         "Apply advanced AI-driven edits and transformations to images with a powerful, modern online editor.",
       longDescription:
         "AI-powered image editor with background removal, object manipulation, and advanced filters powered by Convex DB.",
-      image: "/projects/project7.webp",
+      image: "/projects/project6.webp",
       technologies: [
         "Next.js",
         "Next.js API",
@@ -177,13 +163,13 @@ const ProjectsPage: React.FC = () => {
       featured: true,
     },
     {
-      id: 8,
+      id: 7,
       title: "Grafixion - Simple Image Editor",
       description:
         "A simple image editor with advanced edits and transformations.",
       longDescription:
         "Simple image editor with background removal and advanced filters using React and Local Storage.",
-      image: "/projects/project8.webp",
+      image: "/projects/project7.webp",
       technologies: ["React.js", "Tailwind CSS", "ShadCN UI", "Local Storage"],
       category: "web",
       status: false,
@@ -192,13 +178,13 @@ const ProjectsPage: React.FC = () => {
       featured: false,
     },
     {
-      id: 9,
+      id: 8,
       title: "Creafolio - Digital Portfolio Builder",
       description:
         "Easily create a beautiful digital portfolio with advanced edits and transformations.",
       longDescription:
         "Digital portfolio builder with tools to create stunning online portfolios with persistent storage.",
-      image: "/projects/project9.webp",
+      image: "/projects/project8.webp",
       technologies: [
         "Next.js",
         "Next.js API",
@@ -214,13 +200,13 @@ const ProjectsPage: React.FC = () => {
       featured: true,
     },
     {
-      id: 10,
+      id: 9,
       title: "NeuraLife - AI-Powered Mental Health Companion",
       description:
         "A mental health companion that provides personalized support and resources.",
       longDescription:
         "AI-powered mental health companion offering personalized support and resources using machine learning.",
-      image: "/projects/project10.webp",
+      image: "/projects/project9.webp",
       technologies: [
         "Next.js",
         "Tailwind CSS",
@@ -236,13 +222,13 @@ const ProjectsPage: React.FC = () => {
       featured: false,
     },
     {
-      id: 11,
+      id: 10,
       title: "FlowFund - Expense Tracker and Budget Planner",
       description:
         "An expense tracker and budget planner that helps users manage their finances.",
       longDescription:
         "Expense tracker and budget planner to manage finances with ML-powered insights.",
-      image: "/projects/project11.webp",
+      image: "/projects/project10.webp",
       technologies: [
         "Next.js",
         "Tailwind CSS",
@@ -258,13 +244,13 @@ const ProjectsPage: React.FC = () => {
       featured: false,
     },
     {
-      id: 12,
+      id: 11,
       title: "CipherKey - Multi-Platform Password Manager",
       description:
         "A password manager that helps users manage their passwords across valrious platforms.",
       longDescription:
         "Multi-platform password manager for secure password storage and management.",
-      image: "/projects/project12.webp",
+      image: "/projects/project11.webp",
       technologies: ["React.js", "Tailwind CSS", "ShadCN UI", "LocalStorage"],
       category: "web",
       status: false,
@@ -273,13 +259,13 @@ const ProjectsPage: React.FC = () => {
       featured: false,
     },
     {
-      id: 13,
+      id: 12,
       title: "SkCine - Sivakarthikeyan Movie Database",
       description:
         "A movie database dedicated to the films of Sivakarthikeyan.",
       longDescription:
         "Comprehensive movie database dedicated to actor Sivakarthikeyan's filmography.",
-      image: "/projects/project13.webp",
+      image: "/projects/project12.webp",
       technologies: [
         "React.js",
         "Tailwind CSS",
@@ -295,13 +281,13 @@ const ProjectsPage: React.FC = () => {
       featured: true,
     },
     {
-      id: 14,
+      id: 13,
       title: "Career Lens - AI Career Guide Companion",
       description:
         "A career guide that helps users find the right career path.",
       longDescription:
         "AI-powered career guide to help users find the right career path with ML recommendations.",
-      image: "/projects/project14.webp",
+      image: "/projects/project13.webp",
       technologies: [
         "Next.js",
         "Tailwind CSS",
@@ -317,13 +303,13 @@ const ProjectsPage: React.FC = () => {
       featured: true,
     },
     {
-      id: 15,
+      id: 14,
       title: "Skill Bridge - Smart Course Recommendation Platform",
       description:
         "A skill upgrading platform that suggests the next course based on completed skills.",
       longDescription:
         "Smart course recommendation platform that suggests next courses based on current skills and learning paths.",
-      image: "/projects/project15.webp",
+      image: "/projects/project14.webp",
       technologies: [
         "Next.js",
         "Tailwind CSS",
@@ -340,13 +326,13 @@ const ProjectsPage: React.FC = () => {
       featured: true,
     },
     {
-      id: 16,
+      id: 15,
       title: "API Muse - AI-Powered API Documentation Generator",
       description:
         "Design APIs with Intelligence. Stop writing boilerplate. Describe your endpoints and let AI generate flawless, production-ready API documentation instantly.",
       longDescription:
         "AI-powered API documentation generator that converts descriptions into production-ready OpenAPI specs.",
-      image: "/projects/project16.webp",
+      image: "/projects/project15.webp",
       technologies: [
         "Next.js",
         "Tailwind CSS",
