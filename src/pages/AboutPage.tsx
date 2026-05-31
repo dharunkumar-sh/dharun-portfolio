@@ -56,7 +56,7 @@ const AboutPage: React.FC = () => {
       skills: [
         { name: "React.js", image: "/react.webp" },
         { name: "Next.js", image: "/next.webp" },
-        { name: "Node.js", image: "/node.webp" },
+        { name: "Node.js", image: "/nodejs.webp" },
         { name: "Tailwind CSS", image: "/tailwind.webp" },
         { name: "ShadCN/UI", image: "/shadcn.webp" },
         { name: "React Native", image: "/react-native.webp" },
@@ -66,7 +66,7 @@ const AboutPage: React.FC = () => {
       title: "State Management",
       color: "from-amber-500 to-orange-500",
       skills: [
-        { name: "Redux", image: "/redux.webp" },
+        { name: "Redux", image: "/redux.svg" },
         { name: "Zustand", image: "/zustand.webp" },
       ],
     },
@@ -88,8 +88,8 @@ const AboutPage: React.FC = () => {
       skills: [
         { name: "Vercel", image: "/vercel.webp" },
         { name: "Firebase", image: "/firebase.webp" },
-        { name: "Netlify", image: "/netlify.webp" },
-        { name: "Render", image: "/render.webp" },
+        { name: "Netlify", image: "/netlify.svg" },
+        { name: "Render", image: "/render.svg" },
         { name: "Google Cloud", image: "/google-cloud.webp" },
       ],
     },
@@ -342,7 +342,7 @@ const AboutPage: React.FC = () => {
                           rotateZ: skillIndex % 2 === 0 ? 3 : -3,
                           zIndex: 50,
                         }}
-                        className="relative group/skill flex flex-col items-center gap-3 cursor-pointer"
+                        className="relative group/skill flex flex-col items-center gap-3"
                       >
                         {/* Skill Icon Container */}
                         <div
