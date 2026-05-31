@@ -32,7 +32,7 @@ const ProjectsPage: React.FC = () => {
         "Effortlessly Craft a Standout Resume with Our AI-Powered Resume Builder",
       longDescription:
         "AI-powered resume builder that generates personalized, ATS-friendly resumes with Clerk authentication and Strapi CMS integration.",
-      image: "/projects/project1.png",
+      image: "/projects/project1.webp",
       technologies: [
         "React.js",
         "Tailwind CSS",
@@ -55,7 +55,7 @@ const ProjectsPage: React.FC = () => {
         "Smart resume screening tool that extracts skills and analyzes job fit using AI.",
       longDescription:
         "Resume analysis tool using NLP and Gemini LLM to extract skills, evaluate job fit, and suggest suitable roles.",
-      image: "/projects/project2.png",
+      image: "/projects/project2.webp",
       technologies: [
         "React.js",
         "Tailwind CSS",
