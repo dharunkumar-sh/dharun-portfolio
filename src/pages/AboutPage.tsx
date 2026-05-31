@@ -1,81 +1,112 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { motion, Variants } from "framer-motion";
-import {
-  GraduationCap,
-  Target,
-  Code,
-  Zap,
-  Brain,
-  Rocket,
-  Users,
-  CodeIcon,
-} from "lucide-react";
+
 import TechStackRadar from "../components/TechStackRadar";
+import InteractiveJourney from "../components/InteractiveJourney";
+import InteractiveAbout from "../components/InteractiveAbout";
+import { CodeIcon, Rocket, Users, BookOpen, Zap } from "lucide-react";
+
+interface SkillIconProps {
+  src: string;
+  name: string;
+  categoryColor: string;
+}
+
+const SkillIcon: React.FC<SkillIconProps> = ({ src, name, categoryColor }) => {
+  const [hasError, setHasError] = useState(false);
+
+  if (hasError || !src) {
+    const firstLetter = name.charAt(0).toUpperCase();
+    return (
+      <div className={`absolute inset-0 bg-gradient-to-br ${categoryColor} flex items-center justify-center`}>
+        <span className="text-white font-extrabold text-xl sm:text-2xl drop-shadow-md">
+          {firstLetter}
+        </span>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={name}
+      loading="lazy"
+      className="w-9 h-9 sm:w-11 sm:h-11 object-contain drop-shadow-md group-hover/skill:drop-shadow-xl transition-transform duration-300 group-hover/skill:scale-110 relative z-10"
+      onError={() => setHasError(true)}
+    />
+  );
+};
 
 const AboutPage: React.FC = () => {
-  const skillsData = [
-    { name: "HTML", image: "/html.webp" },
-    { name: "CSS", image: "/css.webp" },
-    { name: "JavaScript", image: "/js.webp" },
-    { name: "TypeScript", image: "/typescript.webp" },
-    { name: "React.js", image: "/react.webp" },
-    { name: "Next.js", image: "/next.webp" },
-    { name: "React Native", image: "/react-native.webp" },
-    { name: "Tailwind", image: "/tailwind.webp" },
-    { name: "SaSS", image: "/sass.webp" },
-    { name: "Bootstrap", image: "/bootstrap.webp" },
-    { name: "MySQL", image: "/mysql.webp" },
-    { name: "PostgreSQL", image: "/postgre.webp" },
-    { name: "Firebase", image: "/firebase.webp" },
-    { name: "Strapi CMS", image: "/strapi.webp" },
-    { name: "Supabase", image: "/supabase.webp" },
-    { name: "Convex DB", image: "/convex.webp" },
+  const skillsCategories = [
+    {
+      title: "Programming Languages",
+      color: "from-blue-500 to-cyan-500",
+      skills: [
+        { name: "JavaScript", image: "/js.webp" },
+        { name: "TypeScript", image: "/typescript.webp" },
+        { name: "Python", image: "/python.webp" },
+        { name: "Java", image: "/java.webp" },
+        { name: "SQL", image: "/sql.webp" },
+      ],
+    },
+    {
+      title: "Frameworks & Libraries",
+      color: "from-purple-500 to-pink-500",
+      skills: [
+        { name: "React.js", image: "/react.webp" },
+        { name: "Next.js", image: "/next.webp" },
+        { name: "Node.js", image: "/node.webp" },
+        { name: "Tailwind CSS", image: "/tailwind.webp" },
+        { name: "ShadCN/UI", image: "/shadcn.webp" },
+        { name: "React Native", image: "/react-native.webp" },
+      ],
+    },
+    {
+      title: "State Management",
+      color: "from-amber-500 to-orange-500",
+      skills: [
+        { name: "Redux", image: "/redux.webp" },
+        { name: "Zustand", image: "/zustand.webp" },
+      ],
+    },
+    {
+      title: "Databases & ORM",
+      color: "from-green-500 to-emerald-500",
+      skills: [
+        { name: "PostgreSQL", image: "/postgre.webp" },
+        { name: "MySQL", image: "/mysql.webp" },
+        { name: "MongoDB", image: "/mongodb.webp" },
+        { name: "Supabase", image: "/supabase.webp" },
+        { name: "Convex DB", image: "/convex.webp" },
+        { name: "Drizzle ORM", image: "/drizzle.webp" },
+      ],
+    },
+    {
+      title: "Cloud & Deployment",
+      color: "from-red-500 to-pink-500",
+      skills: [
+        { name: "Vercel", image: "/vercel.webp" },
+        { name: "Firebase", image: "/firebase.webp" },
+        { name: "Netlify", image: "/netlify.webp" },
+        { name: "Render", image: "/render.webp" },
+        { name: "Google Cloud", image: "/google-cloud.webp" },
+      ],
+    },
+    {
+      title: "Tools & Platforms",
+      color: "from-indigo-500 to-blue-500",
+      skills: [
+        { name: "Git", image: "/git.webp" },
+        { name: "GitHub", image: "/icons/github.webp" },
+        { name: "Docker", image: "/docker.webp" },
+        { name: "VS Code", image: "/vscode.webp" },
+        { name: "REST APIs", image: "/api.webp" },
+      ],
+    },
   ];
 
-  const timeline = [
-    {
-      id: 1,
-      year: "2023",
-      title: "Started Engineering",
-      description:
-        "Began B.Tech. IT at Meenakshi Sundararajan Engineering College",
-      icon: GraduationCap,
-    },
-    {
-      id: 2,
-      year: "2024",
-      title: "First Hackathon",
-      description: "Won third place in SA Engineering College Hackathon",
-      icon: Zap,
-    },
-    {
-      id: 3,
-      year: "2025",
-      title: "Internship",
-      description:
-        "Full Stack Web Development Intern at Triplet Software Solutions",
-      icon: Code,
-    },
-    {
-      id: 4,
-      year: "2026",
-      title: "Future Goals",
-      description:
-        "Aspiring to become a leading Frontend developer, contribute to impactful open-source projects, and secure a role at a top-tier tech company where innovation meets scale.",
-      icon: Target,
-    },
-    {
-      id: 5,
-      year: "2027",
-      title: "Graduation & Career Launch",
-      description:
-        "Completed Bachelor of Information Technology with a strong focus on front-end technologies. Dedicated to advancing as a React Developer, contributing to open-source innovations, and joining a visionary tech company where scalability, performance, and design intersect.",
-      icon: Rocket,
-    },
-  ];
-
-  const [creatorSvg, setCreatorSvg] = useState<string>("");
-  const svgHeroRef = useRef<HTMLDivElement | null>(null);
+  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -100,40 +131,6 @@ const AboutPage: React.FC = () => {
     },
   };
 
-  useEffect(() => {
-    let isMounted = true;
-
-    // Load SVG content
-    fetch("/creator.svg")
-      .then((response) => response.text())
-      .then((svgText) => {
-        if (isMounted) {
-          setCreatorSvg(svgText);
-        }
-      })
-      .catch((error) => {
-        console.error("Failed to load creator.svg", error);
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
-  // Apply sketch animation class after SVG loads
-  useEffect(() => {
-    if (!creatorSvg || !svgHeroRef.current) return;
-
-    const svgElement = svgHeroRef.current.querySelector("svg");
-    if (!svgElement) return;
-
-    svgElement.setAttribute("width", "100%");
-    svgElement.setAttribute("height", "100%");
-
-    // Add animation class to trigger CSS animation
-    svgHeroRef.current.classList.add("sketch-animate");
-  }, [creatorSvg]);
-
   return (
     <div className="min-h-screen pt-16 lg:pt-20">
       {/* Hero Section with Profile Image */}
@@ -147,23 +144,29 @@ const AboutPage: React.FC = () => {
             animate="visible"
             className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-16 lg:mb-24"
           >
-            {/* Left Side - SVG Profile */}
+            {/* Left Side - Profile Image */}
             <motion.div
               variants={itemVariants}
-              className="relative flex justify-center lg:justify-start order-2 lg:order-1"
+              className="relative flex justify-center lg:justify-start order-2 lg:order-1 w-full"
             >
-              <div className="w-full max-w-sm lg:max-w-md xl:max-w-lg">
-                {creatorSvg ? (
-                  <div
-                    ref={svgHeroRef}
-                    className="svg-illustration w-full h-auto aspect-square"
-                    dangerouslySetInnerHTML={{ __html: creatorSvg }}
-                  />
-                ) : (
-                  <div className="flex w-full aspect-square items-center justify-center">
+              <div className="relative w-full max-w-[280px] sm:max-w-[340px] md:max-w-[400px] lg:max-w-md aspect-square rounded-[2rem] overflow-hidden border border-gray-700/30 bg-gray-900/20 backdrop-blur-sm group shadow-lg">
+                {/* Loading Spinner */}
+                {!imageLoaded && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-gray-900/60 z-10 backdrop-blur-sm">
                     <div className="w-12 h-12 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin" />
                   </div>
                 )}
+
+                {/* Optimized image with smooth loading fade-in */}
+                <motion.img
+                  src="/creator.webp"
+                  alt="Dharun Kumar S H"
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  initial={{ opacity: 0, scale: 0.98, filter: "blur(6px)" }}
+                  animate={imageLoaded ? { opacity: 1, scale: 1, filter: "blur(0px)" } : {}}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  onLoad={() => setImageLoaded(true)}
+                />
               </div>
             </motion.div>
 
@@ -185,7 +188,7 @@ const AboutPage: React.FC = () => {
                 <h2 className="text-2xl lg:text-3xl font-semibold text-white">
                   Dharun Kumar S H
                 </h2>
-                <p className="text-xl lg:text-lg text-slate-400 leading-relaxed font-medium">
+                <p className="text-xl lg:text-[16.5px] text-slate-400 leading-relaxed font-medium">
                   Aspiring Software Developer | Meta Certified Front-End Dev |
                   Vibe Coder
                 </p>
@@ -208,8 +211,8 @@ const AboutPage: React.FC = () => {
               >
                 {[
                   {
-                    icon: GraduationCap,
-                    label: " Self Learner",
+                    icon: BookOpen,
+                    label: "Self Learner",
                     color: "from-cyan-600 to-teal-700",
                   },
                   {
@@ -223,7 +226,7 @@ const AboutPage: React.FC = () => {
                     color: "from-amber-700 to-lime-800",
                   },
                   {
-                    icon: GraduationCap,
+                    icon: Zap,
                     label: "Quick Learner",
                     color: "from-rose-600 to-indigo-800",
                   },
@@ -253,197 +256,118 @@ const AboutPage: React.FC = () => {
           </motion.div>
 
           {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-start">
             {/* Left Side - About Content */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="space-y-8 lg:space-y-12"
+              className="w-full"
             >
-              <motion.div
-                variants={itemVariants}
-                className="relative p-6 lg:p-8 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300"
-              >
-                <div className="absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-br from-cyan-500 to-violet-500 rounded-full flex items-center justify-center">
-                  <Brain size={16} className="text-white" />
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-bold text-cyan-400 mb-4 lg:mb-6">
-                  My Journey
-                </h3>
-                <p className="text-gray-300 leading-relaxed text-base lg:text-lg">
-                  I'm a final-year Information Technology student at Meenakshi
-                  Sundararajan Engineering College and an aspiring Software
-                  Developer passionate about building modern web applications. I
-                  enjoy creating interactive and user-friendly digital
-                  experiences using React.js and Next.js while continuously
-                  exploring new technologies and improving my development
-                  skills.
-                </p>
-              </motion.div>
-
-              <motion.div
-                variants={itemVariants}
-                className="relative p-6 lg:p-8 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-violet-500/50 transition-all duration-300"
-              >
-                <div className="absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-br from-violet-500 to-cyan-500 rounded-full flex items-center justify-center">
-                  <Rocket size={16} className="text-white" />
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-bold text-violet-400 mb-4 lg:mb-6">
-                  What Drives Me
-                </h3>
-                <p className="text-gray-300 leading-relaxed text-base lg:text-lg">
-                  I'm passionate about building modern web experiences that
-                  create real impact. From crafting clean and user-focused React
-                  applications to exploring emerging technologies and full stack
-                  development, I enjoy turning ideas into scalable and
-                  meaningful digital solutions.
-                </p>
-              </motion.div>
-
-              {/* Skills with 3D Icons */}
-              <motion.div
-                variants={itemVariants}
-                className="space-y-4 lg:space-y-6"
-              >
-                <h3 className="text-2xl lg:text-3xl font-bold text-gray-200 mb-4 lg:mb-6">
-                  Developer Skills
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-5">
-                  {skillsData?.map((skill, index) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, y: 20, rotateX: -15 }}
-                      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.05, duration: 0.5 }}
-                      whileHover={{
-                        scale: 1.08,
-                        rotateY: 10,
-                        rotateX: -5,
-                        z: 50,
-                      }}
-                      className="group relative"
-                      style={{
-                        perspective: "1000px",
-                        transformStyle: "preserve-3d",
-                      }}
-                    >
-                      {/* Glow Effect */}
-                      <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-violet-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-40 blur-xl transition-all duration-500" />
-
-                      {/* 3D Card */}
-                      <div
-                        className="relative p-5 bg-gradient-to-br from-gray-800/90 via-gray-800/70 to-gray-900/90 border border-gray-700/50 group-hover:border-cyan-500/50 rounded-2xl transition-all duration-300 backdrop-blur-xl overflow-hidden"
-                        style={{ transformStyle: "preserve-3d" }}
-                      >
-                        {/* Background Gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                        {/* 3D Icon Container */}
-                        <div
-                          className="relative flex justify-center items-center w-full h-20 mb-3"
-                          style={{ transform: "translateZ(30px)" }}
-                        >
-                          {/* Icon Shadow */}
-                          <div className="absolute bottom-0 w-14 h-4 bg-black/30 rounded-full blur-md transform scale-75 group-hover:scale-100 transition-transform duration-300" />
-
-                          {/* Floating Icon */}
-                          <motion.div
-                            animate={{ y: [0, -6, 0] }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                              delay: index * 0.1,
-                            }}
-                            className="relative"
-                          >
-                            <img
-                              src={skill.image}
-                              alt={skill.name}
-                              loading="lazy"
-                              className="w-14 h-14 object-contain drop-shadow-[0_8px_16px_rgba(6,182,212,0.3)] group-hover:drop-shadow-[0_12px_24px_rgba(139,92,246,0.4)] transition-all duration-300"
-                              onError={(e) => {
-                                (e.target as HTMLImageElement).src =
-                                  "/fallback.png";
-                              }}
-                            />
-                          </motion.div>
-                        </div>
-
-                        {/* Skill Name */}
-                        <div
-                          className="text-sm font-semibold text-white truncate text-center group-hover:text-cyan-300 transition-colors duration-300"
-                          style={{ transform: "translateZ(20px)" }}
-                        >
-                          {skill.name}
-                        </div>
-
-                        {/* Decorative Corner */}
-                        <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-cyan-500/20 to-transparent rounded-bl-2xl" />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+              <InteractiveAbout />
             </motion.div>
 
-            {/* Right Side - Timeline */}
+
+            {/* Right Side - Interactive Journey */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="space-y-8 lg:space-y-12"
+              className="space-y-6 sm:space-y-8 lg:space-y-12"
             >
-              <motion.h3
-                variants={itemVariants}
-                className="text-3xl lg:text-4xl font-bold text-center mb-8 lg:mb-12"
-              >
-                <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
-                  My Timeline
-                </span>
-              </motion.h3>
-
-              <div className="relative">
-                {/* Timeline Line */}
-                <div className="absolute left-6 lg:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 to-violet-500 rounded-full" />
-
-                {timeline.map((item, index) => (
-                  <motion.div
-                    key={`${item.id}-${index}`}
-                    variants={itemVariants}
-                    className="relative flex items-start space-x-6 lg:space-x-8 mb-8 lg:mb-12"
-                  >
-                    {/* Timeline Icon */}
-                    <div className="relative z-10 w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-cyan-500 to-violet-500 rounded-full flex items-center justify-center">
-                      <item.icon
-                        size={20}
-                        className="text-white lg:w-6 lg:h-6"
-                      />
-                    </div>
-
-                    {/* Timeline Content */}
-                    <div className="flex-1 p-4 lg:p-6 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300">
-                      <div className="flex items-center gap-3 mb-2 lg:mb-3">
-                        <span className="text-sm lg:text-base font-semibold text-cyan-400 bg-cyan-400/10 px-3 py-1 rounded-full">
-                          {item.year}
-                        </span>
-                      </div>
-                      <h4 className="text-lg lg:text-xl font-bold text-white mb-2 lg:mb-3">
-                        {item.title}
-                      </h4>
-                      <p className="text-gray-400 text-sm lg:text-base">
-                        {item.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+              <InteractiveJourney />
             </motion.div>
           </div>
+
+          {/* Full Width Skills Section */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="relative py-12 sm:py-16 mt-8 sm:mt-12"
+          >
+            {/* Immersive Background glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] max-w-5xl h-[120%] max-h-[1000px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none" />
+            
+            <motion.div variants={itemVariants} className="relative z-10 text-center mb-12 sm:mb-16">
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-violet-400 to-fuchsia-400 mb-6 inline-block tracking-tight">
+                Developer Skills
+              </h3>
+              <div className="h-1.5 w-32 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-full mx-auto" />
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 xl:gap-12 relative z-10">
+              {skillsCategories.map((category, categoryIndex) => (
+                <motion.div
+                  key={category.title}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: categoryIndex * 0.1, duration: 0.7, type: "spring" }}
+                  className="relative group rounded-[2rem] p-6 sm:p-8 bg-gray-900/50 backdrop-blur-xl border border-gray-700/50 hover:border-cyan-500/50 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(6,182,212,0.15)] transition-all duration-500 flex flex-col"
+                >
+                  {/* Hover Gradient Background */}
+                  <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                  {/* Category Title */}
+                  <div className="flex items-center gap-4 mb-8 relative z-10">
+                    <div
+                      className={`h-12 w-1.5 bg-gradient-to-b ${category.color} rounded-full`}
+                    />
+                    <h4
+                      className="text-xl sm:text-2xl font-bold text-white tracking-wide"
+                    >
+                      {category.title}
+                    </h4>
+                  </div>
+
+                  {/* Skills Grid */}
+                  <div className="grid grid-cols-3 gap-4 sm:gap-5 mt-auto relative z-10">
+                    {category.skills.map((skill, skillIndex) => (
+                      <motion.div
+                        key={skill.name}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          delay: categoryIndex * 0.1 + skillIndex * 0.05,
+                          duration: 0.5,
+                          type: "spring"
+                        }}
+                        whileHover={{
+                          scale: 1.1,
+                          rotateZ: skillIndex % 2 === 0 ? 3 : -3,
+                          zIndex: 50,
+                        }}
+                        className="relative group/skill flex flex-col items-center gap-3 cursor-pointer"
+                      >
+                        {/* Skill Icon Container */}
+                        <div
+                          className="relative flex justify-center items-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gray-800/80 border border-gray-700/50 group-hover/skill:border-cyan-400/50 shadow-inner group-hover/skill:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300 overflow-hidden"
+                        >
+                          <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover/skill:opacity-15 transition-opacity duration-300`} />
+                          
+                          <SkillIcon
+                            src={skill.image}
+                            name={skill.name}
+                            categoryColor={category.color}
+                          />
+                        </div>
+
+                        {/* Skill Name */}
+                        <span className="text-[11px] sm:text-[13px] font-medium text-gray-400 group-hover/skill:text-cyan-300 text-center transition-colors duration-300">
+                          {skill.name}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
