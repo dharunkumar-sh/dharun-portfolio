@@ -101,7 +101,7 @@ const AboutPage: React.FC = () => {
         { name: "GitHub", image: "/icons/github.webp" },
         { name: "Docker", image: "/docker.webp" },
         { name: "VS Code", image: "/vscode.webp" },
-        { name: "REST APIs", image: "/api.webp" },
+        { name: "REST APIs", image: "/api.svg" },
       ],
     },
   ];
