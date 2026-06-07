@@ -10,11 +10,11 @@ const defaultImage = "/logo.svg";
 
 const seoByPath: Record<string, PageSEO> = {
   "/": {
-    title: "Dharun Kumar S H | Front-End Developer | React.js & Next.js",
+    title: "Dharun Kumar S H | Software Developer | React.js & Next.js",
     description:
-      "Aspiring Front-end developer focused on building optimized, responsive websites. Advancing in React, Next.js, TypeScript, Tailwind CSS.",
+      "Aspiring Software Developer focused on building optimized, responsive websites. Advancing in React, Next.js, TypeScript, Tailwind CSS.",
     keywords: [
-      "Front-End Developer",
+      "Software Developer",
       "React Developer",
       "Next.js Developer",
       "TypeScript Expert",
@@ -29,7 +29,7 @@ const seoByPath: Record<string, PageSEO> = {
     image: defaultImage,
   },
   "/about": {
-    title: "About Dharun Kumar S H | Front-End Developer & React.js Specialist",
+    title: "About Dharun Kumar S H | Software Developer & React.js Specialist",
     description:
       "React.js & Next.js developer Dharun Kumar S H specializes in TypeScript, Tailwind CSS, UI/UX, and high-performance responsive web applications.",
     keywords: [
@@ -38,7 +38,7 @@ const seoByPath: Record<string, PageSEO> = {
       "React developer bio",
       "Next.js specialist",
       "TypeScript developer",
-      "frontend developer India",
+      "software developer India",
       "UI/UX developer",
       "Tailwind CSS expert",
       "web developer portfolio",
@@ -56,7 +56,7 @@ const seoByPath: Record<string, PageSEO> = {
     image: defaultImage,
   },
   "/projects": {
-    title: "Projects | Dharun Kumar - Front-End Developer",
+    title: "Projects | Dharun Kumar - Software Developer",
     description:
       "Browse projects spanning React, Next.js, AI tools, image generation, resume analyzers, and IoT dashboards built with modern web stacks.",
     keywords: [
@@ -70,7 +70,7 @@ const seoByPath: Record<string, PageSEO> = {
     image: defaultImage,
   },
   "/certifications": {
-    title: "Certifications & Achievements | Dharun Kumar - Front-End Developer",
+    title: "Certifications & Achievements | Dharun Kumar - Software Developer",
     description:
       "Verified certifications, workshops, internships, and hackathon achievements covering Flutter, React, AI, RAG, and cloud skills.",
     keywords: [
@@ -83,7 +83,7 @@ const seoByPath: Record<string, PageSEO> = {
     image: defaultImage,
   },
   "/events": {
-    title: "Events & Hackathons | Dharun Kumar - Front-End Developer",
+    title: "Events & Hackathons | Dharun Kumar - Software Developer",
     description:
       "Participation across hackathons, workshops, and competitions with AI, web, and UI/UX projects, including winning entries and team roles.",
     keywords: [
@@ -96,7 +96,7 @@ const seoByPath: Record<string, PageSEO> = {
     image: defaultImage,
   },
   "/contact": {
-    title: "Contact | Dharun Kumar - Front-End Developer",
+    title: "Contact | Dharun Kumar - Software Developer",
     description:
       "Reach out to Dharun Kumar for collaboration, inquiries, or web project discussions. Let's connect and build something great together",
     keywords: [
