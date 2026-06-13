@@ -1,0 +1,378 @@
+[
+  {
+    "id": 1,
+    "title": "Mobile Application Development Internship Certificate",
+    "issuer": "Skill Vertex",
+    "date": "October 2024",
+    "logo": "./certifications/logo1.webp",
+    "verifyUrl": "./certifications/certificate1.webp",
+    "skills": ["Flutter", "Responsive Design", "Dart", "Android Studio"],
+    "category": "internship"
+  },
+  {
+    "id": 2,
+    "title": "Gnanatamizh Course Certification",
+    "issuer": "Sri Muruganar Educational and Charitable Trust",
+    "date": "June 2024",
+    "logo": "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=100",
+    "verifyUrl": "./certifications/certificate2.webp",
+    "skills": ["Tamil", "Poetry", "Literature", "Grammar"],
+    "category": "course"
+  },
+  {
+    "id": 3,
+    "title": "Mobile Application Development Training Certificate",
+    "issuer": "Skill Vertex",
+    "date": "September 2024",
+    "logo": "./certifications/logo1.webp",
+    "verifyUrl": "./certifications/certificate3.webp",
+    "skills": ["Flutter", "Responsive Design", "Dart", "Android Studio"],
+    "category": "course"
+  },
+  {
+    "id": 4,
+    "title": "Flutter Workshop Certificate",
+    "issuer": "MSEC - Dev Dynasty Club",
+    "date": "October 2024",
+    "logo": "./certifications/logo2.webp",
+    "verifyUrl": "./certifications/certificate4.webp",
+    "skills": [
+      "Flutter",
+      "App Development",
+      "Dart",
+      "Chatbot",
+      "Android Studio"
+    ],
+    "category": "symposium"
+  },
+  {
+    "id": 5,
+    "title": "National Level Technical Symposium - Hackathon",
+    "issuer": "S.A. Engineering College",
+    "date": "October 2024",
+    "logo": "./certifications/logo3.webp",
+    "verifyUrl": "./certifications/certificate5.webp",
+    "skills": ["HTML 5", "CSS 3", "Javascript", "Team Work", "Firebase"],
+    "category": "hackathon"
+  },
+  {
+    "id": 6,
+    "title": "Industrial Visit Certificate",
+    "issuer": "Redback IT Solutions Private Limited",
+    "date": "March 2025",
+    "logo": "./certifications/logo4.webp",
+    "verifyUrl": "./certifications/certificate6.webp",
+    "skills": ["Artificial Intelligence", "Cyber Security", "Team Work"],
+    "category": "symposium"
+  },
+  {
+    "id": 7,
+    "title": "Building RAG Apps Using MongoDB Certificate",
+    "issuer": "MongoDB",
+    "date": "June 2025",
+    "logo": "./certifications/logo5.webp",
+    "verifyUrl": "./certifications/certificate7.webp",
+    "skills": ["Python", "RAG", "Database"],
+    "category": "course"
+  },
+  {
+    "id": 8,
+    "title": "Internship Completion Certificate",
+    "issuer": "Tripletsoft LLC",
+    "date": "July 2025",
+    "logo": "./certifications/logo6.webp",
+    "verifyUrl": "./certifications/certificate8.webp",
+    "skills": ["React.js", "Tailwind CSS", "Rest APIs", "LocalStorage"],
+    "category": "internship"
+  },
+  {
+    "id": 9,
+    "title": "Web Development Hackathon",
+    "issuer": "Tutedude Private Limited",
+    "date": "July 2025",
+    "logo": "./certifications/logo7.webp",
+    "verifyUrl": "./certifications/certificate9.webp",
+    "skills": ["React.js", "Tailwind CSS", "Rest APIs", "PostgreSQL"],
+    "category": "hackathon"
+  },
+  {
+    "id": 10,
+    "title": "Introduction to Prompt Engineering",
+    "issuer": "Simplilearn | SkillUp",
+    "date": "August 2025",
+    "logo": "./certifications/logo8.webp",
+    "verifyUrl": "./certifications/certificate10.webp",
+    "skills": [
+      "Python",
+      "Creative Thinking",
+      "Prompt Engineering",
+      "Critical Thinking"
+    ],
+    "category": "course"
+  },
+  {
+    "id": 11,
+    "title": "Internship Certificate",
+    "issuer": "Tripletsoft LLC",
+    "date": "July 2025",
+    "logo": "./certifications/logo6.webp",
+    "verifyUrl": "./certifications/certificate11.webp",
+    "skills": ["React.js", "Tailwind CSS", "Rest APIs", "LocalStorage"],
+    "category": "internship"
+  },
+  {
+    "id": 12,
+    "title": "AOTS–JEC Programme Certificate",
+    "issuer": "Association for Overseas Technical Cooperation and Sustainable Partnerships (AOTS)",
+    "date": "June 2025",
+    "logo": "./certifications/logo9.webp",
+    "verifyUrl": "./certifications/certificate12.webp",
+    "skills": [
+      "Problem-Solving Skills",
+      "Leadership",
+      "Marketing Stratergies",
+      "Critical Thinking"
+    ],
+    "category": "symposium"
+  },
+  {
+    "id": 13,
+    "title": "Frontend Developer (React) Certificate",
+    "issuer": "HackerRank",
+    "date": "August 2025",
+    "logo": "./certifications/logo10.webp",
+    "verifyUrl": "./certifications/certificate13.webp",
+    "skills": [
+      "React.js",
+      "Frontend Development",
+      "JavaScript",
+      "Problem-Solving"
+    ],
+    "category": "course"
+  },
+  {
+    "id": 14,
+    "title": "REST API (Intermediate) Certificate",
+    "issuer": "HackerRank",
+    "date": "September 2025",
+    "logo": "./certifications/logo10.webp",
+    "verifyUrl": "./certifications/certificate14.webp",
+    "skills": [
+      "REST API",
+      "Backend Development",
+      "API Design",
+      "Problem-Solving"
+    ],
+    "category": "course"
+  },
+  {
+    "id": 15,
+    "title": "CSS (Basic) Certificate",
+    "issuer": "HackerRank",
+    "date": "September 2025",
+    "logo": "./certifications/logo10.webp",
+    "verifyUrl": "./certifications/certificate15.webp",
+    "skills": [
+      "CSS",
+      "Frontend Development",
+      "Web Design",
+      "Responsive Layouts"
+    ],
+    "category": "course"
+  },
+  {
+    "id": 16,
+    "title": "Foundation: Introduction to LangGraph",
+    "issuer": "LangChain Academy",
+    "date": "October 2025",
+    "logo": "./certifications/logo11.webp",
+    "verifyUrl": "./certifications/certificate16.webp",
+    "skills": ["LangGraph", "NLP", "LLM Models"],
+    "category": "course"
+  },
+  {
+    "id": 17,
+    "title": "AI in Education with Gemini",
+    "issuer": "Gemini for Education",
+    "date": "December 2025",
+    "logo": "./certifications/logo12.webp",
+    "verifyUrl": "./certifications/certificate17.webp",
+    "skills": ["AI in Education", "Gemini AI", "LLM Models"],
+    "category": "course"
+  },
+  {
+    "id": 18,
+    "title": "Critical Thinking in the AI Era",
+    "issuer": "HP LIFE & HP Foundation",
+    "date": "December 2025",
+    "logo": "./certifications/logo13.webp",
+    "verifyUrl": "./certifications/certificate18.webp",
+    "skills": [
+      "Critical Thinking",
+      "Decision-Making",
+      "AI Content Analysis",
+      "Bias Mitigation",
+      "Fact-Checking"
+    ],
+    "category": "course"
+  },
+  {
+    "id": 19,
+    "title": "Introduction to AWS Certification",
+    "issuer": "Amazon Web Services",
+    "date": "December 2025",
+    "logo": "./certifications/logo14.webp",
+    "verifyUrl": "./certifications/certificate19.webp",
+    "skills": ["AWS Cloud", "Cloud Computing", "EC2", "S3", "IAM"],
+    "category": "course"
+  },
+  {
+    "id": 20,
+    "title": "Frontend Web Development Certificate",
+    "issuer": "Skill India Digital Hub",
+    "date": "January 2026",
+    "logo": "./certifications/logo15.webp",
+    "verifyUrl": "./certifications/certificate20.webp",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React.js",
+      "Responsive Design"
+    ],
+    "category": "course"
+  },
+  {
+    "id": 21,
+    "title": "Advanced React",
+    "issuer": "Meta",
+    "date": "February 2026",
+    "logo": "./certifications/logo16.webp",
+    "verifyUrl": "./certifications/certificate21.webp",
+    "skills": [
+      "React.js",
+      "JSX",
+      "Hooks",
+      "Context API",
+      "Performance Optimization",
+      "Testing"
+    ],
+    "category": "course"
+  },
+  {
+    "id": 22,
+    "title": "Principles of UX/UI Design",
+    "issuer": "Meta",
+    "date": "February 2026",
+    "logo": "./certifications/logo16.webp",
+    "verifyUrl": "./certifications/certificate22.webp",
+    "skills": [
+      "UX Design",
+      "UI Design",
+      "User Research",
+      "Wireframing",
+      "Prototyping",
+      "Design Systems"
+    ],
+    "category": "course"
+  },
+  {
+    "id": 23,
+    "title": "Meta Front-End Developer Capstone",
+    "issuer": "Meta",
+    "date": "February 2026",
+    "logo": "./certifications/logo16.webp",
+    "verifyUrl": "./certifications/certificate23.webp",
+    "skills": [
+      "React.js",
+      "JavaScript",
+      "HTML/CSS",
+      "Frontend Development",
+      "Version Control",
+      "Testing"
+    ],
+    "category": "course"
+  },
+  {
+    "id": 24,
+    "title": "Coding Interview Preparation",
+    "issuer": "Meta",
+    "date": "February 2026",
+    "logo": "./certifications/logo16.webp",
+    "verifyUrl": "./certifications/certificate24.webp",
+    "skills": [
+      "Data Structures",
+      "Algorithms",
+      "Problem Solving",
+      "System Design",
+      "Coding Patterns",
+      "Technical Communication"
+    ],
+    "category": "course"
+  },
+  {
+    "id": 25,
+    "title": "Meta Front-End Developer Professional Certificate",
+    "issuer": "Meta",
+    "date": "February 2026",
+    "logo": "./certifications/logo16.webp",
+    "verifyUrl": "./certifications/certificate25.webp",
+    "skills": [
+      "Introduction to Front-End Development",
+      "Programming with JavaScript",
+      "Version Control (Git & GitHub)",
+      "HTML & CSS in depth",
+      "React Basics & Advanced React",
+      "Principles of UI/UX Design",
+      "Front-End Developer Capstone",
+      "Coding Interview Preparation"
+    ],
+    "category": "course"
+  },
+  {
+    "id": 26,
+    "title": "TROJANS 2K26 – Runtime Terror",
+    "issuer": "Chennai Institute of Technology",
+    "date": "February 10, 2026",
+    "logo": "./certifications/logo17.webp",
+    "verifyUrl": "./certifications/certificate26.webp",
+    "skills": [
+      "Technical Event Participation",
+      "Problem Solving",
+      "Debugging",
+      "UI/UX Approach"
+    ],
+    "category": "symposium"
+  },
+  {
+    "id": 27,
+    "title": "IGNITE'26 – Hackathon",
+    "issuer": "Easwari Engineering College",
+    "date": "March 12, 2026",
+    "logo": "./certifications/logo18.webp",
+    "verifyUrl": "./certifications/certificate27.webp",
+    "skills": [
+      "Problem Solving",
+      "Team Collaboration",
+      "Debugging",
+      "UI/UX Approach",
+      "Team Leadership"
+    ],
+    "category": "hackathon"
+  },
+  {
+    "id": 28,
+    "title": "Industrial Visit – Askan Technologies",
+    "issuer": "Askan Technologies Pvt Ltd",
+    "date": "April 17, 2026",
+    "logo": "./certifications/logo19.webp",
+    "verifyUrl": "./certifications/certificate28.webp",
+    "skills": [
+      "Industry Exposure",
+      "Technical Observation",
+      "Learning & Development",
+      "Professional Awareness"
+    ],
+    "category": "symposium"
+  }
+]

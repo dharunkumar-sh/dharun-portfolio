@@ -10,377 +10,50 @@ import {
   NotebookPen,
   Sparkles,
   Search,
+  LayoutGrid,
+  Trophy,
+  Briefcase,
+  Award,
 } from "lucide-react";
 import SearchBar from "../components/SearchBar";
+import certifications from "../data/certifications.json";
+import projects from "../data/projects.json";
+
+interface Certification {
+  id: number;
+  title: string;
+  issuer: string;
+  date: string;
+  logo: string;
+  verifyUrl: string;
+  skills: string[];
+  category: string;
+}
 
 const CertificationsPage: React.FC = () => {
-  const certifications = [
-    {
-      id: 1,
-      title: "Mobile Application Development Internship Certificate",
-      issuer: "Skill Vertex",
-      date: "October 2024",
-      logo: "./certifications/logo1.webp",
-      verifyUrl: "./certifications/certificate1.webp",
-      skills: ["Flutter", "Responsive Design", "Dart", "Android Studio"],
-    },
-    {
-      id: 2,
-      title: "Gnanatamizh Course Certification",
-      issuer: "Sri Muruganar Educational and Charitable Trust",
-      date: "June 2024",
-      logo: "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=100",
-      verifyUrl: "./certifications/certificate2.webp",
-      skills: ["Tamil", "Poetry", "Literature", "Grammar"],
-    },
-    {
-      id: 3,
-      title: "Mobile Application Development Training Certificate",
-      issuer: "Skill Vertex",
-      date: "September 2024",
-      logo: "./certifications/logo1.webp",
-      verifyUrl: "./certifications/certificate3.webp",
-      skills: ["Flutter", "Responsive Design", "Dart", "Android Studio"],
-    },
-    {
-      id: 4,
-      title: "Flutter Workshop Certificate",
-      issuer: "MSEC - Dev Dynasty Club",
-      date: "October 2024",
-      logo: "./certifications/logo2.webp",
-      verifyUrl: "./certifications/certificate4.webp",
-      skills: [
-        "Flutter",
-        "App Development",
-        "Dart",
-        "Chatbot",
-        "Android Studio",
-      ],
-    },
-    {
-      id: 5,
-      title: "National Level Technical Symposium - Hackathon",
-      issuer: "S.A. Engineering College",
-      date: "October 2024",
-      logo: "./certifications/logo3.webp",
-      verifyUrl: "./certifications/certificate5.webp",
-      skills: ["HTML 5", "CSS 3", "Javascript", "Team Work", "Firebase"],
-    },
-    {
-      id: 6,
-      title: "Industrial Visit Certificate",
-      issuer: "Redback IT Solutions Private Limited",
-      date: "March 2025",
-      logo: "./certifications/logo4.webp",
-      verifyUrl: "./certifications/certificate6.webp",
-      skills: ["Artificial Intelligence", "Cyber Security", "Team Work"],
-    },
-    {
-      id: 7,
-      title: "Building RAG Apps Using MongoDB Certificate",
-      issuer: "MongoDB",
-      date: "June 2025",
-      logo: "./certifications/logo5.webp",
-      verifyUrl: "./certifications/certificate7.webp",
-      skills: ["Python", "RAG", "Database"],
-    },
-    {
-      id: 8,
-      title: "Internship Completion Certificate",
-      issuer: "Tripletsoft LLC",
-      date: "July 2025",
-      logo: "./certifications/logo6.webp",
-      verifyUrl: "./certifications/certificate8.webp",
-      skills: ["React.js", "Tailwind CSS", "Rest APIs", "LocalStorage"],
-    },
-    {
-      id: 9,
-      title: "Web Development Hackathon",
-      issuer: "Tutedude Private Limited",
-      date: "July 2025",
-      logo: "./certifications/logo7.webp",
-      verifyUrl: "./certifications/certificate9.webp",
-      skills: ["React.js", "Tailwind CSS", "Rest APIs", "PostgreSQL"],
-    },
-    {
-      id: 10,
-      title: "Introduction to Prompt Engineering",
-      issuer: "Simplilearn | SkillUp",
-      date: "August 2025",
-      logo: "./certifications/logo8.webp",
-      verifyUrl: "./certifications/certificate10.webp",
-      skills: [
-        "Python",
-        "Creative Thinking",
-        "Prompt Engineering",
-        "Critical Thinking",
-      ],
-    },
-    {
-      id: 11,
-      title: "Internship Certificate",
-      issuer: "Tripletsoft LLC",
-      date: "July 2025",
-      logo: "./certifications/logo6.webp",
-      verifyUrl: "./certifications/certificate11.webp",
-      skills: ["React.js", "Tailwind CSS", "Rest APIs", "LocalStorage"],
-    },
-    {
-      id: 12,
-      title: "AOTS–JEC Programme Certificate",
-      issuer:
-        "Association for Overseas Technical Cooperation and Sustainable Partnerships (AOTS)",
-      date: "June 2025",
-      logo: "./certifications/logo9.webp",
-      verifyUrl: "./certifications/certificate12.webp",
-      skills: [
-        "Problem-Solving Skills",
-        "Leadership",
-        "Marketing Stratergies",
-        "Critical Thinking",
-      ],
-    },
-    {
-      id: 13,
-      title: "Frontend Developer (React) Certificate",
-      issuer: "HackerRank",
-      date: "August 2025",
-      logo: "./certifications/logo10.webp",
-      verifyUrl: "./certifications/certificate13.webp",
-      skills: [
-        "React.js",
-        "Frontend Development",
-        "JavaScript",
-        "Problem-Solving",
-      ],
-    },
-    {
-      id: 14,
-      title: "REST API (Intermediate) Certificate",
-      issuer: "HackerRank",
-      date: "September 2025",
-      logo: "./certifications/logo10.webp",
-      verifyUrl: "./certifications/certificate14.webp",
-      skills: [
-        "REST API",
-        "Backend Development",
-        "API Design",
-        "Problem-Solving",
-      ],
-    },
-    {
-      id: 15,
-      title: "CSS (Basic) Certificate",
-      issuer: "HackerRank",
-      date: "September 2025",
-      logo: "./certifications/logo10.webp",
-      verifyUrl: "./certifications/certificate15.webp",
-      skills: [
-        "CSS",
-        "Frontend Development",
-        "Web Design",
-        "Responsive Layouts",
-      ],
-    },
-    {
-      id: 16,
-      title: "Foundation: Introduction to LangGraph",
-      issuer: "LangChain Academy",
-      date: "October 2025",
-      logo: "./certifications/logo11.webp",
-      verifyUrl: "./certifications/certificate16.webp",
-      skills: ["LangGraph", "NLP", "LLM Models"],
-    },
-    {
-      id: 17,
-      title: "AI in Education with Gemini",
-      issuer: "Gemini for Education",
-      date: "December 2025",
-      logo: "./certifications/logo12.webp",
-      verifyUrl: "./certifications/certificate17.webp",
-      skills: ["AI in Education", "Gemini AI", "LLM Models"],
-    },
-    {
-      id: 18,
-      title: "Critical Thinking in the AI Era",
-      issuer: "HP LIFE & HP Foundation",
-      date: "December 2025",
-      logo: "./certifications/logo13.webp",
-      verifyUrl: "./certifications/certificate18.webp",
-      skills: [
-        "Critical Thinking",
-        "Decision-Making",
-        "AI Content Analysis",
-        "Bias Mitigation",
-        "Fact-Checking",
-      ],
-    },
-    {
-      id: 19,
-      title: "Introduction to AWS Certification",
-      issuer: "Amazon Web Services",
-      date: "December 2025",
-      logo: "./certifications/logo14.webp",
-      verifyUrl: "./certifications/certificate19.webp",
-      skills: ["AWS Cloud", "Cloud Computing", "EC2", "S3", "IAM"],
-    },
-    {
-      id: 20,
-      title: "Frontend Web Development Certificate",
-      issuer: "Skill India Digital Hub",
-      date: "January 2026",
-      logo: "./certifications/logo15.webp",
-      verifyUrl: "./certifications/certificate20.webp",
-      skills: ["HTML", "CSS", "JavaScript", "React.js", "Responsive Design"],
-    },
-    {
-      id: 21,
-      title: "Advanced React",
-      issuer: "Meta",
-      date: "February 2026",
-      logo: "./certifications/logo16.webp",
-      verifyUrl: "./certifications/certificate21.webp",
-      skills: [
-        "React.js",
-        "JSX",
-        "Hooks",
-        "Context API",
-        "Performance Optimization",
-        "Testing",
-      ],
-    },
-    {
-      id: 22,
-      title: "Principles of UX/UI Design",
-      issuer: "Meta",
-      date: "February 2026",
-      logo: "./certifications/logo16.webp",
-      verifyUrl: "./certifications/certificate22.webp",
-      skills: [
-        "UX Design",
-        "UI Design",
-        "User Research",
-        "Wireframing",
-        "Prototyping",
-        "Design Systems",
-      ],
-    },
-    {
-      id: 23,
-      title: "Meta Front-End Developer Capstone",
-      issuer: "Meta",
-      date: "February 2026",
-      logo: "./certifications/logo16.webp",
-      verifyUrl: "./certifications/certificate23.webp",
-      skills: [
-        "React.js",
-        "JavaScript",
-        "HTML/CSS",
-        "Frontend Development",
-        "Version Control",
-        "Testing",
-      ],
-    },
-    {
-      id: 24,
-      title: "Coding Interview Preparation",
-      issuer: "Meta",
-      date: "February 2026",
-      logo: "./certifications/logo16.webp",
-      verifyUrl: "./certifications/certificate24.webp",
-      skills: [
-        "Data Structures",
-        "Algorithms",
-        "Problem Solving",
-        "System Design",
-        "Coding Patterns",
-        "Technical Communication",
-      ],
-    },
-    {
-      id: 25,
-      title: "Meta Front-End Developer Professional Certificate",
-      issuer: "Meta",
-      date: "February 2026",
-      logo: "./certifications/logo16.webp",
-      verifyUrl: "./certifications/certificate25.webp",
-      skills: [
-        "Introduction to Front-End Development",
-        "Programming with JavaScript",
-        "Version Control (Git & GitHub)",
-        "HTML & CSS in depth",
-        "React Basics & Advanced React",
-        "Principles of UI/UX Design",
-        "Front-End Developer Capstone",
-        "Coding Interview Preparation",
-      ],
-    },
-    {
-      id: 26,
-      title: "TROJANS 2K26 – Runtime Terror",
-      issuer: "Chennai Institute of Technology",
-      date: "February 10, 2026",
-      logo: "./certifications/logo17.webp",
-      verifyUrl: "./certifications/certificate26.webp",
-      skills: [
-        "Technical Event Participation",
-        "Problem Solving",
-        "Debugging",
-        "UI/UX Approach",
-      ],
-    },
-    {
-      id: 27,
-      title: "IGNITE'26 – Hackathon",
-      issuer: "Easwari Engineering College",
-      date: "March 12, 2026",
-      logo: "./certifications/logo18.webp",
-      verifyUrl: "./certifications/certificate27.webp",
-      skills: [
-        "Problem Solving",
-        "Team Collaboration",
-        "Debugging",
-        "UI/UX Approach",
-        "Team Leadership",
-      ],
-    },
-    {
-      id: 28,
-      title: "Industrial Visit – Askan Technologies",
-      issuer: "Askan Technologies Pvt Ltd",
-      date: "April 17, 2026",
-      logo: "./certifications/logo19.webp",
-      verifyUrl: "./certifications/certificate28.webp",
-      skills: [
-        "Industry Exposure",
-        "Technical Observation",
-        "Learning & Development",
-        "Professional Awareness",
-      ],
-    },
-  ];
-
-  const [selectedCert, setSelectedCert] = useState<
-    (typeof certifications)[0] | null
-  >(null);
+  const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
   };
 
-  // Filter certifications based on search
+  // Filter certifications based on category and search
   const filteredCertifications = certifications.filter((cert) => {
+    const matchesCategory =
+      selectedCategory === "all" || cert.category === selectedCategory;
     const matchesSearch =
       cert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       cert.issuer.toLowerCase().includes(searchTerm.toLowerCase()) ||
       cert.skills.some((skill) =>
         skill.toLowerCase().includes(searchTerm.toLowerCase()),
       );
-    return matchesSearch;
+    return matchesCategory && matchesSearch;
   });
 
-  const openModal = (cert: (typeof certifications)[0]) => {
+  const openModal = (cert: Certification) => {
     setSelectedCert(cert);
     setShowModal(true);
   };
@@ -407,6 +80,48 @@ const CertificationsPage: React.FC = () => {
       transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
     },
   };
+
+  const categories = [
+    { id: "all", label: "All", icon: LayoutGrid },
+    { id: "hackathon", label: "Hackathons", icon: Trophy },
+    { id: "internship", label: "Internships", icon: Briefcase },
+    { id: "symposium", label: "Symposium Events", icon: Award },
+    { id: "course", label: "Courses", icon: GraduationCap },
+  ];
+
+  // Calculate stats dynamically
+  const stats = [
+    {
+      label: "Total Certifications",
+      value: `${certifications.length}`,
+      icon: BadgeCheck,
+      gradient: "from-cyan-500 to-blue-600",
+    },
+    {
+      label: "Hackathons",
+      value: `${certifications.filter((c) => c.category === "hackathon").length}`,
+      icon: CircuitBoard,
+      gradient: "from-purple-500 to-pink-600",
+    },
+    {
+      label: "Internships",
+      value: `${certifications.filter((c) => c.category === "internship").length}`,
+      icon: Briefcase,
+      gradient: "from-emerald-500 to-teal-600",
+    },
+    {
+      label: "Courses",
+      value: `${certifications.filter((c) => c.category === "course").length}`,
+      icon: NotebookPen,
+      gradient: "from-orange-500 to-red-600",
+    },
+    {
+      label: "Deployed Projects",
+      value: `${projects.length}`,
+      icon: Rocket,
+      gradient: "from-violet-500 to-purple-600",
+    },
+  ];
 
   return (
     <div className="min-h-screen pt-16 lg:pt-20 bg-gray-900 text-white relative overflow-hidden">
@@ -457,38 +172,7 @@ const CertificationsPage: React.FC = () => {
             variants={containerVariants}
             className="grid grid-cols-2 md:grid-cols-5 gap-4 lg:gap-6 mb-16"
           >
-            {[
-              {
-                label: "Total Certifications",
-                value: "18+",
-                icon: BadgeCheck,
-                gradient: "from-cyan-500 to-blue-600",
-              },
-              {
-                label: "Hackathons",
-                value: "7",
-                icon: CircuitBoard,
-                gradient: "from-purple-500 to-pink-600",
-              },
-              {
-                label: "Internships",
-                value: "3",
-                icon: GraduationCap,
-                gradient: "from-emerald-500 to-teal-600",
-              },
-              {
-                label: "Courses",
-                value: "3+",
-                icon: NotebookPen,
-                gradient: "from-orange-500 to-red-600",
-              },
-              {
-                label: "Deployed Projects",
-                value: "10+",
-                icon: Rocket,
-                gradient: "from-violet-500 to-purple-600",
-              },
-            ].map((stat, i) => (
+            {stats.map((stat, i) => (
               <motion.div
                 key={i}
                 variants={itemVariants}
@@ -525,6 +209,35 @@ const CertificationsPage: React.FC = () => {
             focusBorderColor="focus:border-cyan-500/50"
             focusRingColor="focus:ring-cyan-500/20"
           />
+
+          {/* Category Filter */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+            className="flex flex-wrap justify-center gap-3 lg:gap-4 mt-8"
+          >
+            {categories.map((category) => (
+              <motion.button
+                key={category.id}
+                type="button"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setSelectedCategory(category.id);
+                }}
+                className={`flex items-center gap-2 px-5 lg:px-6 py-2.5 lg:py-3 rounded-xl font-medium transition-all duration-300 ${
+                  selectedCategory === category.id
+                    ? "bg-gradient-to-r from-cyan-600 via-violet-600 to-blue-600 text-white shadow-lg shadow-cyan-500/25"
+                    : "bg-gray-800/60 text-gray-400 hover:text-cyan-300 hover:bg-gray-700/60 border border-gray-700/50 hover:border-cyan-500/30"
+                }`}
+              >
+                <category.icon size={18} />
+                {category.label}
+              </motion.button>
+            ))}
+          </motion.div>
         </div>
       </section>
 
