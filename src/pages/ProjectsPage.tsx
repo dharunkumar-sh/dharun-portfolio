@@ -65,28 +65,34 @@ const ProjectsPage: React.FC = () => {
     },
   };
 
+  const totalProjects = projects.length;
+  const featuredCount = projects.filter((p) => p.featured).length;
+  const openSourceCount = projects.filter((p) => p.githubUrl).length;
+  const uniqueTechs = new Set(projects.flatMap((p) => p.technologies));
+  const techStacksCount = uniqueTechs.size;
+
   const stats = [
     {
       label: "Total Projects",
-      value: "16",
+      value: String(totalProjects),
       icon: Rocket,
       gradient: "from-cyan-500 to-blue-600",
     },
     {
       label: "Featured",
-      value: "10",
+      value: String(featuredCount),
       icon: Star,
       gradient: "from-yellow-500 to-orange-600",
     },
     {
       label: "Open Source",
-      value: "16",
+      value: String(openSourceCount),
       icon: GitFork,
       gradient: "from-emerald-500 to-teal-600",
     },
     {
       label: "Tech Stacks",
-      value: "25+",
+      value: String(techStacksCount),
       icon: Layers,
       gradient: "from-violet-500 to-purple-600",
     },

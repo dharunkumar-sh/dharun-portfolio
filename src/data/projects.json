@@ -41,7 +41,7 @@
     "category": "web",
     "githubUrl": "https://github.com/freebird-prod/hire-sense",
     "liveUrl": "https://hiresense-ai.vercel.app",
-    "featured": true
+    "featured": false
   },
   {
     "id": 3,
@@ -60,7 +60,7 @@
     "category": "entertainment",
     "githubUrl": "https://github.com/freebird-prod/amaran-fanhub",
     "liveUrl": "https://amaran-fanhub.vercel.app",
-    "featured": true
+    "featured": false
   },
   {
     "id": 4,
@@ -101,7 +101,7 @@
     "status": false,
     "githubUrl": "https://github.com/SANJAY222-R/ForestFire-Predictor",
     "liveUrl": "https://github.com/SANJAY222-R/ForestFire-Predictor/releases/tag/v1.0.0",
-    "featured": true
+    "featured": false
   },
   {
     "id": 6,
@@ -135,26 +135,6 @@
     "githubUrl": "https://github.com/freebird-prod/grafixion-image-editor",
     "liveUrl": "https://grafixion.vercel.app",
     "featured": false
-  },
-  {
-    "id": 8,
-    "title": "Creafolio - Digital Portfolio Builder",
-    "description": "Easily create a beautiful digital portfolio with advanced edits and transformations.",
-    "longDescription": "Digital portfolio builder with tools to create stunning online portfolios with persistent storage.",
-    "image": "/projects/project8.webp",
-    "technologies": [
-      "Next.js",
-      "Next.js API",
-      "Daisy UI",
-      "PostgreSQL",
-      "Drizzle ORM",
-      "ReCharts"
-    ],
-    "category": "web",
-    "status": false,
-    "githubUrl": "https://github.com/freebird-prod/creafolio  ",
-    "liveUrl": "https://creafolio.vercel.app",
-    "featured": true
   },
   {
     "id": 9,
@@ -227,7 +207,7 @@
     "status": false,
     "githubUrl": "https://github.com/dharunkumar-sh/cine-hub",
     "liveUrl": "https://skcine.vercel.app",
-    "featured": true
+    "featured": false
   },
   {
     "id": 13,
@@ -289,6 +269,50 @@
     "status": true,
     "githubUrl": "https://github.com/dharunkumar-sh/api-muse",
     "liveUrl": "https://api-muse.vercel.app",
+    "featured": true
+  },
+  {
+    "id": 16,
+    "title": "RepoScribe AI – AI-Powered GitHub Documentation & Profile Management Platform",
+    "description": "Generate professional README files and enhance your GitHub profile with AI-powered documentation and live repository statistics.",
+    "longDescription": "RepoScribe AI helps developers generate production-ready README files and showcase their GitHub activity with AI-powered documentation and live repository statistics.",
+    "image": "/projects/project16.webp",
+    "technologies": [
+      "Next.js",
+      "Tailwind CSS",
+      "Openrouter API",
+      "Framer Motion",
+      "Firebase (Auth)",
+      "Firestore DB",
+      "Vercel"
+    ],
+    "category": "web",
+    "status": true,
+    "githubUrl": "https://github.com/dharunkumar-sh/repo-scribe",
+    "liveUrl": "https://reposcribe-ai.vercel.app",
+    "featured": true
+  },
+  {
+    "id": 17,
+    "title": "Code Deck IDE – Browser-Based Online Code Editor & Compiler",
+    "description": "A fast online IDE for writing, compiling, and running code in multiple programming languages directly from your browser.",
+    "longDescription": "Code Deck IDE is a modern browser-based coding platform that lets developers write, compile, and run code in multiple programming languages with instant execution and project management, all without local setup.",
+    "image": "/projects/project17.webp",
+    "technologies": [
+      "Next.js",
+      "Tailwind CSS",
+      "Clerk (Auth)",
+      "Convex DB",
+      "Monaco Editor",
+      "Zustand",
+      "Wandbox API",
+      "Syntax Highlighting",
+      "Vercel"
+    ],
+    "category": "web",
+    "status": true,
+    "githubUrl": "https://github.com/dharunkumar-sh/code-craft",
+    "liveUrl": "https://codedeck-ide.vercel.app",
     "featured": true
   }
 ]
