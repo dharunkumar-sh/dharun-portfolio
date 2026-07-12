@@ -46,8 +46,8 @@ const GITHUB_USERNAME = "dharunkumar-sh";
 const GITHUB_API_URL = "https://api.github.com";
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN as string | undefined;
 
-// Auto-refresh interval (3.5 seconds)
-const REFRESH_INTERVAL_MS = 3500;
+// Auto-refresh interval (5 minutes)
+const REFRESH_INTERVAL_MS = 300000;
 
 // Pagination Configuration
 const REPOS_PER_PAGE = 6;
@@ -383,6 +383,14 @@ const StatsPage: React.FC = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const isInitialLoad = useRef(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Build request headers with optional auth
   const getHeaders = useCallback((): HeadersInit => {
@@ -502,10 +510,7 @@ const StatsPage: React.FC = () => {
           .sort((a, b) => b.stargazers_count - a.stargazers_count)
           .slice(0, 5)
           .map((repo) => ({
-            name:
-              repo.name.length > 15
-                ? repo.name.slice(0, 15) + "..."
-                : repo.name,
+            name: repo.name,
             stars: repo.stargazers_count,
           }));
 
@@ -765,12 +770,15 @@ const StatsPage: React.FC = () => {
                         data={githubStats.languages}
                         cx="50%"
                         cy="50%"
-                        innerRadius={60}
-                        outerRadius={100}
+                        innerRadius={isMobile ? 45 : 60}
+                        outerRadius={isMobile ? 75 : 100}
                         paddingAngle={2}
                         dataKey="value"
-                        label={({ name, percent }) =>
-                          `${name} ${((percent || 0) * 100).toFixed(0)}%`
+                        label={
+                          isMobile
+                            ? false
+                            : ({ name, percent }) =>
+                                `${name} ${((percent || 0) * 100).toFixed(0)}%`
                         }
                         labelLine={false}
                       >
@@ -807,7 +815,7 @@ const StatsPage: React.FC = () => {
                   <BarChart
                     data={githubStats.topReposByStars}
                     layout="vertical"
-                    margin={{ left: 10, right: 20 }}
+                    margin={{ left: 0, right: 20 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                     <XAxis type="number" stroke="#9ca3af" fontSize={12} />
@@ -816,8 +824,12 @@ const StatsPage: React.FC = () => {
                       dataKey="name"
                       stroke="#9ca3af"
                       fontSize={11}
-                      width={100}
+                      width={isMobile ? 70 : 100}
                       tick={{ fill: "#9ca3af" }}
+                      tickFormatter={(value) => {
+                        const limit = isMobile ? 8 : 15;
+                        return value.length > limit ? `${value.slice(0, limit)}...` : value;
+                      }}
                     />
                     <Tooltip content={<CustomTooltip />} />
                     <Bar
@@ -846,10 +858,10 @@ const StatsPage: React.FC = () => {
             >
               <ResponsiveContainer width="100%" height={300}>
                 <AreaChart
-                  data={githubStats.allRepos.slice(0, 10).map((repo) => ({
+                  data={githubStats.allRepos.slice(0, isMobile ? 5 : 10).map((repo) => ({
                     name:
-                      repo.name.length > 12
-                        ? repo.name.slice(0, 12) + "..."
+                      repo.name.length > (isMobile ? 8 : 12)
+                        ? repo.name.slice(0, isMobile ? 8 : 12) + "..."
                         : repo.name,
                     stars: repo.stars,
                     forks: repo.forks,

@@ -124,39 +124,6 @@
     "featured": true
   },
   {
-    "id": 7,
-    "title": "Grafixion - Simple Image Editor",
-    "description": "A simple image editor with advanced edits and transformations.",
-    "longDescription": "Simple image editor with background removal and advanced filters using React and Local Storage.",
-    "image": "/projects/project7.webp",
-    "technologies": ["React.js", "Tailwind CSS", "ShadCN UI", "Local Storage"],
-    "category": "web",
-    "status": false,
-    "githubUrl": "https://github.com/freebird-prod/grafixion-image-editor",
-    "liveUrl": "https://grafixion.vercel.app",
-    "featured": false
-  },
-  {
-    "id": 9,
-    "title": "NeuraLife - AI-Powered Mental Health Companion",
-    "description": "A mental health companion that provides personalized support and resources.",
-    "longDescription": "AI-powered mental health companion offering personalized support and resources using machine learning.",
-    "image": "/projects/project9.webp",
-    "technologies": [
-      "Next.js",
-      "Tailwind CSS",
-      "Next.js API",
-      "ShadCN UI",
-      "Firebase",
-      "Openrouter LLM"
-    ],
-    "category": "web",
-    "status": false,
-    "githubUrl": "https://github.com/freebird-prod/neura-life",
-    "liveUrl": "https://neura-life.vercel.app",
-    "featured": false
-  },
-  {
     "id": 10,
     "title": "FlowFund - Expense Tracker and Budget Planner",
     "description": "An expense tracker and budget planner that helps users manage their finances.",

@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               className="flex items-center space-x-2"
             >
-              <Link to="/" className="flex items-center">
+              <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
                 <img
                   src="/logo.svg"
                   alt="Logo"
@@ -118,7 +118,8 @@ const Navbar: React.FC = () => {
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-gray-300 hover:text-cyan-400 transition-colors p-2"
+                className="text-gray-300 hover:text-cyan-400 transition-colors w-11 h-11 flex items-center justify-center rounded-full"
+                aria-label="Toggle navigation menu"
               >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </motion.button>
@@ -134,7 +135,9 @@ const Navbar: React.FC = () => {
             height: isOpen ? "auto" : 0,
           }}
           transition={{ duration: 0.15, ease: "easeInOut" }}
-          className="lg:hidden w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6"
+          className={`lg:hidden w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 overflow-hidden ${
+            isOpen ? "pointer-events-auto" : "pointer-events-none"
+          }`}
         >
           <div className="rounded-[28px] bg-gray-900/80 border border-cyan-500/25 shadow-[0_10px_40px_rgba(6,182,212,0.12)] backdrop-blur px-3 sm:px-4 py-3 space-y-1.5">
             {navItems.map((item) => {
@@ -150,6 +153,7 @@ const Navbar: React.FC = () => {
                     to={item.path}
                     onMouseEnter={() => handlePrefetch(item.path)}
                     onTouchStart={() => handlePrefetch(item.path)}
+                    onClick={() => setIsOpen(false)}
                     className={`relative block px-4 py-2.5 text-base font-semibold transition-colors duration-200 rounded-full overflow-hidden ${
                       active
                         ? "text-cyan-200"

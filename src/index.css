@@ -160,14 +160,6 @@ textarea:focus {
   }
 }
 
-/* Improved touch targets for mobile */
-@media (max-width: 768px) {
-  button,
-  a {
-    min-height: 44px;
-    min-width: 44px;
-  }
-}
 
 /* Better spacing for tablets */
 @media (min-width: 768px) and (max-width: 1024px) {

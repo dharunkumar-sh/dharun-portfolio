@@ -13,6 +13,7 @@ import {
   Rocket,
   Star,
   GitFork,
+  X,
 } from "lucide-react";
 import SearchBar from "../components/SearchBar";
 import projects from "../data/projects.json";
@@ -346,7 +347,7 @@ const ProjectsPage: React.FC = () => {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 50 }}
               transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden border border-gray-700/50"
+              className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-gray-700/50"
               onClick={(e) => e.stopPropagation()}
             >
               {(() => {
@@ -355,6 +356,15 @@ const ProjectsPage: React.FC = () => {
 
                 return (
                   <>
+                    {/* Close Button */}
+                    <button
+                      onClick={() => setSelectedProject(null)}
+                      className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 backdrop-blur border border-white/10 text-gray-300 hover:text-white flex items-center justify-center transition-all duration-200"
+                      aria-label="Close modal"
+                    >
+                      <X className="w-5 h-5" strokeWidth={2.5} />
+                    </button>
+
                     {/* Banner */}
                     <div className="relative h-50 sm:h-[18rem] overflow-hidden">
                       <img

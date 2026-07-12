@@ -47,7 +47,7 @@ function AppContent(): JSX.Element {
 
   return (
     <motion.div
-      className="min-h-screen bg-gray-900 text-white overflow-x-hidden select-none"
+      className="min-h-screen bg-gray-900 text-white overflow-x-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: mounted ? 1 : 0 }}
       transition={{ duration: 0.2, ease: "easeOut" }}

@@ -60,15 +60,17 @@ const ContactPage: React.FC = () => {
       icon: Mail,
       title: "Email",
       value: "dharunkumar.dev@gmail.com",
-      href: "dharunkumar.dev@gmail.com",
+      href: "mailto:dharunkumar.dev@gmail.com",
       description: "Send me an email anytime",
+      type: "link",
     },
     {
       icon: Phone,
       title: "Phone",
       value: "+91 6383113382",
-      href: "6383113382",
+      href: "tel:+916383113382",
       description: "Call me during business hours",
+      type: "link",
     },
     {
       icon: MapPin,
@@ -77,13 +79,16 @@ const ContactPage: React.FC = () => {
         "32/27, Kutty St, Perumalpet, Purasaiwakkam, Chennai, Tamil Nadu 600007",
       href: "https://www.google.com/maps/place/32%2F27,+Kutty+St,+Perumalpet,+Purasaiwakkam,+Chennai,+Tamil+Nadu+600012/@13.093087,80.2551661,17z/data=!3m1!4b1!4m6!3m5!1s0x3a5265e8827d7429:0xc5740ef09fb4b965!8m2!3d13.093087!4d80.257741!16s%2Fg%2F11y44kpyqc?entry=ttu&g_ep=EgoyMDI1MDcwNy4wIKXMDSoASAFQAw%3D%3D",
       description: "Available for local meetups",
+      type: "link",
+      target: "_blank",
+      rel: "noopener noreferrer",
     },
     {
       icon: Clock,
       title: "Response Time",
       value: "Within 24 hours",
-      href: "#",
       description: "I typically respond quickly",
+      type: "info",
     },
   ];
 
@@ -229,26 +234,53 @@ const ContactPage: React.FC = () => {
 
               {/* Contact Info Cards */}
               <div className="grid sm:grid-cols-2 gap-6">
-                {contactInfo.map((info, index) => (
-                  <motion.a
-                    key={index}
-                    variants={itemVariants}
-                    onClick={() => OnCopy(info.href)}
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    className="block p-6 lg:p-8 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 cursor-pointer"
-                  >
-                    <div className="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-cyan-500 to-violet-500 rounded-xl flex items-center justify-center mb-4 lg:mb-6">
-                      <info.icon size={24} className="text-white" />
-                    </div>
-                    <h3 className="font-semibold text-white text-lg lg:text-xl mb-2">
-                      {info.title}
-                    </h3>
-                    <p className="text-cyan-400 text-sm font-medium mb-2">
-                      {info.value}
-                    </p>
-                    <p className="text-gray-500 text-sm">{info.description}</p>
-                  </motion.a>
-                ))}
+                {contactInfo.map((info, index) => {
+                  const cardProps = {
+                    key: index,
+                    variants: itemVariants,
+                    whileHover: info.type === "link" ? { scale: 1.02, y: -5 } : {},
+                    className: `block p-6 lg:p-8 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 ${
+                      info.type === "link"
+                        ? "hover:border-cyan-500/50 cursor-pointer"
+                        : "border-gray-700/30"
+                    } transition-all duration-300`,
+                  };
+
+                  const cardContent = (
+                    <>
+                      <div className="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-cyan-500 to-violet-500 rounded-xl flex items-center justify-center mb-4 lg:mb-6">
+                        <info.icon size={24} className="text-white" />
+                      </div>
+                      <h3 className="font-semibold text-white text-lg lg:text-xl mb-2">
+                        {info.title}
+                      </h3>
+                      <p className="text-cyan-400 text-sm font-medium mb-2">
+                        {info.value}
+                      </p>
+                      <p className="text-gray-500 text-sm">{info.description}</p>
+                    </>
+                  );
+
+                  if (info.type === "link") {
+                    return (
+                      <motion.a
+                        key={index}
+                        href={info.href}
+                        target={info.target}
+                        rel={info.rel}
+                        {...cardProps}
+                      >
+                        {cardContent}
+                      </motion.a>
+                    );
+                  }
+
+                  return (
+                    <motion.div key={index} {...cardProps}>
+                      {cardContent}
+                    </motion.div>
+                  );
+                })}
               </div>
 
               {/* Social Links */}

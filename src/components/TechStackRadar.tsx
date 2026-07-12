@@ -3,6 +3,15 @@ import { motion } from 'framer-motion';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
 
 const TechStackRadar: React.FC = () => {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const data = [
     { subject: 'Frontend', A: 95, fullMark: 100 },
     { subject: 'Backend', A: 65, fullMark: 100 },
@@ -17,9 +26,9 @@ const TechStackRadar: React.FC = () => {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="w-full h-96 p-6 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700/50"
+      className="w-full h-[22rem] sm:h-96 p-4 sm:p-6 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700/50"
     >
-      <h3 className="text-2xl font-bold text-center mb-6">
+      <h3 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6">
         <span className="bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
           Tech Stack Proficiency
         </span>
@@ -27,7 +36,7 @@ const TechStackRadar: React.FC = () => {
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart data={data}>
           <PolarGrid stroke="#374151" />
-          <PolarAngleAxis dataKey="subject" tick={{ fill: '#9CA3AF', fontSize: 12 }} />
+          <PolarAngleAxis dataKey="subject" tick={{ fill: '#9CA3AF', fontSize: isMobile ? 10 : 12 }} />
           <PolarRadiusAxis 
             angle={90} 
             domain={[0, 100]} 
