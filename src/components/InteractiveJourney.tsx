@@ -68,14 +68,14 @@ const JOURNEY_DATA: TimelineItem[] = [
   {
     id: 4,
     year: "2026",
-    title: "Future Goals",
+    title: "Founded DANK Technologies",
     description:
-      "Aspiring to become a software developer and build impactful applications",
+      "Founded DANK Technologies to build privacy-focused, AI-powered SaaS products.",
     icon: <Target size={32} />,
     details: [
-      "Contribute to open-source",
-      "Master system design",
-      "Build scalable products",
+      "Privacy-first AI SaaS",
+      "Scalable software solutions",
+      "Product & technology leadership",
     ],
     color: "from-purple-500 to-violet-500",
     bgGradient: "from-purple-600/10 to-violet-600/10",
@@ -94,20 +94,6 @@ const JOURNEY_DATA: TimelineItem[] = [
     ],
     color: "from-emerald-500 to-teal-500",
     bgGradient: "from-emerald-600/10 to-teal-600/10",
-  },
-  {
-    id: 6,
-    year: "2029",
-    title: "Career Launch",
-    description: "Join Google as a Software Developer Engineer and drive innovation",
-    icon: <Rocket size={32} />,
-    details: [
-      "Lead large-scale projects",
-      "Drive technical innovation",
-      "Mentor other developers",
-    ],
-    color: "from-red-500 to-pink-500",
-    bgGradient: "from-red-600/10 to-pink-600/10",
   },
 ];
 
