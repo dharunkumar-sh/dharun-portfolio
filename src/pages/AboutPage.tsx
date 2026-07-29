@@ -18,7 +18,9 @@ const SkillIcon: React.FC<SkillIconProps> = ({ src, name, categoryColor }) => {
   if (hasError || !src) {
     const firstLetter = name.charAt(0).toUpperCase();
     return (
-      <div className={`absolute inset-0 bg-gradient-to-br ${categoryColor} flex items-center justify-center`}>
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${categoryColor} flex items-center justify-center`}
+      >
         <span className="text-white font-extrabold text-xl sm:text-2xl drop-shadow-md">
           {firstLetter}
         </span>
@@ -47,7 +49,7 @@ const AboutPage: React.FC = () => {
         { name: "TypeScript", image: "/typescript.webp" },
         { name: "Python", image: "/python.webp" },
         { name: "Java", image: "/java.webp" },
-        { name: "SQL", image: "/sql.webp" },
+        { name: "SQL", image: "/mysql.webp" },
       ],
     },
     {
@@ -56,18 +58,9 @@ const AboutPage: React.FC = () => {
       skills: [
         { name: "React.js", image: "/react.webp" },
         { name: "Next.js", image: "/next.webp" },
-        { name: "Node.js", image: "/nodejs.webp" },
-        { name: "Tailwind CSS", image: "/tailwind.webp" },
-        { name: "ShadCN/UI", image: "/shadcn.webp" },
         { name: "React Native", image: "/react-native.webp" },
-      ],
-    },
-    {
-      title: "State Management",
-      color: "from-amber-500 to-orange-500",
-      skills: [
-        { name: "Redux", image: "/redux.svg" },
-        { name: "Zustand", image: "/zustand.webp" },
+        { name: "Node.js", image: "/nodejs.webp" },
+        { name: "Express.js", image: "/express.webp" },
       ],
     },
     {
@@ -75,33 +68,45 @@ const AboutPage: React.FC = () => {
       color: "from-green-500 to-emerald-500",
       skills: [
         { name: "PostgreSQL", image: "/postgre.webp" },
-        { name: "MySQL", image: "/mysql.webp" },
+        { name: "Firestore", image: "/firestore.webp" },
         { name: "MongoDB", image: "/mongodb.webp" },
         { name: "Supabase", image: "/supabase.webp" },
-        { name: "Convex DB", image: "/convex.webp" },
-        { name: "Drizzle ORM", image: "/drizzle.webp" },
+        { name: "Drizzle", image: "/drizzle.webp" },
+        { name: "Prisma", image: "/prisma.webp" },
       ],
     },
     {
-      title: "Cloud & Deployment",
+      title: "Cloud Platforms",
       color: "from-red-500 to-pink-500",
       skills: [
-        { name: "Vercel", image: "/vercel.webp" },
-        { name: "Firebase", image: "/firebase.webp" },
-        { name: "Netlify", image: "/netlify.svg" },
-        { name: "Render", image: "/render.svg" },
         { name: "Google Cloud", image: "/google-cloud.webp" },
+        { name: "Vercel", image: "/vercel.webp" },
+        { name: "Netlify", image: "/netlify.svg" },
+        { name: "Firebase", image: "/firebase.webp" },
+        { name: "Cloudflare", image: "/cloudflare.webp" },
+        { name: "Render", image: "/render.svg" },
       ],
     },
     {
-      title: "Tools & Platforms",
+      title: "DevOps & Containers",
+      color: "from-indigo-500 to-blue-500",
+      skills: [
+        { name: "Docker", image: "/docker.webp" },
+        { name: "GitHub Actions", image: "/github_actions.webp" },
+        { name: "GitLab CI", image: "/gitlab.webp" },
+        { name: "Vercel", image: "/vercel.webp" },
+        { name: "Firebase Deployment", image: "/firebase_deployment.webp" },
+      ],
+    },
+    {
+      title: "Tools & Systems",
       color: "from-indigo-500 to-blue-500",
       skills: [
         { name: "Git", image: "/git.webp" },
-        { name: "GitHub", image: "/icons/github.webp" },
-        { name: "Docker", image: "/docker.webp" },
+        { name: "GitHub", image: "/github.webp" },
         { name: "VS Code", image: "/vscode.webp" },
-        { name: "REST APIs", image: "/api.svg" },
+        { name: "Linux", image: "/linux.webp" },
+        { name: "Bash", image: "/bash.webp" },
       ],
     },
   ];
@@ -163,7 +168,11 @@ const AboutPage: React.FC = () => {
                   alt="Dharun Kumar S H"
                   className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   initial={{ opacity: 0, scale: 0.98, filter: "blur(6px)" }}
-                  animate={imageLoaded ? { opacity: 1, scale: 1, filter: "blur(0px)" } : {}}
+                  animate={
+                    imageLoaded
+                      ? { opacity: 1, scale: 1, filter: "blur(0px)" }
+                      : {}
+                  }
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   onLoad={() => setImageLoaded(true)}
                 />
@@ -268,7 +277,6 @@ const AboutPage: React.FC = () => {
               <InteractiveAbout />
             </motion.div>
 
-
             {/* Right Side - Interactive Journey */}
             <motion.div
               variants={containerVariants}
@@ -291,8 +299,11 @@ const AboutPage: React.FC = () => {
           >
             {/* Immersive Background glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] max-w-5xl h-[120%] max-h-[1000px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none" />
-            
-            <motion.div variants={itemVariants} className="relative z-10 text-center mb-12 sm:mb-16">
+
+            <motion.div
+              variants={itemVariants}
+              className="relative z-10 text-center mb-12 sm:mb-16"
+            >
               <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-violet-400 to-fuchsia-400 mb-6 inline-block tracking-tight">
                 Developer Skills
               </h3>
@@ -306,7 +317,11 @@ const AboutPage: React.FC = () => {
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: categoryIndex * 0.1, duration: 0.7, type: "spring" }}
+                  transition={{
+                    delay: categoryIndex * 0.1,
+                    duration: 0.7,
+                    type: "spring",
+                  }}
                   className="relative group rounded-[2rem] p-6 sm:p-8 bg-gray-900/50 backdrop-blur-xl border border-gray-700/50 hover:border-cyan-500/50 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(6,182,212,0.15)] transition-all duration-500 flex flex-col"
                 >
                   {/* Hover Gradient Background */}
@@ -317,15 +332,13 @@ const AboutPage: React.FC = () => {
                     <div
                       className={`h-12 w-1.5 bg-gradient-to-b ${category.color} rounded-full`}
                     />
-                    <h4
-                      className="text-xl sm:text-2xl font-bold text-white tracking-wide"
-                    >
+                    <h4 className="text-xl sm:text-2xl font-bold text-white tracking-wide">
                       {category.title}
                     </h4>
                   </div>
 
                   {/* Skills Grid */}
-                  <div className="grid grid-cols-3 gap-4 sm:gap-5 mt-auto relative z-10">
+                  <div className="grid grid-cols-3 gap-4 sm:gap-5 relative z-10 flex-1 content-start">
                     {category.skills.map((skill, skillIndex) => (
                       <motion.div
                         key={skill.name}
@@ -335,21 +348,21 @@ const AboutPage: React.FC = () => {
                         transition={{
                           delay: categoryIndex * 0.1 + skillIndex * 0.05,
                           duration: 0.5,
-                          type: "spring"
+                          type: "spring",
                         }}
                         whileHover={{
                           scale: 1.1,
                           rotateZ: skillIndex % 2 === 0 ? 3 : -3,
                           zIndex: 50,
                         }}
-                        className="relative group/skill flex flex-col items-center gap-3"
+                        className="relative group/skill flex flex-col items-center gap-2.5"
                       >
                         {/* Skill Icon Container */}
-                        <div
-                          className="relative flex justify-center items-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gray-800/80 border border-gray-700/50 group-hover/skill:border-cyan-400/50 shadow-inner group-hover/skill:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300 overflow-hidden"
-                        >
-                          <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover/skill:opacity-15 transition-opacity duration-300`} />
-                          
+                        <div className="relative flex justify-center items-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gray-800/80 border border-gray-700/50 group-hover/skill:border-cyan-400/50 shadow-inner group-hover/skill:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300 overflow-hidden shrink-0">
+                          <div
+                            className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover/skill:opacity-15 transition-opacity duration-300`}
+                          />
+
                           <SkillIcon
                             src={skill.image}
                             name={skill.name}
@@ -358,7 +371,7 @@ const AboutPage: React.FC = () => {
                         </div>
 
                         {/* Skill Name */}
-                        <span className="text-[11px] sm:text-[13px] font-medium text-gray-400 group-hover/skill:text-cyan-300 text-center transition-colors duration-300">
+                        <span className="text-[11px] sm:text-[13px] font-medium text-gray-400 group-hover/skill:text-cyan-300 text-center transition-colors duration-300 h-8 sm:h-9 flex items-start justify-center leading-snug w-full px-0.5">
                           {skill.name}
                         </span>
                       </motion.div>
