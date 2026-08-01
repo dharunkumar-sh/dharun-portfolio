@@ -104,26 +104,6 @@
     "featured": false
   },
   {
-    "id": 6,
-    "title": "Pixxel - AI Powered Image Editor",
-    "description": "Apply advanced AI-driven edits and transformations to images with a powerful, modern online editor.",
-    "longDescription": "AI-powered image editor with background removal, object manipulation, and advanced filters powered by Convex DB.",
-    "image": "/projects/project6.webp",
-    "technologies": [
-      "Next.js",
-      "Next.js API",
-      "Convex DB",
-      "Clerk (Auth)",
-      "Imagekit.io",
-      "ShadCN UI"
-    ],
-    "category": "web",
-    "status": false,
-    "githubUrl": "https://github.com/freebird-prod/pixxel-image-editor",
-    "liveUrl": "https://pixxel-image.vercel.app",
-    "featured": true
-  },
-  {
     "id": 10,
     "title": "FlowFund - Expense Tracker and Budget Planner",
     "description": "An expense tracker and budget planner that helps users manage their finances.",
@@ -194,7 +174,7 @@
     "status": false,
     "githubUrl": "https://github.com/dharunkumar-sh/career-lens",
     "liveUrl": "https://careerlens-guide.vercel.app",
-    "featured": true
+    "featured": false
   },
   {
     "id": 14,
@@ -236,7 +216,7 @@
     "status": true,
     "githubUrl": "https://github.com/dharunkumar-sh/api-muse",
     "liveUrl": "https://api-muse.vercel.app",
-    "featured": true
+    "featured": false
   },
   {
     "id": 16,
@@ -280,6 +260,27 @@
     "status": true,
     "githubUrl": "https://github.com/dharunkumar-sh/code-craft",
     "liveUrl": "https://codedeck-ide.vercel.app",
-    "featured": true
-  }
+    "featured": false
+  },
+ {
+   "id": 18,
+   "title": "JobBuddy AI — Smart AI Job Search Assistant & Resume Workspace",
+   "description": "An intelligent AI-powered platform designed to streamline your job search journey with smart resume building, job matching, and career guidance.",
+   "longDescription": "AI-powered job search assistant that helps you build resumes, find tailored opportunities, prepare for interviews, and track applications in one workspace.",
+   "image": "/projects/project18.webp",
+   "technologies": [
+     "Next.js",
+     "Tailwind CSS",
+     "Supabase (Auth & DB)",
+     "Gemini LLM",
+     "Browserbase",
+     "Razorpay",
+     "Vercel"
+   ],
+   "category": "web",
+   "status": true,
+   "githubUrl": "https://github.com/dharunkumar-sh/ai-job-application-agent",
+   "liveUrl": "https://job-buddyai.vercel.app",
+   "featured": true
+ }
 ]
