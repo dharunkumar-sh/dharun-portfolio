@@ -21,29 +21,6 @@
     "featured": false
   },
   {
-    "id": 2,
-    "title": "AI-Powered Resume Analyzer",
-    "description": "Smart resume screening tool that extracts skills and analyzes job fit using AI.",
-    "longDescription": "Resume analysis tool using NLP and Gemini LLM to extract skills, evaluate job fit, and suggest suitable roles.",
-    "image": "/projects/project2.webp",
-    "technologies": [
-      "React.js",
-      "Tailwind CSS",
-      "Shadcn UI",
-      "Python (Flask)",
-      "Node.js",
-      "NLP (SpaCy)",
-      "Gemini LLM",
-      "PostgreSQL",
-      "Render",
-      "Vercel"
-    ],
-    "category": "web",
-    "githubUrl": "https://github.com/freebird-prod/hire-sense",
-    "liveUrl": "https://hiresense-ai.vercel.app",
-    "featured": false
-  },
-  {
     "id": 3,
     "title": "Amaran Fanhub - Fan Website",
     "description": "A vibrant community portal celebrating actor Amaran's legacy with media, news, and fan interactions.",
