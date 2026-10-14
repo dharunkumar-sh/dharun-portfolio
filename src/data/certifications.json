@@ -374,5 +374,19 @@
       "Professional Awareness"
     ],
     "category": "symposium"
+  },
+  {
+    "id": 29,
+    "title": "Certificate of Appreciation – Treasurer, Dev Dynasty",
+    "issuer": "MSEC",
+    "date": "August 14, 2026",
+    "logo": "./certifications/logo20.png",
+    "verifyUrl": "./certifications/certificate29.webp",
+    "skills": [
+      "Leadership",
+      "Team Coordination",
+      "Club Management"
+    ],
+    "category": "leadership"
   }
 ]
