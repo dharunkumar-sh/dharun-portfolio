@@ -259,6 +259,12 @@ const HomePage: React.FC = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
+                title: "About",
+                path: "/about",
+                description: "My journey and skills",
+                icon: "👋",
+              },
+              {
                 title: "Projects",
                 path: "/projects",
                 description: "Innovative solutions",
@@ -275,6 +281,18 @@ const HomePage: React.FC = () => {
                 path: "/events",
                 description: "Hackathons & Events",
                 icon: "🎯",
+              },
+              {
+                title: "Stats",
+                path: "/stats",
+                description: "My coding journey",
+                icon: "📊",
+              },
+              {
+                title: "Contact",
+                path: "/contact",
+                description: "Let's work together",
+                icon: "✉️",
               },
             ].map((item, index) => (
               <motion.div

@@ -175,27 +175,6 @@
     "featured": true
   },
   {
-    "id": 15,
-    "title": "API Muse - AI-Powered API Documentation Generator",
-    "description": "Design APIs with Intelligence. Stop writing boilerplate. Describe your endpoints and let AI generate flawless, production-ready API documentation instantly.",
-    "longDescription": "AI-powered API documentation generator that converts descriptions into production-ready OpenAPI specs.",
-    "image": "/projects/project15.webp",
-    "technologies": [
-      "Next.js",
-      "Tailwind CSS",
-      "Openrouter API",
-      "OpenAPI Specification",
-      "Swagger UI",
-      "TypeScript",
-      "Vercel"
-    ],
-    "category": "web",
-    "status": true,
-    "githubUrl": "https://github.com/dharunkumar-sh/api-muse",
-    "liveUrl": "https://api-muse.vercel.app",
-    "featured": false
-  },
-  {
     "id": 16,
     "title": "RepoScribe AI – AI-Powered GitHub Documentation & Profile Management Platform",
     "description": "Generate professional README files and enhance your GitHub profile with AI-powered documentation and live repository statistics.",

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { motion, Variants } from "framer-motion";
 
-import TechStackRadar from "../components/TechStackRadar";
 import InteractiveJourney from "../components/InteractiveJourney";
 import InteractiveAbout from "../components/InteractiveAbout";
-import { CodeIcon, Rocket, Users, BookOpen, Zap } from "lucide-react";
+import ExperienceBar from "../components/ExperienceBar";
+import {CodeIcon, Rocket, Users, BookOpen, Zap, ServerCrash, Lightbulb} from "lucide-react";
 
 interface SkillIconProps {
   src: string;
@@ -198,8 +198,7 @@ const AboutPage: React.FC = () => {
                   Dharun Kumar S H
                 </h2>
                 <p className="text-xl lg:text-[16.5px] text-slate-400 leading-relaxed font-medium">
-                  Aspiring Software Developer | Meta Certified Front-End Dev |
-                  Vibe Coder
+                  Aspiring Software Developer | Meta Certified Front-End Developer
                 </p>
               </motion.div>
 
@@ -240,8 +239,8 @@ const AboutPage: React.FC = () => {
                     color: "from-rose-600 to-indigo-800",
                   },
                   {
-                    icon: CodeIcon,
-                    label: "Vibe Coder",
+                    icon: Lightbulb,
+                    label: "Problem Solver",
                     color: "from-orange-600 to-pink-700",
                   },
                 ].map((badge, index) => (
@@ -263,6 +262,8 @@ const AboutPage: React.FC = () => {
               </motion.div>
             </motion.div>
           </motion.div>
+
+          <ExperienceBar />
 
           {/* Main Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-start">
@@ -381,91 +382,6 @@ const AboutPage: React.FC = () => {
               ))}
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Tech Stack Radar Chart */}
-      <section className="py-16 lg:py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-violet-500/5" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="text-center mb-12 lg:mb-16"
-          >
-            <h2 className="text-3xl lg:text-5xl font-bold mb-4 lg:mb-6">
-              <span className="bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
-                Tech Stack Visualization
-              </span>
-            </h2>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <TechStackRadar />
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className="space-y-6"
-            >
-              <div className="space-y-4">
-                {[
-                  {
-                    area: "Frontend Development",
-                    percentage: 90,
-                    description:
-                      "React, Next.js, React Native, Tailwind CSS, Bootstrap, JavaScript, TypeScript",
-                  },
-                  {
-                    area: "Backend Development",
-                    percentage: 40,
-                    description: "Node.js, Python (Flask), APIs",
-                  },
-                  {
-                    area: "Database Management",
-                    percentage: 75,
-                    description:
-                      "MySQL, PostgreSQL, Firebase, Supabase, Convex, Strapi CMS",
-                  },
-                ].map((item, index) => (
-                  <motion.div
-                    key={item.area}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="p-4 bg-gray-800/30 rounded-lg"
-                  >
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-semibold text-white">
-                        {item.area}
-                      </span>
-                      <span className="text-cyan-400 font-bold">
-                        {item.percentage}%
-                      </span>
-                    </div>
-                    <p className="text-gray-400 text-sm mb-3">
-                      {item.description}
-                    </p>
-                    <div className="w-full bg-gray-700 rounded-full h-2">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${item.percentage}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: index * 0.2 }}
-                        className="bg-gradient-to-r from-cyan-500 to-violet-500 h-2 rounded-full"
-                      />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
         </div>
       </section>
 

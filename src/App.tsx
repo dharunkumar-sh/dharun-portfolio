@@ -8,7 +8,6 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { Toaster } from "react-hot-toast";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import { applyPageSEO } from "./utils/seo";
 import { usePrefetch } from "./hooks/usePrefetch";
 
@@ -93,7 +92,6 @@ function AppContent(): JSX.Element {
         </Suspense>
       </main>
 
-      <Footer />
     </motion.div>
   );
 }
