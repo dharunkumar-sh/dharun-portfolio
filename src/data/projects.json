@@ -218,27 +218,6 @@
     "liveUrl": "https://codedeck-ide.vercel.app",
     "featured": false
   },
- {
-   "id": 18,
-   "title": "JobBuddy AI — Smart AI Job Search Assistant & Resume Workspace",
-   "description": "An intelligent AI-powered platform designed to streamline your job search journey with smart resume building, job matching, and career guidance.",
-   "longDescription": "AI-powered job search assistant that helps you build resumes, find tailored opportunities, prepare for interviews, and track applications in one workspace.",
-   "image": "/projects/project18.webp",
-   "technologies": [
-     "Next.js",
-     "Tailwind CSS",
-     "Supabase (Auth & DB)",
-     "Gemini LLM",
-     "Browserbase",
-     "Razorpay",
-     "Vercel"
-   ],
-   "category": "web",
-   "status": true,
-   "githubUrl": "https://github.com/dharunkumar-sh/ai-job-application-agent",
-   "liveUrl": "https://job-buddyai.vercel.app",
-   "featured": true
- },
 {
   "id": 19,
   "title": "Devora AI — AI-Powered Code Intelligence Platform",
